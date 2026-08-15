@@ -14,21 +14,17 @@ submit= st.sidebar.button ("generate otp")
 api_key = st.sidebar.text_input("API key (X-PrivateKey)")
 jwt_token = st.sidebar.text_input("JWT access token", type="password")
 
-
-headers = {
+headers1 = {
     'X-Mirae-Version': '1',
     'Content-Type': 'application/x-www-form-urlencoded',
 }
 
-data = {
-    'username': 'YYYYY',
-    'password': 'YYYYY',
+dataX' = {
+    'username': username,
+    'password': password,
 }
 
-response = requests.post('https://api.mstock.trade/openapi/typea/connect/login', headers='XXXXX'data)
-
-
-
+response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
 
 exchange = st.selectbox(
     "Exchange",
