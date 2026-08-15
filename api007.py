@@ -1,4 +1,5 @@
-import streamlit as st
+data
+dataX' st
 import pandas as pd
 import requests
 
@@ -19,20 +20,21 @@ headers1 = {
     'Content-Type': 'application/x-www-form-urlencoded',
 }
 
-dataX' = {
+data1 ={
     'username': username,
-    'password': password,
-}
+    'password': password
+    }
 
-response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
-
+if submit== True:
+    response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)                     
+                        
+                             
 exchange = st.selectbox(
     "Exchange",
     {
         "NSE FNO": 2,
         "BSE FNO": 4
-    }.keys()
-)
+    }.keys())
 
 expiry = st.text_input("Expiry (YYYY-MM-DD)", "2026-08-27")
 underlying_token = st.text_input("Underlying token", "26000")
