@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from kiteconnect import KiteConnect
+import KiteConnect
 
 st.set_page_config(page_title="Zerodha Option Chain", layout="wide")
 
