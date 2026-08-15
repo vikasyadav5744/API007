@@ -8,6 +8,9 @@ st.title("Mirae Asset m.Stock option chain")
 
 # Sidebar
 st.sidebar.header("API credentials")
+username =st.sidebar.text_input("User Name")
+password =st.sidebar.text_input("password", type="password")
+submit= st.sidebar.button ("generate otp")
 api_key = st.sidebar.text_input("API key (X-PrivateKey)")
 jwt_token = st.sidebar.text_input("JWT access token", type="password")
 
