@@ -55,6 +55,10 @@ if submit1==True:
 
 access_token = st.sidebar.text_input("Acess token", key='key7')
 
+exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
+instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
+interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 0,key='key11')
+
 
 conn = http.client.HTTPSConnection('api.mstock.trade')
 
@@ -65,13 +69,9 @@ headers3 = {
 
 conn.request(
     'GET',
-    'openapi/typea/instruments/intraday/1/18921/5minute',
+    'openapi/typea/instruments/intraday/{exchange}/{instrument_token}/{interval}',
     headers=headers3
 )
-
-exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
-instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
-interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 0,key='key11')
 
 
 submit2 = st.sidebar.button ("Get Data", key='key8')
