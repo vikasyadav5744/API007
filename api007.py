@@ -81,7 +81,10 @@ if submit2==True:
     st.write(response5)
     df2 =st.dataframe(response5)
     st.write(df2)
-    
+
+ren = 'openapi/typea/instruments/intraday/{exchange}/{instrument_token}/{interval}'
+st. write(ren)
+        
 
 
 
