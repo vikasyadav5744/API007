@@ -83,8 +83,8 @@ if submit2==True:
     st.write(df2)
 
 ren = 'openapi/typea/instruments/intraday/{exchange}/{instrument_token}/{interval}'
-st. write(ren)
-st. write(type(ren))
+st.write(ren)
+st.write(type(ren))
 
         
 
