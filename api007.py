@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import requests
 
+#      tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0= 
+
 st.set_page_config(page_title="m.Stock option chain", layout="wide")
 
 st.title("Mirae Asset m.Stock option chain")
@@ -26,7 +28,7 @@ if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)    
 
 
-api_key = str(tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=)
+api_key = st.sidebar.text_input("Api key", key='key4')
 OTP = st.sidebar.text_input("JWT access token", type="password", key='key5')
 
 
@@ -45,13 +47,6 @@ response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token'
 
 
 submit1 = st.sidebar.button ("generate session token", key='key6')
-
-
-
-
-
-
-
 
 
 exchange = st.selectbox(
