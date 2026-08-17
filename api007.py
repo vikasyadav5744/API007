@@ -53,20 +53,31 @@ if submit1==True:
     df1 =st.dataframe(response3)
     st.write(df1)
 
-access_token = st.sidebar.text_input("Api key", key='key7')
+access_token = st.sidebar.text_input("Acess token", key='key7')
 
 
 conn = http.client.HTTPSConnection('api.mstock.trade')
+
 headers3 = {
     'X-Mirae-Version': '1',
-    'Authorization': api_key:access_token,
+    'Authorization': '{api_key}:{access_token}',
 }
+
 conn.request(
     'GET',
-    'openapi/typea/GetOptionChain/2/1429972200/22',
+    'openapi/typea/GetOptionChain/2',
     headers=headers3
 )
-response = conn.getresponse()
+
+submit2 = st.sidebar.button ("Get Data", key='key8')
+
+if submit2==True:
+    response5 = conn.getresponse()
+    st.write(response5)
+    response6 = response5.json()
+    df2 =st.dataframe(response6)
+    st.write(df2)
+    
 
 
 
