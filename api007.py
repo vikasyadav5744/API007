@@ -10,10 +10,6 @@ st.title("Mirae Asset m.Stock option chain")
 st.sidebar.header("API credentials")
 username =st.sidebar.text_input("User Name", key='key1')
 password =st.sidebar.text_input("password", type="password", key='key2')
-submit= st.sidebar.button ("generate otp", key='key3')
-
-api_key = st.sidebar.text_input("API key (X-PrivateKey)", key='key4', value=“tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=”)
-jwt_token = st.sidebar.text_input("JWT access token", type="password", key='key5')
 
 headers1 = {
     'X-Mirae-Version': '1',
@@ -25,15 +21,39 @@ data1 ={
     'password': password
     }
 
+submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
-    response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)                     
+    response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)    
+
+
+api_key = “tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=”
+OTP = st.sidebar.text_input("JWT access token", type="password", key='key5')
+
+
+headers2 = {
+    'X-Mirae-Version': '1',
+    'Content-Type': 'application/x-www-form-urlencoded',
+}
+
+data2 = {
+    'api_key': api_key,
+    'request_token': OTP,
+    'checksum': 'L',
+}
+
+response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
+
+
+submit1 = st.sidebar.button ("generate session token", key='key6')
 
 
 
 
 
 
-                             
+
+
+
 exchange = st.selectbox(
     "Exchange",
     {
