@@ -65,7 +65,7 @@ headers3 = {
 
 conn.request(
     'GET',
-    'openapi/typea/GetOptionChain/2',
+    'openapi/typea/instruments/intraday/1/22/minute',
     headers=headers3
 )
 
