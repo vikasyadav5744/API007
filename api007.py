@@ -74,8 +74,7 @@ submit2 = st.sidebar.button ("Get Data", key='key8')
 if submit2==True:
     response5 = conn.getresponse()
     st.write(response5)
-    response6 = response5.json()
-    df2 =st.dataframe(response6)
+    df2 =st.dataframe(response5)
     st.write(df2)
     
 
