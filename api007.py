@@ -69,7 +69,7 @@ conn.request(
     headers=headers3
 )
 
-exchange = st.sidebar.text_input("Exchange", key='key9')
+exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
 instrument_token = st.sidebar.text_input("instrument_token", key='key10')
 interval = st.sidebar.text_input("Interval", key='key11')
 
