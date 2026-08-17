@@ -71,7 +71,7 @@ conn.request(
 
 exchange = st.sidebar.text_input("Exchange", key='key9')
 instrument_token = st.sidebar.text_input("instrument_token", key='key10')
-interval = st.sidebar.text_input("Interval", key='key9')
+interval = st.sidebar.text_input("Interval", key='key11')
 
 
 submit2 = st.sidebar.button ("Get Data", key='key8')
