@@ -48,6 +48,9 @@ submit1 = st.sidebar.button ("generate session token", key='key6')
 if submit1==True:
     response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
     st.write(response2)
+    response3 = response2.json()
+    df1 =st.dataframe(response3)
+    st.write(df1)
     
 exchange = st.selectbox(
     "Exchange",
