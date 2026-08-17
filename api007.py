@@ -43,12 +43,12 @@ data2 = {
     'checksum': 'L',
 }
 
-response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
-
-
 submit1 = st.sidebar.button ("generate session token", key='key6')
 
-
+if submit1==True:
+    response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
+    st.write(response2)
+    
 exchange = st.selectbox(
     "Exchange",
     {
