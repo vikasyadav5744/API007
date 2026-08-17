@@ -26,7 +26,7 @@ if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)    
 
 
-api_key = “tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=”
+api_key = str(tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=)
 OTP = st.sidebar.text_input("JWT access token", type="password", key='key5')
 
 
