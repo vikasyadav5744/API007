@@ -28,10 +28,8 @@ submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)    
 
-
-api_key = st.sidebar.text_input("Api key", key='key4')
 OTP = st.sidebar.text_input("JWT access token", type="password", key='key5')
-
+api_key = st.sidebar.text_input("Api key", key='key4')
 
 headers2 = {
     'X-Mirae-Version': '1',
@@ -52,6 +50,7 @@ if submit1==True:
     response3 = response2.json()
     df1 =st.dataframe(response3)
     st.write(df1)
+
 
 access_token = st.sidebar.text_input("Acess token", key='key7')
 
