@@ -8,11 +8,12 @@ st.title("Mirae Asset m.Stock option chain")
 
 # Sidebar
 st.sidebar.header("API credentials")
-username =st.sidebar.text_input("User Name")
-password =st.sidebar.text_input("password", type="password")
-submit= st.sidebar.button ("generate otp")
-api_key = st.sidebar.text_input("API key (X-PrivateKey)")
-jwt_token = st.sidebar.text_input("JWT access token", type="password")
+username =st.sidebar.text_input("User Name", key='key1')
+password =st.sidebar.text_input("password", type="password", key='key2')
+submit= st.sidebar.button ("generate otp", key='key3')
+
+api_key = st.sidebar.text_input("API key (X-PrivateKey)", key='key4', value=“tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=”)
+jwt_token = st.sidebar.text_input("JWT access token", type="password", key='key5')
 
 headers1 = {
     'X-Mirae-Version': '1',
@@ -26,7 +27,12 @@ data1 ={
 
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)                     
-                        
+
+
+
+
+
+
                              
 exchange = st.selectbox(
     "Exchange",
