@@ -90,9 +90,31 @@ data = json.loads(response_text)
 st.dataframe(data)
 st.json(data)
 
-
 #  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
 
+submit3 = st.sidebar.button("Get Data", key="key9")
+
+conn1 = http.client.HTTPSConnection('api.mstock.trade')
+headers4 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
+conn1.request(
+    'GET',
+    '/openapi/typea/instruments/intraday/1/22/minute',
+    headers=headers4
+)
+response6 = conn.getresponse()
+
+
+if submit2:
+    st.write("HTTP Status:", response6.status)
+    st.write(response6)
+
+response_text2 = response6.read().decode("utf-8")
+data2 = json.loads(response_text2)
+st.dataframe(data2)
+st.json(data2)
 
 
 
