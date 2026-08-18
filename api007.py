@@ -77,7 +77,7 @@ conn.request(
 )
 response5 = conn.getresponse()
 
-st.write(
+
 if submit2==True:
     st.write(response5)
 
