@@ -109,7 +109,7 @@ conn.request(
 
 response6 = conn.getresponse()
 
-if submit2:
+if submit3:
     st.write("HTTP Status:", response6.status)
     st.write(response6)
    
