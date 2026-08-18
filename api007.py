@@ -84,13 +84,11 @@ response5 = conn.getresponse()
 if submit2:
     st.write("HTTP Status:", response5.status)
     st.write(response5)
-   
-response_text = response5.read().decode("utf-8")
-data = json.loads(response_text)
-st.dataframe(data)
-st.json(data)
+    response_text = response5.read().decode("utf-8")
+    data = json.loads(response_text)
+    st.json(data)
 
-#  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
+#  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
 submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
 
@@ -106,15 +104,13 @@ conn1.request(
 )
 response6 = conn1.getresponse()
 
-
-if submit2:
+if submit3:
     st.write("HTTP Status:", response6.status)
     st.write(response6)
-
-response_text2 = response6.read().decode("utf-8")
-data2 = json.loads(response_text2)
-st.dataframe(data2)
-st.json(data2)
+    response_text2 = response6.read().decode("utf-8")
+    data2 = json.loads(response_text2)
+    st.dataframe(data2)
+    st.json(data2)
 
 
 
