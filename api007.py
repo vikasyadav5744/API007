@@ -31,6 +31,8 @@ if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
     #st.sucess("OTP Sent on registered mobile", key='suc01')
 
+#  ---------------------------------------------------------- Generating OTP--------------------------------------------
+
 api_key = st.sidebar.text_input("Api key", key='key4')
 OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
 
@@ -54,7 +56,7 @@ if submit1==True:
     response3 = response2.json()
     df1 =st.dataframe(response3)
     st.write(df1)
-
+#  ---------------------------------------------------------- Generating Access Token--------------------------------------------
 
 access_token = st.sidebar.text_input("Acess token", key='key7')
 
@@ -62,6 +64,8 @@ access_token = st.sidebar.text_input("Acess token", key='key7')
 #instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
 #interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
 
+
+#  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
 submit2 = st.sidebar.button("Get Data", key="key8")
 
 conn = http.client.HTTPSConnection("api.mstock.trade")
@@ -86,9 +90,33 @@ data = json.loads(response_text)
 st.dataframe(data)
 st.json(data)
 
-    
+
+#  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
 
 
+submit3 = st.sidebar.button("NIFTY / Stock Data", key="key9")
+
+conn = http.client.HTTPSConnection("api.mstock.trade")
+headers4 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
+conn.request(
+        "GET",
+        "openapi/typea/GetOptionChain/2/1429972200/22",
+        headers=headers4
+    )
+
+response6 = conn.getresponse()
+
+if submit2:
+    st.write("HTTP Status:", response6.status)
+    st.write(response6)
+   
+response_text1 = response6.read().decode("utf-8")
+data1 = json.loads(response_text1)
+st.dataframe(data1)
+st.json(data1)
 
 
 
