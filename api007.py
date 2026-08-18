@@ -67,7 +67,7 @@ if submit2:
     conn = http.client.HTTPSConnection("api.mstock.trade")
     headers3 = {
         "X-Mirae-Version": "1",
-        "Authorization": f"{api_key}:{access_token}",
+        "Authorization": f"token {api_key}:{access_token}",
     }
     conn.request(
         "GET",
