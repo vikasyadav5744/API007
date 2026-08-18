@@ -79,10 +79,9 @@ response5 = conn.getresponse()
 if submit2:
     st.write("HTTP Status:", response5.status)
     st.write(response5)
+    st.write(response5.text)
 
-if response5.status == 200:
-    response6 = json.loads(response_text)
-    st.json(response6)
+
     
 
 
