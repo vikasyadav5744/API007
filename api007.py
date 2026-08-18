@@ -25,7 +25,7 @@ data1 ={
     'username': username,
     'password': password
     }
-api_key = st.sidebar.text_input("Api key", key='key4')
+api_key = st.sidebar.text_input("Api key", key='key4', type='password')
 submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
@@ -54,7 +54,7 @@ if submit1==True:
     st.write(df1)
 #  ---------------------------------------------------------- Generating Access Token--------------------------------------------
 
-access_token = st.sidebar.text_input("Acess token", key='key7')
+access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 
 #exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
 #instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
