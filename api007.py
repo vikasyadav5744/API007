@@ -57,7 +57,6 @@ if submit1==True:
 
 access_token = st.sidebar.text_input("Acess token", key='key7')
 
-st.write(f"{api_key} : {access_token}")
 #exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
 #instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
 #interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
@@ -68,7 +67,7 @@ submit2 = st.sidebar.button("Get Data", key="key8")
 conn = http.client.HTTPSConnection('api.mstock.trade')
 headers3 = {
     'X-Mirae-Version': '1',
-    'Authorization': '{api_key}:{access_token}',
+    'Authorization': f"{api_key}:{access_token}",
 }
 conn.request(
     'GET',
@@ -76,7 +75,6 @@ conn.request(
     headers=headers3
 )
 response5 = conn.getresponse()
-
 
 if submit2==True:
     st.write(response5)
