@@ -69,7 +69,7 @@ headers3 = {
         "X-Mirae-Version": "1",
         "Authorization": f"token {api_key}:{access_token}",
     }
-    conn.request(
+conn.request(
         "GET",
         "/openapi/typea/getoptionchainmaster/2",
         headers=headers3
