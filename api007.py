@@ -99,7 +99,7 @@ headers4 = {
     }
 conn1.request(
     'GET',
-    '/openapi/typea/instruments/intraday/1/22/minute',
+    '/openapi/typea/instruments/intraday/1/26000/5minute',
     headers=headers4
 )
 response6 = conn1.getresponse()
