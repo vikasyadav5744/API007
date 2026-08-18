@@ -104,7 +104,7 @@ conn1.request(
     '/openapi/typea/instruments/intraday/1/22/minute',
     headers=headers4
 )
-response6 = conn.getresponse()
+response6 = conn1.getresponse()
 
 
 if submit2:
