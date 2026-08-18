@@ -79,7 +79,7 @@ response5 = conn.getresponse()
 if submit2:
     st.write("HTTP Status:", response5.status)
     st.write(response5)
-    st.write(response5.text)
+   
 
 
     
