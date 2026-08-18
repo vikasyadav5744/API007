@@ -92,6 +92,8 @@ if submit2:
 
 submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
 
+para1 = st.sidebar.number_input("Symbol No.", key="key10", value=26000)
+st.write(para1)
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
 headers4 = {
         "X-Mirae-Version": "1",
