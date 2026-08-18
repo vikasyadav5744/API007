@@ -26,7 +26,8 @@ data1 ={
 
 submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
-    response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)    
+    response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
+    st.sucess("OTP Sent on registered mobile")
 
 api_key = st.sidebar.text_input("Api key", key='key4')
 OTP = st.sidebar.text_input("JWT access token", type="password", key='key5')
@@ -47,6 +48,7 @@ submit1 = st.sidebar.button ("generate session token", key='key6')
 
 if submit1==True:
     response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
+    st.sucess("JWS token Generated- Access Token Below")
     st.write(response2)
     response3 = response2.json()
     df1 =st.dataframe(response3)
@@ -55,9 +57,9 @@ if submit1==True:
 
 access_token = st.sidebar.text_input("Acess token", key='key7')
 
-exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
-instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
-interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
+#exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
+#instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
+#interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
 
 
 submit2 = st.sidebar.button("Get Data", key="key8")
