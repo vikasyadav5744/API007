@@ -25,18 +25,14 @@ data1 ={
     'username': username,
     'password': password
     }
-
+api_key = st.sidebar.text_input("Api key", key='key4')
 submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
     #st.sucess("OTP Sent on registered mobile", key='suc01')
 
 #  ---------------------------------------------------------- Generating OTP--------------------------------------------
-
-api_key = st.sidebar.text_input("Api key", key='key4')
 OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
-
-
 headers2 = {
     'X-Mirae-Version': '1',
     'Content-Type': 'application/x-www-form-urlencoded',
