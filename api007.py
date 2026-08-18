@@ -94,29 +94,6 @@ st.json(data)
 #  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
 
 
-submit3 = st.sidebar.button("NIFTY / Stock Data", key="key9")
-
-conn = http.client.HTTPSConnection("api.mstock.trade")
-headers4 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
-conn.request(
-        "GET",
-        "openapi/typea/GetOptionChain/2/1429972200/22",
-        headers=headers4
-    )
-
-response6 = conn.getresponse()
-
-if submit3:
-    st.write("HTTP Status:", response6.status)
-    st.write(response6)
-   
-response_text1 = response6.read().decode("utf-8")
-data1 = json.loads(response_text1)
-st.dataframe(data1)
-st.json(data1)
 
 
 
