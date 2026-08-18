@@ -75,7 +75,7 @@ conn.request(
     headers=headers3
 )
 response5 = conn.getresponse()
-
+st.write(headers3)
 if submit2==True:
     st.write(response5)
 
