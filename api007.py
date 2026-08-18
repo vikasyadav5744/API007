@@ -96,8 +96,9 @@ if submit2:
         st.code(response_text)
 st.write(headers3)
 
-   
+my_ip = requests.get("https://api.ipify.org", timeout=10).text
 
+st.write("Current public IP:", my_ip)
 
 
 
