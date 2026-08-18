@@ -67,7 +67,7 @@ submit2 = st.sidebar.button("Get Data", key="key8")
 conn = http.client.HTTPSConnection('api.mstock.trade')
 headers3 = {
     'X-Mirae-Version': '1',
-    'Authorization': f"{api_key}:{access_token}",
+    'Authorization': f"{api_key}":f"{access_token}",
 }
 conn.request(
     'GET',
