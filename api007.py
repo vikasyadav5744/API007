@@ -3,7 +3,8 @@ import pandas as pd
 import requests
 import http.client
 
-#      tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0= 
+my_ip = requests.get("https://api.ipify.org", timeout=10).text
+st.write("Current public IP:", my_ip)
 
 st.set_page_config(page_title="m.Stock option chain", layout="wide")
 
@@ -48,7 +49,6 @@ submit1 = st.sidebar.button ("generate session token", key='key6')
 
 if submit1==True:
     response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
-    #st.sucess("JWS token Generated- Access Token Below", key='suc02')
     st.write(response2)
     response3 = response2.json()
     df1 =st.dataframe(response3)
@@ -77,12 +77,10 @@ if submit2:
 
     response5 = conn.getresponse()
     st.write("HTTP Status:", response5.status)
-    response6 = response5.json()
-    st.write(response6)
+    st.write(response5)
 
 
-my_ip = requests.get("https://api.ipify.org", timeout=10).text
-st.write("Current public IP:", my_ip)
+
 
 
 
