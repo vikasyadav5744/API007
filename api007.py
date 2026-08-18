@@ -69,21 +69,20 @@ headers3 = {
 
 conn.request(
     'GET',
-    'openapi/typea/instruments/intraday/1/29/5minute',
+    'openapi/typea/getoptionchainmaster/2',
     headers=headers3
 )
 
+response5 = conn.getresponse()
 
 submit2 = st.sidebar.button ("Get Data", key='key8')
 
 if submit2==True:
-    response5 = conn.getresponse()
-    st.write(response5)
-    df2 =st.dataframe(response5)
+    response6 =response5.json()
+    st.write(response6)
+    df2 =st.dataframe(response6)
     st.write(df2)
 
-ren = 'openapi/typea/instruments/intraday/{exchange}/{instrument_token}/{interval}
-st.write(ren)
 
 
         
