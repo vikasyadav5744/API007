@@ -30,7 +30,7 @@ if submit== True:
     #st.sucess("OTP Sent on registered mobile", key='suc01')
 
 api_key = st.sidebar.text_input("Api key", key='key4')
-OTP = st.sidebar.text_input("JWT access token", type="password", key='key5')
+OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
 
 
 headers2 = {
