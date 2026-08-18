@@ -84,12 +84,8 @@ if response5.status == 200:
     try:
         response6 = json.loads(response_text)
         st.json(response6)
-    except json.JSONDecodeError:
-        st.code(response_text)
-else:
-    st.error(f"API Error: {response5.status}")
-    st.code(response_text)
-conn.close()
+    
+
 
 
 
