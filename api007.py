@@ -92,7 +92,7 @@ st.json(data)
 
 #  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
 
-submit3 = st.sidebar.button("Get Data", key="key9")
+submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
 
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
 headers4 = {
