@@ -76,28 +76,11 @@ if submit2:
     )
 
     response5 = conn.getresponse()
+    response6 = response5.json()
+    st.write(response6)
 
-    # HTTPResponse -> text
-    response_text = response5.read().decode("utf-8")
-
-    st.write("HTTP Status:", response5.status)
-
-    if response5.status == 200:
-
-        try:
-            response6 = json.loads(response_text)
-            st.json(response6)
-
-        except json.JSONDecodeError:
-            st.code(response_text)
-
-    else:
-        st.error(f"API Error: {response5.status}")
-        st.code(response_text)
-st.write(headers3)
 
 my_ip = requests.get("https://api.ipify.org", timeout=10).text
-
 st.write("Current public IP:", my_ip)
 
 
