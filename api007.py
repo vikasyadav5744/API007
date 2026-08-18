@@ -60,30 +60,56 @@ instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key=
 interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
 
 
-conn = http.client.HTTPSConnection('api.mstock.trade')
+submit2 = st.sidebar.button("Get Data", key="key8")
 
-headers3 = {
-    'X-Mirae-Version': '1',
-    'Authorization': '{api_key}:{access_token}',
-}
+if submit2:
 
-conn.request(
-    'GET',
-    'openapi/typea/getoptionchainmaster/2',
-    headers=headers3
-)
+    headers3 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}"
+    }
 
-response5 = conn.getresponse()
+    url = "https://api.mstock.trade/openapi/typea/getoptionchainmaster/2"
 
-submit2 = st.sidebar.button ("Get Data", key='key8')
+    response5 = requests.get(
+        url,
+        headers=headers3,
+        timeout=30
+    )
 
-if submit2==True:
-    response6 =response5.json()
-    st.write(response6)
-    df2 =st.dataframe(response6)
-    st.write(df2)
+    st.write("Status Code:", response5.status_code)
 
+    if response5.ok:
 
+        response6 = response5.json()
+
+        st.write(response6)
+
+        # If response is a list
+        if isinstance(response6, list):
+            df2 = pd.DataFrame(response6)
+            st.dataframe(df2, use_container_width=True)
+
+        # If response is a dictionary
+        elif isinstance(response6, dict):
+
+            st.json(response6)
+
+            # If actual data is inside "data"
+            if "data" in response6:
+
+                data = response6["data"]
+
+                if isinstance(data, list):
+                    df2 = pd.DataFrame(data)
+                    st.dataframe(df2, use_container_width=True)
+
+    else:
+        st.error(
+            f"API Error: {response5.status_code}"
+        )
+
+        st.code(response5.text)
 
         
 
