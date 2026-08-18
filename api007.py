@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import http.client
+import json
 
 my_ip = requests.get("https://api.ipify.org", timeout=10).text
 st.write("Current public IP:", my_ip)
@@ -80,7 +81,10 @@ if submit2:
     st.write("HTTP Status:", response5.status)
     st.write(response5)
    
+response_text = response5.read().decode("utf-8")
+data = json.loads(response_text)
 
+st.json(data)
 
     
 
