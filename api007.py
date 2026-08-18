@@ -109,7 +109,6 @@ if submit3:
     st.write(response6)
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
-    st.dataframe(data2)
     st.json(data2)
 
 
