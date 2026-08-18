@@ -81,9 +81,8 @@ if submit2:
     st.write(response5)
 
 if response5.status == 200:
-    try:
-        response6 = json.loads(response_text)
-        st.json(response6)
+    response6 = json.loads(response_text)
+    st.json(response6)
     
 
 
