@@ -27,7 +27,7 @@ data1 ={
 submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
-    st.sucess("OTP Sent on registered mobile")
+    st.sucess("OTP Sent on registered mobile", key='suc01')
 
 api_key = st.sidebar.text_input("Api key", key='key4')
 OTP = st.sidebar.text_input("JWT access token", type="password", key='key5')
@@ -48,7 +48,7 @@ submit1 = st.sidebar.button ("generate session token", key='key6')
 
 if submit1==True:
     response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
-    st.sucess("JWS token Generated- Access Token Below")
+    st.sucess("JWS token Generated- Access Token Below", key='suc02'))
     st.write(response2)
     response3 = response2.json()
     df1 =st.dataframe(response3)
