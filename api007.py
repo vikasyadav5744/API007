@@ -77,7 +77,6 @@ conn.request(
 response5 = conn.getresponse()
 
 if submit2==True:
-    st.write("Status Code:", response5.status_code)
     st.write(response5)
 
    
