@@ -94,7 +94,7 @@ if submit2:
     else:
         st.error(f"API Error: {response5.status}")
         st.code(response_text)
-st.write(header3)
+st.write(headers3)
 
    
 
