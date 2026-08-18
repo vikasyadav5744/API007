@@ -63,8 +63,8 @@ access_token = st.sidebar.text_input("Acess token", key='key7')
 
 submit2 = st.sidebar.button("Get Data", key="key8")
 
-if submit2:
-    conn = http.client.HTTPSConnection("api.mstock.trade")
+
+conn = http.client.HTTPSConnection("api.mstock.trade")
     headers3 = {
         "X-Mirae-Version": "1",
         "Authorization": f"token {api_key}:{access_token}",
@@ -76,9 +76,25 @@ if submit2:
     )
 
     response5 = conn.getresponse()
+
+if submit2:
     st.write("HTTP Status:", response5.status)
     st.write(response5)
 
+if response5.status == 200:
+
+        try:
+            response6 = json.loads(response_text)
+            st.json(response6)
+
+        except json.JSONDecodeError:
+            st.code(response_text)
+
+    else:
+        st.error(f"API Error: {response5.status}")
+        st.code(response_text)
+
+    conn.close()
 
 
 
