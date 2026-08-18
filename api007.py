@@ -84,7 +84,7 @@ if submit2==True:
 
 ren = 'openapi/typea/instruments/intraday/{exchange}/{instrument_token}/{interval}'
 st.write(ren)
-st.write(type(ren))
+
 
         
 
