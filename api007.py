@@ -76,6 +76,7 @@ if submit2:
     )
 
     response5 = conn.getresponse()
+    st.write("HTTP Status:", response5.status)
     response6 = response5.json()
     st.write(response6)
 
