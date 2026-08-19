@@ -61,8 +61,10 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 
 
 #  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
-submit2 = st.sidebar.button("Get Data", key="key8")
+
 para0 = st.sidebar.selectbox("ChainMaster", key="key14", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
+submit2 = st.sidebar.button("Get Data", key="key8")
+
 conn = http.client.HTTPSConnection("api.mstock.trade")
 
 headers3 = {
