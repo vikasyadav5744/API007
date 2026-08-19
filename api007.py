@@ -141,7 +141,36 @@ if logout==True:
     requests.post('https://api.mstock.trade/openapi/typea/logout', headers=headers3)
     st.write("logout sucessfully")
 
+#--------------------------------Type B-----------------------------------
 
+conn6 = http.client.HTTPSConnection('api.mstock.trade')
+headers8 = {
+    'X-Mirae-Version': '1',
+    'Authorization': f'Bearer {access_token}',
+    'X-PrivateKey': f'{api_key}',
+    'Content-Type': 'application/json',
+}
+json_data = {
+    'exchange': '1',
+    'symboltoken': '22',
+    'interval': 'THREE_MINUTE',
+}
+
+conn6.request(
+    'POST',
+    '/openapi/typeb/instruments/intraday',
+    json.dumps(json_data),
+    # '{\n    "exchange": "1",\n    "symboltoken": "22",\n    "interval": "THREE_MINUTE"\n}',
+    headers8
+)
+response10 = conn6.getresponse()
+
+show = st.sidebar.button("Option Chain", key="key22")
+
+if show==True:
+    st.write("HTTP Status:", response10.status)
+    st.write(response10)
+    
 
 
 
