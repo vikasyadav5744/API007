@@ -33,9 +33,9 @@ json_data = {
 submit= st.sidebar.button ("get jwttoken", key='key3')
 
 if submit== True:
-    conn.request('POST','/openapi/typeb/connect/login',json.dumps(json_data), headers=headers)
-    st.write("HTTP Status:", response.status)
+    conn.request('POST','/openapi/typeb/connect/login',json.dumps(json_data), headers)
     response = conn.getresponse()
+    st.write("HTTP Status:", response.status)
     st.write(response.json())
     
 
