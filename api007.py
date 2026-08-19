@@ -103,8 +103,14 @@ if submit3:
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
-   
-   
+
+
+#--------------------------------------------logout--------------------------------------------
+
+logout = st.sidebar.button("Logout", key="key12", type='Primary')
+
+if logout=True:
+    requests.post('https://api.mstock.trade/openapi/typea/logout', headers=headers3)
 
 
 
