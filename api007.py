@@ -90,7 +90,7 @@ if submit2:
 
 submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
 
-para1 = st.sidebar.number_input("Symbol No.", key="key10", value=1)
+para1 = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 para2 = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 st.write(para1)
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
