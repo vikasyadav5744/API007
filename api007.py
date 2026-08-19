@@ -35,10 +35,6 @@ if submit== True:
 
 #  ---------------------------------------------------------- Generating OTP--------------------------------------------
 OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
-headers2 = {
-    'X-Mirae-Version': '1',
-    'Content-Type': 'application/x-www-form-urlencoded',
-}
 
 data2 = {
     'api_key': api_key,
@@ -49,7 +45,7 @@ data2 = {
 submit1 = st.sidebar.button ("generate session token", key='key6')
 
 if submit1==True:
-    response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers2, data=data2)
+    response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers1, data=data2)
     st.write(response2)
     response3 = response2.json()
     df1 =st.dataframe(response3)
@@ -92,14 +88,11 @@ para1 = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], 
 para2 = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 st.write(para1)
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
-headers4 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
+
 conn1.request(
     'GET',
     f'/openapi/typea/instruments/intraday/{para1}/{para2}/5minute',
-    headers=headers4
+    headers=headers3
 )
 response6 = conn1.getresponse()
 submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
