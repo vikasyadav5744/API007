@@ -68,10 +68,6 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 
 #conn = http.client.HTTPSConnection("api.mstock.trade")
 
-headers3 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
 #conn.request(
 #        "GET",
  #       f"/openapi/typea/getoptionchainmaster/{para0}",
@@ -93,6 +89,11 @@ exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4
 token = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 interval = st.sidebar.selectbox("Choose Interval", key="key16", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
 st.write(token)
+
+headers3 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
 
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
 
@@ -150,15 +151,10 @@ headers8 = {
     'X-PrivateKey': f'{api_key}',
     'Content-Type': 'application/json',
 }
-json_data = {
-    'exchange': '1',
-    'symboltoken': '22',
-    'interval': 'THREE_MINUTE',
-}
 
 conn6.request(
     'GET',
-    'openapi/typea/GetOptionChain/2/1429972200/22',
+    'openapi/typeb/GetOptionChain/2/1429972200/25',
     headers=headers8)
     
 response10 = conn6.getresponse()
