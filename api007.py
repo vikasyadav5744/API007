@@ -12,7 +12,7 @@ st.set_page_config(page_title="m.Stock option chain", layout="wide")
 st.title("Mirae Asset m.Stock option chain")
 
 api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=')
-
+#api_key = st.sidebar.text_input("Api key", key='key4', type='password')
 # Sidebar
 st.sidebar.header("API credentials")
 username =st.sidebar.text_input("User Name", key='key1')
@@ -27,7 +27,7 @@ data1 ={
     'username': username,
     'password': password
     }
-#api_key = st.sidebar.text_input("Api key", key='key4', type='password')
+
 submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
@@ -58,30 +58,6 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 #exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
 #instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
 #interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
-
-
-#  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
-
-#para0 = st.sidebar.selectbox("ChainMaster", key="key14", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
-
-#submit2 = st.sidebar.button("Get Data", key="key8")
-
-#conn = http.client.HTTPSConnection("api.mstock.trade")
-
-#conn.request(
-#        "GET",
- #       f"/openapi/typea/getoptionchainmaster/{para0}",
-   #     headers=headers3
-  #  )
-
-#response5 = conn.getresponse()
-
-#if submit2:
-    #st.write("HTTP Status:", response5.status)
-    #st.write(response5)
-    #response_text = response5.read().decode("utf-8")
-    #data = json.loads(response_text)
-    #st.json(data)
 
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
