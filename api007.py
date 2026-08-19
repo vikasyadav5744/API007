@@ -92,6 +92,7 @@ exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4
 token = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 interval = st.sidebar.selectbox("Choose Interval", key="key16", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
 st.write(token)
+
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
 
 conn1.request(
@@ -109,15 +110,26 @@ if submit3:
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
+    st.write(data3)
 #-------------------------------------------------Exchange / Expiry / token ------------------------------
 
 
-conn.request(
+conn1.request(
     'GET',
     f'openapi/typea/GetOptionChain/{exchange}/1429972200/{token}',
-    headers=headers
+    headers=headers3
 )
-response = conn.getresponse()
+response7 = conn1.getresponse()
+
+submit4 = st.sidebar.button("exchg / expiry / token", key="key21")
+
+if submit4:
+    st.write("HTTP Status:", response7.status)
+    st.write(response7)
+    response_text3 = response6.read().decode("utf-8")
+    data5 = json.loads(response_text3)
+    data6 = st.json(data5)
+    st.write(data6)
 
 #--------------------------------------------logout--------------------------------------------
 
