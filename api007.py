@@ -80,12 +80,12 @@ conn.request(
 
 response5 = conn.getresponse()
 
-if submit2:
-    st.write("HTTP Status:", response5.status)
-    st.write(response5)
-    response_text = response5.read().decode("utf-8")
-    data = json.loads(response_text)
-    st.json(data)
+#if submit2:
+    #st.write("HTTP Status:", response5.status)
+    #st.write(response5)
+    #response_text = response5.read().decode("utf-8")
+    #data = json.loads(response_text)
+    #st.json(data)
 
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
