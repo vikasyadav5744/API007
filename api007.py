@@ -107,7 +107,7 @@ if submit3:
 
 #--------------------------------------------logout--------------------------------------------
 
-logout = st.sidebar.button("Logout", key="key12", type='Primary')
+logout = st.sidebar.button("Logout", key="key12")
 
 if logout==True:
     requests.post('https://api.mstock.trade/openapi/typea/logout', headers=headers3)
