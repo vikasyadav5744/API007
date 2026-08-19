@@ -63,7 +63,8 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 #  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
 
 para0 = st.sidebar.selectbox("ChainMaster", key="key14", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
-submit2 = st.sidebar.button("Get Data", key="key8")
+
+#submit2 = st.sidebar.button("Get Data", key="key8")
 
 conn = http.client.HTTPSConnection("api.mstock.trade")
 
@@ -102,7 +103,7 @@ conn1.request(
 )
 response6 = conn1.getresponse()
 
-submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
+submit3 = st.sidebar.button("NIFTY / Stock Data", key="key9")
 
 if submit3:
     st.write("HTTP Status:", response6.status)
@@ -117,7 +118,7 @@ conn4 = http.client.HTTPSConnection('api.mstock.trade')
 
 conn4.request(
     'GET',
-    f'openapi/typea/GetOptionChain/{exchange}/1429972200/{token}',
+    f'openapi/typea/GetOptionChain/{exchange}/1787596200/{token}',
     headers=headers3
 )
 response7 = conn4.getresponse()
