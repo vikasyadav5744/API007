@@ -68,10 +68,10 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 
 #conn = http.client.HTTPSConnection("api.mstock.trade")
 
-#headers3 = {
-        #"X-Mirae-Version": "1",
-       # "Authorization": f"token {api_key}:{access_token}",
-   # }
+headers3 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
 #conn.request(
 #        "GET",
  #       f"/openapi/typea/getoptionchainmaster/{para0}",
