@@ -50,6 +50,7 @@ if submit1==True:
     response3 = response2.json()
     df1 =st.dataframe(response3)
     st.write(df1)
+    
 #  ---------------------------------------------------------- Generating Access Token--------------------------------------------
 
 access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
@@ -61,15 +62,16 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 
 #  ---------------------------------------------------------- Getting Option Chain details--------------------------------------------
 submit2 = st.sidebar.button("Get Data", key="key8")
-
+para0 = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 conn = http.client.HTTPSConnection("api.mstock.trade")
+
 headers3 = {
         "X-Mirae-Version": "1",
         "Authorization": f"token {api_key}:{access_token}",
     }
 conn.request(
         "GET",
-        "/openapi/typea/getoptionchainmaster/2",
+        f"/openapi/typea/getoptionchainmaster/{para0}",
         headers=headers3
     )
 
