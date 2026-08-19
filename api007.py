@@ -66,19 +66,19 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 
 #submit2 = st.sidebar.button("Get Data", key="key8")
 
-conn = http.client.HTTPSConnection("api.mstock.trade")
+#conn = http.client.HTTPSConnection("api.mstock.trade")
 
-headers3 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
-conn.request(
-        "GET",
-        f"/openapi/typea/getoptionchainmaster/{para0}",
-        headers=headers3
-    )
+#headers3 = {
+        #"X-Mirae-Version": "1",
+       # "Authorization": f"token {api_key}:{access_token}",
+   # }
+#conn.request(
+#        "GET",
+ #       f"/openapi/typea/getoptionchainmaster/{para0}",
+   #     headers=headers3
+  #  )
 
-response5 = conn.getresponse()
+#response5 = conn.getresponse()
 
 #if submit2:
     #st.write("HTTP Status:", response5.status)
