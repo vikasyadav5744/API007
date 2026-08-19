@@ -156,13 +156,11 @@ json_data = {
     'interval': 'THREE_MINUTE',
 }
 
-conn6.request(
-    'POST',
-    '/openapi/typeb/instruments/intraday',
-    json.dumps(json_data),
-    # '{\n    "exchange": "1",\n    "symboltoken": "22",\n    "interval": "THREE_MINUTE"\n}',
-    headers8
-)
+conn.request(
+    'GET',
+    'openapi/typea/GetOptionChain/2/1429972200/22',
+    headers=headers8)
+    
 response10 = conn6.getresponse()
 
 show = st.sidebar.button("Option Chain", key="key22")
