@@ -110,9 +110,12 @@ if submit3:
     st.write(response6)
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
-    st.json(data2)
-    newdf = st.dataframe(data2)
-    st.write(newdf)
+    data3 = st.json(data2)
+    df5 = pd.DataFrame(data3["data"]["candles"],columns=["DateTime", "Open", "High", "Low", "Close", "Volume"])
+    df5["DateTime"] = pd.to_datetime(df5["DateTime"])
+    df5 = df5.sort_values("DateTime").reset_index(drop=True)
+    st.dataframe(df5, use_container_width=True)
+   
 
 
 
