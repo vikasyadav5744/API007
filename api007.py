@@ -88,17 +88,19 @@ if submit2:
 
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
-para1 = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
-para2 = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
+exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
+token = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
+interval = st.sidebar.selectbox("Choose Interval", key="key16", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
 st.write(para1)
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
 
 conn1.request(
     'GET',
-    f'/openapi/typea/instruments/intraday/{para1}/{para2}/5minute',
+    f'/openapi/typea/instruments/intraday/{exchange}/{token}/{interval}',
     headers=headers3
 )
 response6 = conn1.getresponse()
+
 submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
 
 if submit3:
@@ -107,7 +109,15 @@ if submit3:
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
+#-------------------------------------------------Exchange / Expiry / token ------------------------------
 
+
+conn.request(
+    'GET',
+    f'openapi/typea/GetOptionChain/{exchange}/1429972200/{token}',
+    headers=headers
+)
+response = conn.getresponse()
 
 #--------------------------------------------logout--------------------------------------------
 
