@@ -90,7 +90,8 @@ if submit2:
 
 submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
 
-para1 = st.sidebar.number_input("Symbol No.", key="key10", value=26000)
+para1 = st.sidebar.number_input("Symbol No.", key="key10", value=1)
+para2 = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 st.write(para1)
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
 headers4 = {
@@ -99,7 +100,7 @@ headers4 = {
     }
 conn1.request(
     'GET',
-    f'/openapi/typea/instruments/intraday/2/{para1}/5minute',
+    f'/openapi/typea/instruments/intraday/{para1}/{para2}/5minute',
     headers=headers4
 )
 response6 = conn1.getresponse()
