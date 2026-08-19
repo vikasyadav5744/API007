@@ -91,7 +91,7 @@ if submit2:
 exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 token = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 interval = st.sidebar.selectbox("Choose Interval", key="key16", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
-st.write(para1)
+st.write(token)
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
 
 conn1.request(
