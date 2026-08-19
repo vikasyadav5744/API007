@@ -36,7 +36,11 @@ if submit== True:
     conn.request('POST','/openapi/typeb/connect/login',json.dumps(json_data), headers)
     response = conn.getresponse()
     st.write("HTTP Status:", response.status)
-    st.write(response.json())
+    response_text = response.read().decode("utf-8")
+    data = json.loads(response_text)
+    data1 = st.json(data)
+    st.write(data1)
+
     
 
 
