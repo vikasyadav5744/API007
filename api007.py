@@ -164,6 +164,10 @@ show = st.sidebar.button("Option Chain", key="key22")
 if show==True:
     st.write("HTTP Status:", response10.status)
     st.write(response10)
+    response_text9 = response10.read().decode("utf-8")
+    data10 = json.loads(response_text9)
+    data11 = st.json(data10)
+    st.write(data11)
     
 
 
