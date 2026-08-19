@@ -156,7 +156,7 @@ json_data = {
     'interval': 'THREE_MINUTE',
 }
 
-conn.request(
+conn6.request(
     'GET',
     'openapi/typea/GetOptionChain/2/1429972200/22',
     headers=headers8)
