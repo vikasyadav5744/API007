@@ -11,7 +11,7 @@ st.set_page_config(page_title="m.Stock option chain", layout="wide")
 
 st.title("Mirae Asset m.Stock option chain")
 
-api_key = st.sidebar.button("API key", options = [str('tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0='),str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=')])
+api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=')
 
 # Sidebar
 st.sidebar.header("API credentials")
