@@ -31,7 +31,7 @@ data1 ={
 submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
-    #st.sucess("OTP Sent on registered mobile", key='suc01')
+    st.write("OTP Sent on registered mobile", key='suc01')
 
 #  ---------------------------------------------------------- Generating OTP--------------------------------------------
 OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
@@ -111,6 +111,7 @@ logout = st.sidebar.button("Logout", key="key12", type='Primary')
 
 if logout==True:
     requests.post('https://api.mstock.trade/openapi/typea/logout', headers=headers3)
+    st.write("logout sucessfully")
 
 
 
