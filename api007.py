@@ -113,13 +113,14 @@ if submit3:
     st.write(data3)
 #-------------------------------------------------Exchange / Expiry / token ------------------------------
 
+conn4 = http.client.HTTPSConnection('api.mstock.trade')
 
-conn1.request(
+conn4.request(
     'GET',
     f'openapi/typea/GetOptionChain/{exchange}/1429972200/{token}',
     headers=headers3
 )
-response7 = conn1.getresponse()
+response7 = conn4.getresponse()
 
 submit4 = st.sidebar.button("exchg / expiry / token", key="key21")
 
