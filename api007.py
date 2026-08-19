@@ -88,8 +88,6 @@ if submit2:
 
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
-submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
-
 para1 = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 para2 = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 st.write(para1)
@@ -104,6 +102,7 @@ conn1.request(
     headers=headers4
 )
 response6 = conn1.getresponse()
+submit3 = st.sidebar.button("NIFTY /Stock Data", key="key9")
 
 if submit3:
     st.write("HTTP Status:", response6.status)
@@ -111,8 +110,7 @@ if submit3:
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
-    new= pd.Series(data3)
-    st.write(new)
+   
    
 
 
