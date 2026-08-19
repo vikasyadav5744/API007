@@ -11,7 +11,7 @@ st.set_page_config(page_title="m.Stock option chain", layout="wide")
 
 st.title("Mirae Asset m.Stock option chain")
 
-#api_key = str(“tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=”)
+api_key = str(“tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=”)
 
 # Sidebar
 st.sidebar.header("API credentials")
@@ -27,7 +27,7 @@ data1 ={
     'username': username,
     'password': password
     }
-api_key = st.sidebar.text_input("Api key", key='key4', type='password')
+#api_key = st.sidebar.text_input("Api key", key='key4', type='password')
 submit= st.sidebar.button ("generate otp", key='key3')
 if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
