@@ -92,20 +92,20 @@ if submit3:
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
-    dt1= pd.DataFrame(data3, columns=['open','high','low','close'])
-    st.write(dt1)
+    st.write(data3)
 #------------------------------------------------- ------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
+epoc = st.sidebar.number_input("epoc expiry", key="key99", value=1787596200)
 
 conn4.request(
     'GET',
-    f'openapi/typea/GetOptionChain/{exchange}/1787596200/{token}',
+    f'openapi/typea/GetOptionChain/{exchange}/{epoc}/{token}',
     headers=headers3
 )
 response7 = conn4.getresponse()
 
-submit4 = st.sidebar.button("exchg / expiry / token", key="key21")
+submit4 = st.sidebar.button("option chain of any stock", key="key21")
 
 if submit4:
     st.write("HTTP Status:", response7.status)
