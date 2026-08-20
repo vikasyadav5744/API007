@@ -137,16 +137,17 @@ if chainmaster_button:
     response_text11 = chainmaster.read().decode("utf-8")
     st.write(response_text11)
 
-
+#-----------------------Script Master --------------------
+headers31 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
 script= st.sidebar.button("script", key=80)
 if script==True:
-    response80 = requests.get('https://api.mstock.trade/openapi/typea/instruments/scriptmaster', headers=headers4)
+    response80 = requests.get('https://api.mstock.trade/openapi/typea/instruments/scriptmaster', headers=headers31)
     st.write(response80.status)
     den=pd.read_csv(response80)
     st.write(den)
-
-
-
 #--------------------------------------------logout--------------------------------------------
 
 logout = st.sidebar.button("Logout", key="key12")
