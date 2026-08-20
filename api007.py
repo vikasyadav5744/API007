@@ -95,11 +95,12 @@ if submit3:
 #------------------------------------------------- any stock option chain data------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
-epoc = st.sidebar.number_input("epoc expiry", key="key99")
+#epoc = st.sidebar.number_input("epoc expiry", key="key99")
+date = st.sidebar.date_input("select expiry", key="key97")
 
 conn4.request(
     'GET',
-    f'openapi/typea/GetOptionChain/{exchange}/{epoc}/{token}',
+    f'openapi/typea/GetOptionChain/{exchange}/{date}/{token}',
     headers=headers3
 )
 response7 = conn4.getresponse()
