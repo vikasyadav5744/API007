@@ -92,7 +92,8 @@ if submit3:
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
-    st.write(data3["candles"][""])
+    dt1= pd.DataFrame(data3, columns=['open','high','low','close'])
+    st.write(dt1)
 #------------------------------------------------- ------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
