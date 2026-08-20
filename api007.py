@@ -92,8 +92,8 @@ if submit3:
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
-    st.dataframe(data3)
-#-------------------------------------------------Exchange / Expiry / token ------------------------------
+    st.write(data3["candles"][""])
+#------------------------------------------------- ------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
 
