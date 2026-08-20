@@ -70,7 +70,7 @@ headers101 = {
 
 scriptmaster = st.sidebar.button("Script Master", key="key101")
 
-if Scriptmaster:
+if scriptmaster==True:
     response101 = requests.get('https://api.mstock.trade/openapi/typea/instruments/scriptmaster', headers=headers101)
     st.write("HTTP Status:", response101.status)
     st.write(response101)
