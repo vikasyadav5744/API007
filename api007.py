@@ -77,8 +77,6 @@ if scriptmaster==True:
     script =pd.read_csv(response101)
     st.write(script)
     
-
-
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
 exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
