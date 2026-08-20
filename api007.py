@@ -92,27 +92,6 @@ if submit3:
     #st.write(response6)
     response_text2 = response6.read().decode("utf-8")
     st.write(response_text2)
-#------------------------------------------------- option chain master data------------------------------
-headers4 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
-conn101 = http.client.HTTPSConnection('api.mstock.trade')
-
-conn101.request(
-    'GET',
-    f'openapi/typea/GetOptionChain/2',
-    headers=headers4
-)
-chainmaster = conn101.getresponse()
-
-chainmaster1 = st.sidebar.button("option chain master", key="key98")
-
-if chainmaster1:
-    st.write("HTTP Status:", chainmaster.status)
-    st.write(chainmaster)
-    response_text11 = chainmaster.read().decode("utf-8")
-    st.write(response_text11)
 #------------------------------------------------- any stock option chain data------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
@@ -132,6 +111,28 @@ if submit4:
     st.write(response7)
     response_text3 = response6.read().decode("utf-8")
     st.write(response_text3)  
+
+#------------------------------------------------- option chain master data------------------------------
+headers4 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
+conn101 = http.client.HTTPSConnection('api.mstock.trade')
+
+conn101.request(
+    'GET',
+    f'openapi/typea/GetOptionChain/2',
+    headers=headers4
+)
+chainmaster = conn101.getresponse()
+
+chainmaster_button = st.sidebar.button("option chain master", key="key98")
+
+if chainmaster_button:
+    st.write("HTTP Status:", chainmaster.status)
+    st.write(chainmaster)
+    response_text11 = chainmaster.read().decode("utf-8")
+    st.write(response_text11)
 
 #--------------------------------------------logout--------------------------------------------
 
