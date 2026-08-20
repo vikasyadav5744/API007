@@ -11,9 +11,9 @@ st.set_page_config(page_title="m.Stock option chain", layout="wide")
 
 st.title("Mirae Asset m.Stock option chain")
 
-api_key = str('tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=') # type B
+api_key = str('tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=') #type A
 
-#api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=') 
+#api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=') # type B
 # Sidebar
 
 st.sidebar.header("API credentials")
@@ -61,6 +61,24 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 #exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
 #instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
 #interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
+
+#------------------------------------------Script Master ----------------------------------
+headers101 = {
+    'X-Mirae-Version': '1',
+    'Authorization': f"token {api_key}:{access_token}",
+}
+
+scriptmaster = st.sidebar.button("Script Master", key="key101")
+
+if Scriptmaster:
+    response101 = requests.get('https://api.mstock.trade/openapi/typea/instruments/scriptmaster', headers=headers101)
+    st.write("HTTP Status:", response101.status)
+    st.write(response101)
+    response_text101 = response101.read().decode("utf-8")
+    data101 = json.loads(response_text101)
+    data101 = st.json(data101)
+    st.write(data101)
+
 
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
