@@ -91,8 +91,7 @@ if submit3:
     st.write("HTTP Status:", response6.status)
     #st.write(response6)
     response_text2 = response6.read().decode("utf-8")
-    data2 = json.loads(response_text2)
-    data3 = st.json(data2)
+    st.write(response_text2)
 #------------------------------------------------- option chain master data------------------------------
 headers4 = {
         "X-Mirae-Version": "1",
@@ -113,8 +112,7 @@ if chainmaster1:
     st.write("HTTP Status:", chainmaster.status)
     st.write(chainmaster)
     response_text11 = chainmaster.read().decode("utf-8")
-    data51 = json.loads(response_text11)
-    data52 = st.json(data51)
+    st.write(response_text11)
 #------------------------------------------------- any stock option chain data------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
@@ -133,9 +131,7 @@ if submit4:
     st.write("HTTP Status:", response7.status)
     st.write(response7)
     response_text3 = response6.read().decode("utf-8")
-    data5 = json.loads(response_text3)
-    data6 = st.json(data5)
-    
+    st.write(response_text3)  
 
 #--------------------------------------------logout--------------------------------------------
 
