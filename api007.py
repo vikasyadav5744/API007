@@ -11,9 +11,9 @@ st.set_page_config(page_title="m.Stock option chain", layout="wide")
 
 st.title("Mirae Asset m.Stock option chain")
 
-#api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=') # type B
+api_key = str('tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=') # type B
 
-api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=') 
+#api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=') 
 # Sidebar
 
 st.sidebar.header("API credentials")
@@ -36,7 +36,7 @@ if submit== True:
     st.write("OTP Sent on registered mobile")
 
 #  ---------------------------------------------------------- Generating OTP--------------------------------------------
-api_key = st.sidebar.text_input("Api key", key='key4', type='password')
+#api_key = st.sidebar.text_input("Api key", key='key4', type='password')
 OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
 
 data2 = {
