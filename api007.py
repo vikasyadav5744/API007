@@ -35,7 +35,7 @@ if submit== True:
     response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
     st.write("OTP Sent on registered mobile")
 
-#  ---------------------------------------------------------- Generating OTP--------------------------------------------
+#  ---------------------------------------------------------- Generating OTP --------------------------------------------
 
 #api_key = st.sidebar.text_input("Api key", key='key4', type='password')
 OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
@@ -65,6 +65,7 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 
 
 #  ---------------------------------------------------------- Getting Intraday Chart --------------------------------------------
+
 exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 token = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 interval = st.sidebar.selectbox("Choose Interval", key="key16", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
@@ -84,11 +85,11 @@ conn1.request(
 )
 response6 = conn1.getresponse()
 
-submit3 = st.sidebar.button("Intraday Chart Data", key="key9")
+submit3 = st.sidebar.button("Intraday Chart Data", key="key9", help='requires exh/token/interval')
 
 if submit3:
     st.write("HTTP Status:", response6.status)
-    st.write(response6)
+    #st.write(response6)
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
