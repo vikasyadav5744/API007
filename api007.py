@@ -88,11 +88,11 @@ submit3 = st.sidebar.button("Intraday Chart Data", key="key9")
 
 if submit3:
     st.write("HTTP Status:", response6.status)
-    st.write(response6.read())
+    st.write(response6)
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
-    st.write(data3)
+    st.dataframe(data3)
 #-------------------------------------------------Exchange / Expiry / token ------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
