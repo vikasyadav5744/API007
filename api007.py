@@ -3,6 +3,11 @@ import pandas as pd
 import requests
 from datetime import datetime, timezone, date
 
+my_ip= requests.get("https://api.ipify.org", timout=10)
+st.write("current public IP:", my_ip)
+
+
+
 # ============================================================
 # PAGE CONFIG
 # ============================================================
