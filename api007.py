@@ -63,22 +63,8 @@ access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
 #instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
 #interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
 
-#------------------------------------------Script Master ----------------------------------
-headers101 = {
-    'X-Mirae-Version': '1',
-    'Authorization': f"token {api_key}:{access_token}",
-}
 
-scriptmaster = st.sidebar.button("Script Master", key="key101")
-
-if scriptmaster==True:
-    response101 = requests.get('https://api.mstock.trade/openapi/typea/instruments/scriptmaster', headers=headers101)
-    st.write("HTTP Status:", response101.status)
-    script =pd.read_csv(response101)
-    st.write(script)
-    
-#  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
-
+#  ---------------------------------------------------------- Getting Intraday Chart --------------------------------------------
 exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 token = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
 interval = st.sidebar.selectbox("Choose Interval", key="key16", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
@@ -98,7 +84,7 @@ conn1.request(
 )
 response6 = conn1.getresponse()
 
-submit3 = st.sidebar.button("NIFTY / Stock Data", key="key9")
+submit3 = st.sidebar.button("Intraday Chart Data", key="key9")
 
 if submit3:
     st.write("HTTP Status:", response6.status)
