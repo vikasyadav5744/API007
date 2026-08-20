@@ -36,6 +36,7 @@ if submit== True:
     st.write("OTP Sent on registered mobile")
 
 #  ---------------------------------------------------------- Generating OTP--------------------------------------------
+
 #api_key = st.sidebar.text_input("Api key", key='key4', type='password')
 OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
 
@@ -73,11 +74,9 @@ scriptmaster = st.sidebar.button("Script Master", key="key101")
 if scriptmaster==True:
     response101 = requests.get('https://api.mstock.trade/openapi/typea/instruments/scriptmaster', headers=headers101)
     st.write("HTTP Status:", response101.status)
-    st.write(response101)
-    response_text101 = response101.read().decode("utf-8")
-    data101 = json.loads(response_text101)
-    data101 = st.json(data101)
-    st.write(data101)
+    script =pd.read_csv(response101)
+    st.write(script)
+    
 
 
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
