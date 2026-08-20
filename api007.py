@@ -93,7 +93,29 @@ if submit3:
     data2 = json.loads(response_text2)
     data3 = st.json(data2)
     st.write(data3)
-#------------------------------------------------- ------------------------------
+
+#------------------------------------------------- option chain master data------------------------------
+
+conn101 = http.client.HTTPSConnection('api.mstock.trade')
+
+conn101.request(
+    'GET',
+    f'openapi/typea/GetOptionChain/2',
+    headers=headers3
+)
+chainmaster = conn101.getresponse()
+
+chainmaster1 = st.sidebar.button("option chain master", key="key98")
+
+if chainmaster1:
+    st.write("HTTP Status:", chainmaster1.status)
+    st.write(chainmaster1)
+    response_text11 = chainmaster1.read().decode("utf-8")
+    data51 = json.loads(response_text11)
+    data52 = st.json(data51)
+    st.write(data52)
+
+#------------------------------------------------- any stock option chain data------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
 epoc = st.sidebar.number_input("epoc expiry", key="key99", value=1787596200)
