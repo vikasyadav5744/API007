@@ -95,22 +95,25 @@ if submit3:
     st.write(data3)
 
 #------------------------------------------------- option chain master data------------------------------
-
+headers4 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
 conn101 = http.client.HTTPSConnection('api.mstock.trade')
 
 conn101.request(
     'GET',
     f'openapi/typea/GetOptionChain/2',
-    headers=headers3
+    headers=headers4
 )
 chainmaster = conn101.getresponse()
 
 chainmaster1 = st.sidebar.button("option chain master", key="key98")
 
 if chainmaster1:
-    st.write("HTTP Status:", chainmaster1.status)
-    st.write(chainmaster1)
-    response_text11 = chainmaster1.read().decode("utf-8")
+    st.write("HTTP Status:", chainmaster.status)
+    st.write(chainmaster)
+    response_text11 = chainmaster.read().decode("utf-8")
     data51 = json.loads(response_text11)
     data52 = st.json(data51)
     st.write(data52)
@@ -118,7 +121,7 @@ if chainmaster1:
 #------------------------------------------------- any stock option chain data------------------------------
 
 conn4 = http.client.HTTPSConnection('api.mstock.trade')
-epoc = st.sidebar.number_input("epoc expiry", key="key99", value=1787596200)
+epoc = st.sidebar.number_input("epoc expiry", key="key99")
 
 conn4.request(
     'GET',
