@@ -1,157 +1,508 @@
 import streamlit as st
 import pandas as pd
 import requests
-import http.client
-import json
+from datetime import datetime, timezone, date
 
-my_ip = requests.get("https://api.ipify.org", timeout=10).text
-st.write("Current public IP:", my_ip)
+# ============================================================
+# PAGE CONFIG
+# ============================================================
 
-st.set_page_config(page_title="m.Stock option chain", layout="wide")
+st.set_page_config(
+    page_title="m.Stock NIFTY Option Chain",
+    layout="wide"
+)
 
-st.title("Mirae Asset m.Stock option chain")
+st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 
-api_key = str('tl65K+S8+ZX4Q6i1kztrH20cVqafynuY3OLeAuT7Ay0=') #type A
+# ============================================================
+# API SETTINGS
+# ============================================================
 
-#api_key = str('o2yDnj0HapA3uER56rNC+g9rQ3k2nihhUPCRAZtpaK0=') # type B
-# Sidebar
+BASE_URL = "https://api.mstock.trade"
 
-st.sidebar.header("API credentials")
-username =st.sidebar.text_input("User Name", key='key1')
-password =st.sidebar.text_input("password", type="password", key='key2')
+# IMPORTANT:
+# Do NOT hard-code your real API key in this file.
+# Enter it through Streamlit sidebar or secrets.
+api_key = st.sidebar.text_input(
+    "m.Stock Type A API Key",
+    type="password"
+)
 
-headers1 = {
-    'X-Mirae-Version': '1',
-    'Content-Type': 'application/x-www-form-urlencoded',
+# ============================================================
+# LOGIN
+# ============================================================
+
+st.sidebar.header("Login")
+
+username = st.sidebar.text_input("Username")
+password = st.sidebar.text_input(
+    "Password",
+    type="password"
+)
+
+if st.sidebar.button("Generate OTP"):
+
+    if not api_key or not username or not password:
+        st.error("Enter API Key, Username and Password.")
+    else:
+
+        login_url = f"{BASE_URL}/openapi/typea/connect/login"
+
+        headers = {
+            "X-Mirae-Version": "1",
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+
+        payload = {
+            "username": username,
+            "password": password
+        }
+
+        try:
+
+            response = requests.post(
+                login_url,
+                headers=headers,
+                data=payload,
+                timeout=15
+            )
+
+            st.write("Login HTTP Status:", response.status_code)
+
+            try:
+                st.json(response.json())
+            except:
+                st.write(response.text)
+
+            if response.ok:
+                st.success("OTP sent to your registered mobile.")
+
+        except Exception as e:
+            st.error(f"Login error: {e}")
+
+
+# ============================================================
+# GENERATE ACCESS TOKEN
+# ============================================================
+
+st.sidebar.header("Session")
+
+otp = st.sidebar.text_input(
+    "Enter OTP",
+    type="password"
+)
+
+if st.sidebar.button("Generate Access Token"):
+
+    if not api_key or not otp:
+        st.error("Enter API Key and OTP.")
+    else:
+
+        session_url = f"{BASE_URL}/openapi/typea/session/token"
+
+        headers = {
+            "X-Mirae-Version": "1",
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+
+        payload = {
+            "api_key": api_key,
+            "request_token": otp,
+            "checksum": "L"
+        }
+
+        try:
+
+            response = requests.post(
+                session_url,
+                headers=headers,
+                data=payload,
+                timeout=15
+            )
+
+            st.write("Session HTTP Status:", response.status_code)
+
+            result = response.json()
+
+            st.json(result)
+
+            if response.ok:
+
+                # Try common response structures
+                access_token = None
+
+                if isinstance(result.get("data"), dict):
+                    access_token = (
+                        result["data"].get("access_token")
+                        or result["data"].get("ACCESS_TOKEN")
+                    )
+
+                if access_token:
+                    st.session_state["access_token"] = access_token
+                    st.success("Access token generated successfully.")
+
+                else:
+                    st.warning(
+                        "Access token was not found automatically. "
+                        "Check the response shown above."
+                    )
+
+        except Exception as e:
+            st.error(f"Session error: {e}")
+
+
+# ============================================================
+# ACCESS TOKEN
+# ============================================================
+
+access_token = st.session_state.get("access_token")
+
+# Optional manual access token
+manual_token = st.sidebar.text_input(
+    "Access Token (optional)",
+    type="password"
+)
+
+if manual_token:
+    access_token = manual_token
+    st.session_state["access_token"] = manual_token
+
+
+# ============================================================
+# COMMON HEADERS
+# ============================================================
+
+headers = {
+    "X-Mirae-Version": "1",
+    "Authorization": f"token {api_key}:{access_token}"
 }
 
-data1 ={
-    'username': username,
-    'password': password
-    }
 
-submit= st.sidebar.button ("generate otp", key='key3')
-if submit== True:
-    response = requests.post('https://api.mstock.trade/openapi/typea/connect/login',headers=headers1, data=data1)
-    st.write("OTP Sent on registered mobile")
+# ============================================================
+# OPTION CHAIN MASTER
+# ============================================================
 
-#  ---------------------------------------------------------- Generating OTP --------------------------------------------
+def get_option_chain_master():
 
-#api_key = st.sidebar.text_input("Api key", key='key4', type='password')
-OTP = st.sidebar.text_input("Insert OTP to Generate access token", type="password", key='key5')
+    url = f"{BASE_URL}/openapi/typea/getoptionchainmaster/2"
 
-data2 = {
-    'api_key': api_key,
-    'request_token': OTP,
-    'checksum': 'L',
-}
+    response = requests.get(
+        url,
+        headers=headers,
+        timeout=15
+    )
 
-submit1 = st.sidebar.button ("generate session token", key='key6')
+    response.raise_for_status()
 
-if submit1==True:
-    response2 = requests.post('https://api.mstock.trade/openapi/typea/session/token', headers=headers1, data=data2)
-    st.write(response2)
-    response3 = response2.json()
-    df1 =st.dataframe(response3)
-    st.write(df1)
-    
-#  ---------------------------------------------------------- Generating Access Token--------------------------------------------
-
-#access_token = st.sidebar.text_input("Acess token", key='key7', type='password')
-
-access_token =str('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVU0VSTkFNRSI6Ik1BNTEzMjI2IiwiQ0xJRU5UTkFNRSI6IkFTSEEiLCJVU0VSX0RFVEFJTFMiOiI0S2NIWmZmcjFkWWhnWDJJQUNQenhHOGYvQlBNMjNXakVjUlJoZjBOV3RzSVdFQklaK1JVaDlNWkVETVBGRFRBSmZHSld5WFcvMEFFNTNnejNSOGwxb1JGaUl2VzdHbmdsUC9lZ2VWZVp5TmlhY2ZRa001MEY3NDFDNy96Qk5LTks3aUdrS2Zlc0Zwd1dtaHRFYnNJSXNGWnp5dTBFdmZ4bGVOU1FNNHFTWFB4SjlMWkFuNlk5NU5GVE82Y2h6dUZ4cVNYQkNIb0VpMlorbVBsTGRxRVdrbkRKY1FNV0lzM0xIMlpCOG94cERUcXF2cEFzYjl6enAwV2d2TmkvQURGZFduNGV3RUFDRDZOSXVGSjd5OElockJFRnlSbno2R08yVXZ2UkRhMmkrcHRFdGl5NVB1blNCNytEeFQ2VFlWRVpNNHVNVmNSR3p5dzBpd25YNmd5M2ZxNFVGWG1KYkpESnBOWDZYdjY5NFE9IiwiVVNFUklEIjoiTUE1MTMyMjYiLCJBQ0NFU1NfVE9LRU4iOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKaGRXUWlPaUp0YVhKaFpTNXBiaUlzSW1WNGNDSTZNVGM0TnpJNU5qZ3lNeXdpYVdGMElqb3hOemczTWpFd05ESXpMQ0pwYzNNaU9pSnRhWEpoWlM1cGJpSXNJbTVpWmlJNk1UUTBORFEzT0RRd01Dd2ljR1p0SWpvaU1TSXNJblJwWkNJNklqRXpJaXdpZFdsa0lqb2lNVE01TXprNUlpd2lkbWxrSWpvaU1qRWlmUS5LZ0ZTMExRSlNFUXpDVVY2LTBjT2ZTczdKaV9WV0N4bHpxV2UtZElrbzVvIiwiQVBJVFlQRSI6IlRZUEVBIiwiVUlEIjoiMGRmOGI5MjctYTk3Yi00MzM0LWFkNTAtNjUyYTExY2VkZjYwIiwibmJmIjoxNzg3MjEwNDIzLCJleHAiOjE3ODcyNTA2MDAsImlhdCI6MTc4NzIxMDQyM30.elTlL1uFqgEjHOePx7TCSIsfABX04BFK56I7gIPiKw8')
-
-#exchange = st.sidebar.selectbox("Exchange", options = [1, 4], index = 0, key='key9')
-#instrument_token = st.sidebar.text_input("instrument_token", value = 26000, key='key10')
-#interval = st.sidebar.selectbox("Interval", options = ['minute', '3minute', '5minute', '10minute', '15minute', '30minute', '60minute', 'day'], index = 2,key='key11')
+    return response.json()
 
 
-#  ---------------------------------------------------------- Getting Intraday Chart --------------------------------------------
+# ============================================================
+# FIND NIFTY TOKEN AND EXPIRIES
+# ============================================================
 
-exchange = st.sidebar.selectbox("Choose Exchange", key="key10", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
-token = st.sidebar.number_input("Symbol No.", key="key11", value=26000)
-interval = st.sidebar.selectbox("Choose Interval", key="key16", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
-st.write(token)
+def get_nifty_information(master):
 
-headers3 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
+    data = master.get("data", {})
 
-conn1 = http.client.HTTPSConnection('api.mstock.trade')
+    # NIFTY underlying token
+    nifty_token = None
 
-conn1.request(
-    'GET',
-    f'/openapi/typea/instruments/intraday/{exchange}/{token}/{interval}',
-    headers=headers3
-)
-response6 = conn1.getresponse()
+    for item in data.get("OPTIDX", []):
 
-submit3 = st.sidebar.button("Intraday Chart Data", key="key9", help='requires exh/token/interval')
+        parts = item.split(",")
 
-if submit3:
-    st.write("HTTP Status:", response6.status)
-    #st.write(response6)
-    response_text2 = response6.read().decode("utf-8")
-    st.write(response_text2)
-#------------------------------------------------- any stock option chain data------------------------------
+        if len(parts) >= 2:
 
-conn4 = http.client.HTTPSConnection('api.mstock.trade')
-#epoc = st.sidebar.number_input("epoc expiry", key="key99")
-date = st.sidebar.date_input("select expiry", key="key97")
+            symbol = parts[0]
+            token = parts[1]
 
-conn4.request(
-    'GET',
-    f'openapi/typea/GetOptionChain/{exchange}/{date}/{token}',
-    headers=headers3
-)
-response7 = conn4.getresponse()
+            if symbol.upper() == "NIFTY":
+                nifty_token = int(token)
+                nifty_expiry_keys = parts[2:]
+                break
 
-submit4 = st.sidebar.button("option chain of any stock", key="key21")
+    if nifty_token is None:
+        raise Exception("NIFTY not found in OPTIDX master.")
 
-if submit4:
-    st.write("HTTP Status:", response7.status)
-    st.write(response7)
-    response_text3 = response6.read().decode("utf-8")
-    st.write(response_text3)  
+    # Expiry dictionary
+    expiry_dict = data.get("dctExp", {})
 
-#------------------------------------------------- option chain master data------------------------------
-headers4 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
-conn101 = http.client.HTTPSConnection('api.mstock.trade')
+    expiries = []
 
-conn101.request(
-    'GET',
-    f'openapi/typea/GetOptionChain/2',
-    headers=headers4
-)
-chainmaster = conn101.getresponse()
+    for expiry_key in nifty_expiry_keys:
 
-chainmaster_button = st.sidebar.button("option chain master", key="key98")
+        if expiry_key in expiry_dict:
 
-if chainmaster_button:
-    st.write("HTTP Status:", chainmaster.status)
-    st.write(chainmaster)
-    response_text11 = chainmaster.read().decode("utf-8")
-    st.write(response_text11)
+            epoch = int(expiry_dict[expiry_key])
 
-#-----------------------Script Master --------------------
-headers31 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}",
-    }
-script= st.sidebar.button("script", key=80)
-if script==True:
-    response80 = requests.get('https://api.mstock.trade/openapi/typea/instruments/scriptmaster', headers=headers31)
-    st.write(response80.status)
-    den=pd.read_csv(response80)
-    st.write(den)
-#--------------------------------------------logout--------------------------------------------
+            # Convert epoch to date
+            expiry_date = datetime.fromtimestamp(
+                epoch,
+                tz=timezone.utc
+            ).date()
 
-logout = st.sidebar.button("Logout", key="key12")
+            expiries.append({
+                "expiry_key": expiry_key,
+                "epoch": epoch,
+                "expiry_date": expiry_date
+            })
 
-if logout==True:
-    requests.post('https://api.mstock.trade/openapi/typea/logout', headers=headers3)
-    st.write("logout sucessfully")
+    # Only future/current expiries
+    today = date.today()
+
+    expiries = [
+        x for x in expiries
+        if x["expiry_date"] >= today
+    ]
+
+    # Sort nearest expiry first
+    expiries.sort(key=lambda x: x["expiry_date"])
+
+    if not expiries:
+        raise Exception("No current/future NIFTY expiry found.")
+
+    return nifty_token, expiries
+
+
+# ============================================================
+# GET OPTION CHAIN
+# ============================================================
+
+def get_option_chain(expiry_epoch, nifty_token):
+
+    url = (
+        f"{BASE_URL}/openapi/typea/"
+        f"GetOptionChain/2/{expiry_epoch}/{nifty_token}"
+    )
+
+    response = requests.get(
+        url,
+        headers=headers,
+        timeout=15
+    )
+
+    response.raise_for_status()
+
+    return response.json()
+
+
+# ============================================================
+# PARSE OPTION CHAIN
+# ============================================================
+
+def parse_option_chain(option_data):
+
+    data = option_data.get("data", {})
+
+    call_data = data.get("call", [])
+    future_data = data.get("future", [])
+
+    rows = []
+
+    for item in call_data:
+
+        parts = item.split(",")
+
+        if len(parts) >= 3:
+
+            option_token = parts[0]
+            strike = parts[1]
+            value = parts[2]
+
+            rows.append({
+                "Option Token": option_token,
+                "Strike": float(strike) / 100,
+                "Value": value
+            })
+
+    df = pd.DataFrame(rows)
+
+    return df, future_data, data
+
+
+# ============================================================
+# MAIN OPTION CHAIN BUTTON
+# ============================================================
+
+st.sidebar.header("NIFTY Option Chain")
+
+if st.sidebar.button("Get Current NIFTY Option Chain"):
+
+    if not api_key:
+        st.error("Enter your Type A API Key.")
+
+    elif not access_token:
+        st.error("Generate/enter your Access Token.")
+
+    else:
+
+        try:
+
+            # ------------------------------------------------
+            # 1. GET MASTER
+            # ------------------------------------------------
+
+            with st.spinner("Getting option-chain master..."):
+
+                master = get_option_chain_master()
+
+            # ------------------------------------------------
+            # 2. FIND NIFTY + EXPIRY
+            # ------------------------------------------------
+
+            nifty_token, expiries = get_nifty_information(master)
+
+            st.success(
+                f"NIFTY token: {nifty_token}"
+            )
+
+            # ------------------------------------------------
+            # 3. DISPLAY EXPIRIES
+            # ------------------------------------------------
+
+            expiry_table = pd.DataFrame(expiries)
+
+            expiry_table["expiry_date"] = expiry_table[
+                "expiry_date"
+            ].astype(str)
+
+            st.subheader("Available NIFTY Expiries")
+
+            st.dataframe(
+                expiry_table,
+                use_container_width=True
+            )
+
+            # ------------------------------------------------
+            # 4. CURRENT / NEAREST EXPIRY
+            # ------------------------------------------------
+
+            current_expiry = expiries[0]
+
+            expiry_epoch = current_expiry["epoch"]
+            expiry_date = current_expiry["expiry_date"]
+
+            st.info(
+                f"Current/nearest expiry: "
+                f"{expiry_date} | Epoch: {expiry_epoch}"
+            )
+
+            # ------------------------------------------------
+            # 5. GET OPTION CHAIN
+            # ------------------------------------------------
+
+            with st.spinner(
+                f"Getting NIFTY option chain for {expiry_date}..."
+            ):
+
+                option_data = get_option_chain(
+                    expiry_epoch,
+                    nifty_token
+                )
+
+            # ------------------------------------------------
+            # 6. SHOW RAW RESPONSE
+            # ------------------------------------------------
+
+            with st.expander("Raw API Response"):
+
+                st.json(option_data)
+
+            # ------------------------------------------------
+            # 7. PARSE DATA
+            # ------------------------------------------------
+
+            df, future_data, chain_data = parse_option_chain(
+                option_data
+            )
+
+            # ------------------------------------------------
+            # 8. DISPLAY
+            # ------------------------------------------------
+
+            st.subheader(
+                f"NIFTY Option Chain - {expiry_date}"
+            )
+
+            if not df.empty:
+
+                st.dataframe(
+                    df,
+                    use_container_width=True,
+                    height=600
+                )
+
+            else:
+
+                st.warning(
+                    "No option-chain records were returned."
+                )
+
+            # ------------------------------------------------
+            # SPOT
+            # ------------------------------------------------
+
+            spot = chain_data.get("spot")
+
+            st.write("Spot:", spot)
+
+            # ------------------------------------------------
+            # FUTURE
+            # ------------------------------------------------
+
+            st.write("Future:", future_data)
+
+        except requests.HTTPError as e:
+
+            st.error(
+                f"HTTP error: {e}"
+            )
+
+            try:
+                st.code(e.response.text)
+            except:
+                pass
+
+        except Exception as e:
+
+            st.error(
+                f"Error: {e}"
+            )
+
+
+# ============================================================
+# LOGOUT
+# ============================================================
+
+st.sidebar.divider()
+
+if st.sidebar.button("Logout"):
+
+    if access_token:
+
+        logout_url = f"{BASE_URL}/openapi/typea/logout"
+
+        try:
+
+            response = requests.get(
+                logout_url,
+                headers=headers,
+                timeout=15
+            )
+
+            st.write(
+                "Logout status:",
+                response.status_code
+            )
+
+            st.session_state.pop(
+                "access_token",
+                None
+            )
+
+            st.success("Logged out.")
+
+        except Exception as e:
+
+            st.error(f"Logout error: {e}")
