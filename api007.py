@@ -167,6 +167,8 @@ conn.request(
 if st.sidebar.button("ChainMaster"):
     response = conn.getresponse()
     st.write(response.status)
+    st.json(response)
+    
     
 
 
