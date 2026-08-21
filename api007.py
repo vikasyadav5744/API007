@@ -197,7 +197,7 @@ conn.request(
 response = conn.getresponse()
 
 if st.sidebar.button("Chain Master"):
-    st.write('HTTPS status:', response.status_code)
+    st.write('HTTPS status:', response.status)
     
 
 
