@@ -132,47 +132,16 @@ if st.sidebar.button("Generate Access Token"):
 
             st.json(result)
 
-            if response.ok:
-
-                # Try common response structures
-                access_token = None
-
-                if isinstance(result.get("data"), dict):
-                    access_token = (
-                        result["data"].get("access_token")
-                        or result["data"].get("ACCESS_TOKEN")
-                    )
-
-                if access_token:
-                    st.session_state["access_token"] = access_token
-                    st.success("Access token generated successfully.")
-
-                else:
-                    st.warning(
-                        "Access token was not found automatically. "
-                        "Check the response shown above."
-                    )
-
-        except Exception as e:
-            st.error(f"Session error: {e}")
-
-
 # ============================================================
 # ACCESS TOKEN
 # ============================================================
 
-access_token = st.session_state.get("access_token")
-
 # Optional manual access token
+
 manual_token = st.sidebar.text_input(
     "Access Token (optional)",
     type="password"
 )
-
-if manual_token:
-    access_token = manual_token
-    st.session_state["access_token"] = manual_token
-
 
 # ============================================================
 # COMMON HEADERS
@@ -180,7 +149,7 @@ if manual_token:
 
 headers = {
     "X-Mirae-Version": "1",
-    "Authorization": f"token {api_key}:{access_token}"
+    "Authorization": f"token {api_key}:{manual_token}"
 }
 
 # ============================================================
@@ -190,17 +159,18 @@ headers = {
 conn = http.client.HTTPSConnection('api.mstock.trade')
 headers = {
     'X-Mirae-Version': '1',
-    "Authorization": f"token {api_key}:{access_token}"
+    "Authorization": f"token {api_key}:{manual_token}"
 }
 conn.request(
     'GET',
     'openapi/typea/getoptionchainmaster/2',
     headers=headers
 )
-response = conn.getresponse()
-st.write(response.status)
-response_text3 = response.read().decode("utf-8")
-st.write(response_text3)
+
+if st.sidebar.button("ChainMaster"):
+    response = conn.getresponse()
+    st.write(response.status)
+    
 
 
     
