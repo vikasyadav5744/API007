@@ -182,14 +182,13 @@ headers = {
     "X-Mirae-Version": "1",
     "Authorization": f"token {api_key}:{access_token}"
 }
-st.write(headers)
 
 # ============================================================
 # OPTION CHAIN MASTER
 # ============================================================
 
-conn = http.client.HTTPSConnection('api.mstock.trade')
-new=conn.request('GET','openapi/typea/getoptionchainmaster/2',headers=headers)
+conn = 'https://api.mstock.trade/openapi/typea/getoptionchainmaster/2'
+new=requests.get(conn, headers=headers)
 st.write(new)
 response = conn.getresponse()
 st.write(response.status)
