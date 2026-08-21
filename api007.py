@@ -155,12 +155,14 @@ headers = {
 
 conn = http.client.HTTPSConnection('api.mstock.trade')
 conn.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
-response = conn.getresponse()
+response1 = conn.getresponse()
 if st.sidebar.button("ChainMaster"):
-    st.write(response.status)
-    st.write(response.text)
-    
-    
+    try:
+        st.json(response1.json())
+    except:
+        st.write(response.text)
+    else:
+        st.write("code is working")
     
 
 
