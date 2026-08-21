@@ -153,13 +153,12 @@ headers = {
 # OPTION CHAIN MASTER
 # ============================================================
 
-#conn = http.client.HTTPSConnection('api.mstock.trade')
-#conn.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
-url = 'https://api.mstock.trade/openapi/typea/getoptionchainmaster/2'
-response = requests.get(url, headers=headers)
-rest=response.raise_for_status()
+conn = http.client.HTTPSConnection('api.mstock.trade')
+conn.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
+response = conn.getresponse()
 if st.sidebar.button("ChainMaster"):
-    st.write(rest)
+    st.write(response.status_code)
+    st.write(response.text)
     
     
     
