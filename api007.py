@@ -159,7 +159,7 @@ url = 'https://api.mstock.trade/openapi/typea/getoptionchainmaster/2'
 response = requests.get(url, headers=headers)
 
 if st.sidebar.button("ChainMaster"):
-    st.write(response.status)
+    st.write(response.read())
     st.json(response)
     
     
