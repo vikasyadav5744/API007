@@ -90,9 +90,6 @@ if st.sidebar.button("Generate OTP"):
 # ============================================================
 # GENERATE ACCESS TOKEN
 # ============================================================
-
-st.sidebar.header("Session")
-
 otp = st.sidebar.text_input(
     "Enter OTP",
     type="password"
@@ -127,9 +124,7 @@ if st.sidebar.button("Generate Access Token"):
             )
 
             st.write("Session HTTP Status:", response.status_code)
-
             result = response.json()
-
             st.json(result)
 
 # ============================================================
