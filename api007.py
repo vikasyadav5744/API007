@@ -130,9 +130,7 @@ if st.sidebar.button("Generate Access Token"):
             st.write("Error:", e)
         else:
             st.write("nice job")
-
-            finally:
-                st.write("Access token generated successfully")
+            st.write("Access token generated successfully")
 
 # ============================================================
 # ACCESS TOKEN
