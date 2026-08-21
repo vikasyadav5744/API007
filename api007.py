@@ -182,7 +182,7 @@ headers = {
     "X-Mirae-Version": "1",
     "Authorization": f"token {api_key}:{access_token}"
 }
-
+st.write(headers)
 
 # ============================================================
 # OPTION CHAIN MASTER
