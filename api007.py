@@ -153,14 +153,16 @@ headers = {
 # OPTION CHAIN MASTER
 # ============================================================
 
-conn = http.client.HTTPSConnection('api.mstock.trade')
-conn.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
-response1 = conn.getresponse()
+conn1 = http.client.HTTPSConnection('api.mstock.trade')
+conn1.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
+response1 = conn1.getresponse()
 if st.sidebar.button("ChainMaster"):
     try:
         st.json(response1.json())
-    except:
+    except Exception as e:
+        st.error(f"Unexpected error: {e}")
         st.write(response1.status)
+        
     else:
         st.write("code is working")
     
