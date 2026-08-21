@@ -200,9 +200,7 @@ conn.request(
 response = conn.getresponse()
 st.write(response.status)
 response_text3 = response.read().decode("utf-8")
-data5 = json.loads(response_text3)
-data6 = st.json(data5)
-st.write(data6)
+st.write(response_text3)
 
 
     
