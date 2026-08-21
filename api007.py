@@ -138,10 +138,7 @@ if st.sidebar.button("Generate Access Token"):
 
 # Optional manual access token
 
-manual_token = st.sidebar.text_input(
-    "Access Token (optional)",
-    type="password"
-)
+manual_token = st.sidebar.text_input("Access Token (optional)",type="password")
 
 # ============================================================
 # COMMON HEADERS
