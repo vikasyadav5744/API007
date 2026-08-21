@@ -157,10 +157,10 @@ headers = {
 #conn.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
 url = 'https://api.mstock.trade/openapi/typea/getoptionchainmaster/2'
 response = requests.get(url, headers=headers)
-
+rest=response.raise_for_status()
 if st.sidebar.button("ChainMaster"):
-    st.write(response.read())
-    st.json(response)
+    st.write(rest)
+    
     
     
 
