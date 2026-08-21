@@ -126,6 +126,13 @@ if st.sidebar.button("Generate Access Token"):
             st.write("Session HTTP Status:", response.status_code)
             result = response.json()
             st.json(result)
+        except exceptions as e:
+            st.write("Error:", e)
+        else:
+            st.write("nice job")
+
+            finally:
+                st.write("Access token generated successfully")
 
 # ============================================================
 # ACCESS TOKEN
