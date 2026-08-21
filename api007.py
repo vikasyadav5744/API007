@@ -160,7 +160,7 @@ if st.sidebar.button("ChainMaster"):
     try:
         st.json(response1.json())
     except:
-        st.write(response1.text)
+        st.write(response1)
     else:
         st.write("code is working")
     
