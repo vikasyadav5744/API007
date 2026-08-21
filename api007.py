@@ -153,19 +153,12 @@ headers = {
 # OPTION CHAIN MASTER
 # ============================================================
 
-conn = http.client.HTTPSConnection('api.mstock.trade')
-headers = {
-    'X-Mirae-Version': '1',
-    "Authorization": f"token {api_key}:{manual_token}"
-}
-conn.request(
-    'GET',
-    'openapi/typea/getoptionchainmaster/2',
-    headers=headers
-)
+#conn = http.client.HTTPSConnection('api.mstock.trade')
+#conn.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
+url = 'https://api.mstock.trade/openapi/typea/getoptionchainmaster/2'
+response = requests.get(url, headers=headers)
 
 if st.sidebar.button("ChainMaster"):
-    response = conn.getresponse()
     st.write(response.status)
     st.json(response)
     
