@@ -1,4 +1,4 @@
-
+l
 import http.client
 import streamlit as st
 import pandas as pd
@@ -144,7 +144,7 @@ manual_token = st.sidebar.text_input("Access Token (optional)",type="password")
 # COMMON HEADERS
 # ============================================================
 
-headers = {
+headers1 = {
     "X-Mirae-Version": "1",
     "Authorization": f"token {api_key}:{manual_token}"
 }
@@ -154,7 +154,7 @@ headers = {
 # ============================================================
 
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
-conn1.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers)
+conn1.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers1)
 response1 = conn1.getresponse()
 if st.sidebar.button("ChainMaster"):
     try:
