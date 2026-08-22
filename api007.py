@@ -138,7 +138,7 @@ if st.sidebar.button("Generate Access Token"):
 
 # Optional manual access token
 
-manual_token = st.sidebar.text_input("Access Token (optional)",type="password")
+access_token = st.sidebar.text_input("Access Token (optional)",type="password")
 
 # ============================================================
 # COMMON HEADERS
@@ -146,7 +146,7 @@ manual_token = st.sidebar.text_input("Access Token (optional)",type="password")
 
 headers1 = {
     "X-Mirae-Version": "1",
-    "Authorization": f"token {api_key}:{manual_token}"
+    "Authorization": f"token {api_key}:{access_token}"
 }
 
 # ============================================================
