@@ -162,7 +162,7 @@ if st.sidebar.button("ChainMaster"):
     except Exception as e:
         st.error(f"Unexpected error: {e}")
         st.write(response1.status)
-        
+        st.write(response1.read().decode("utf-8")    
     else:
         st.write("code is working")
     
