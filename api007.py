@@ -173,9 +173,7 @@ if chainmaster:
         st.write(result)
     try:
         st.json(response.json())
-    except:
-        st.write(response.text)
-                
+    
     except Exception as e:
         st.write("Error:", e)
     finally:
