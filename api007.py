@@ -168,10 +168,14 @@ if chainmaster:
         response = conn.getresponse()
         st.write("HTTP Status:", response.status)
         st.write("Reason:", response.reason)
-        st.json(response.json())
         result = response.read().decode("utf-8")
         st.write("API Response:")
         st.write(result)
+    try:
+        st.json(response.json())
+    except:
+        st.write(response.text)
+                
     except Exception as e:
         st.write("Error:", e)
     finally:
