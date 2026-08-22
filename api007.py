@@ -171,8 +171,6 @@ if chainmaster:
         result = response.read().decode("utf-8")
         st.write("API Response:")
         st.write(result)
-    try:
-        st.json(response.json())
     
     except Exception as e:
         st.write("Error:", e)
