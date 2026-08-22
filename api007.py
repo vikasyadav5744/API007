@@ -172,8 +172,8 @@ if st.sidebar.button("ChainMaster"):
         st.write(result)
     except Exception as e:
         st.write("Error:", e)
-finally:
-    conn.close()
+    finally:
+        conn.close()
     
 
 
