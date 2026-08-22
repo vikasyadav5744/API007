@@ -153,18 +153,34 @@ headers1 = {
 # OPTION CHAIN MASTER
 # ============================================================
 
-conn1 = http.client.HTTPSConnection('api.mstock.trade')
-conn1.request('GET','openapi/typea/getoptionchainmaster/2', headers=headers1)
-response1 = conn1.getresponse()
-if st.sidebar.button("ChainMaster"):
-    try:
-        st.json(response1.json())
-    except Exception as e:
-        st.error(f"Unexpected error: {e}")
-        st.write(response1.status)
-        st.write(response1.read().decode("utf-8"))   
-    else:
-        st.write("code is working")
+try:
+    conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
+
+    headers4 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}"
+    }
+
+    conn.request(
+        "GET",
+        "/openapi/typea/getoptionchainmaster/2",
+        headers=headers4
+    )
+
+    response = conn.getresponse()
+
+    st.write("HTTP Status:", response.status)
+    st.write("Reason:", response.reason)
+
+    result = response.read().decode("utf-8")
+    st.write("API Response:")
+    st.write(result)
+
+except Exception as e:
+    st.write("Error:", e)
+
+finally:
+    conn.close()
     
 
 
