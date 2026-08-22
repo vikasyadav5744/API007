@@ -152,7 +152,8 @@ headers1 = {
 # ============================================================
 # OPTION CHAIN MASTER
 # ============================================================
-if st.sidebar.button("ChainMaster"):
+chainmaster =st.sidebar.button("ChainMaster", key='key1')
+if chainmaster:
     try:
         conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
         headers4 = {
