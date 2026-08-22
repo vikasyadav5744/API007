@@ -168,6 +168,7 @@ if chainmaster:
         response = conn.getresponse()
         st.write("HTTP Status:", response.status)
         st.write("Reason:", response.reason)
+        st.json(response.json())
         result = response.read().decode("utf-8")
         st.write("API Response:")
         st.write(result)
