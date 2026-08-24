@@ -216,6 +216,8 @@ if call_criteria==True:
         result1 = response1.read().decode("utf-8")
         st.write("API Response:")
         st.write(result1)
+        expiry_details = result1.get("dctExp",{})
+        st.write(expiry_details)
         #st.session_state.api_key = api_key
         #st.session_state.api_key = access_token
       except Exception as e:
