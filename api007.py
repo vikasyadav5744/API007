@@ -221,18 +221,18 @@ if chaimaster_criteria==True:
 call_criteria =st.sidebar.checkbox("show call/ put criteia", key='key13')
 
 if call_criteria==True:
-  exchange1= st.sidebar.selectbox("Exchange", key='key15', options=['2'],index =0)
-  expiry= st.sidebar.selectbox("Expiry", key='key14', options=['1483021800'],index =0)
-  symboltoken1=st.sidebar.text_input("SymbolToken", key='key16', value='26000')
+  exchange1= st.sidebar.text_input("Exchange", key='key15', value=2)
+  expiry= st.sidebar.text_input("Expiry", key='key14', value='1483021800')
+  symboltoken1=st.sidebar.text_input("SymbolToken", key='key16', value=26000)
   
   calldata=st.sidebar.button("Get Call Data", key='key17')
   if calldata:
-    try:
-        conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-        headers5 = {
+    conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
+    headers5 = {
         "X-Mirae-Version": "1",
         "Authorization": f"token {api_key}:{access_token}"
         }
+    try:
         conn.request(
         "GET",
         f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
@@ -260,7 +260,7 @@ headers101 = {
 }
 conn.request(
     'GET',
-    'openapi/typea/GetOptionChain/2/11498746600/26000',
+    f'/openapi/typea/GetOptionChain/{exchange1}/{expiry}/{symboltoken1}',
     headers=headers101
 )
 response101 = conn.getresponse()
