@@ -264,7 +264,10 @@ conn.request(
     headers=headers101
 )
 response101 = conn.getresponse()
-st.write("HTTP Status:", response101.status)
+st.write("HTTP reason:", response101.reason)
+
+
+
 
 
     
