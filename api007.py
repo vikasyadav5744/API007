@@ -23,68 +23,68 @@ st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 # ============================================================
 # API SETTINGS
 # ============================================================
-
-BASE_URL = "https://api.mstock.trade"
-
-# IMPORTANT:
-# Do NOT hard-code your real API key in this file.
-# Enter it through Streamlit sidebar or secrets.
-api_key = st.sidebar.text_input(
-    "m.Stock Type A API Key",
-    type="password"
-)
-
-# ============================================================
-# LOGIN
-# ============================================================
-
-st.sidebar.header("Login")
-
-username = st.sidebar.text_input("Username")
-password = st.sidebar.text_input(
-    "Password",
-    type="password"
-)
-
-if st.sidebar.button("Generate OTP"):
-
-    if not api_key or not username or not password:
-        st.error("Enter API Key, Username and Password.")
-    else:
-
-        login_url = f"{BASE_URL}/openapi/typea/connect/login"
-
-        headers = {
-            "X-Mirae-Version": "1",
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-
-        payload = {
-            "username": username,
-            "password": password
-        }
-
-        try:
-
-            response = requests.post(
-                login_url,
-                headers=headers,
-                data=payload,
-                timeout=15
-            )
-
-            st.write("Login HTTP Status:", response.status_code)
-
+login_input =st.sidebar.checkbox("show login Inputs", key='key11')
+if login_input==True:
+        
+    BASE_URL = "https://api.mstock.trade"
+    
+    #-------------------------------------------------
+    api_key = st.sidebar.text_input(
+        "m.Stock Type A API Key",
+        type="password"
+    )
+    
+    # ============================================================
+    # LOGIN
+    # ============================================================
+    
+    st.sidebar.header("Login")
+    
+    username = st.sidebar.text_input("Username")
+    password = st.sidebar.text_input(
+        "Password",
+        type="password"
+    )
+    
+    if st.sidebar.button("Generate OTP"):
+    
+        if not api_key or not username or not password:
+            st.error("Enter API Key, Username and Password.")
+        else:
+    
+            login_url = f"{BASE_URL}/openapi/typea/connect/login"
+    
+            headers = {
+                "X-Mirae-Version": "1",
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+    
+            payload = {
+                "username": username,
+                "password": password
+            }
+    
             try:
-                st.json(response.json())
-            except:
-                st.write(response.text)
-
-            if response.ok:
-                st.success("OTP sent to your registered mobile.")
-
-        except Exception as e:
-            st.error(f"Login error: {e}")
+    
+                response = requests.post(
+                    login_url,
+                    headers=headers,
+                    data=payload,
+                    timeout=15
+                )
+    
+                st.write("Login HTTP Status:", response.status_code)
+    
+                try:
+                    st.json(response.json())
+                except:
+                    st.write(response.text)
+    
+                if response.ok:
+                    st.success("OTP sent to your registered mobile.")
+    
+            except Exception as e:
+                st.error(f"Login error: {e}")
 
 
 # ============================================================
