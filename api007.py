@@ -193,8 +193,8 @@ if chaimaster_criteria==True:
 call_criteria =st.sidebar.checkbox("show call/ put criteia", key='key13')
 
 if call_criteria==True:
-    expiry= st.sidebar.selectbox("Expiry", key='key14', options=[1483021800],index =0)
     exchange1= st.sidebar.selectbox("Exchange", key='key15', options=[1,2],index =1)
+    expiry= st.sidebar.selectbox("Expiry", key='key14', options=[1483021800],index =0)
     symboltoken1=st.sidebar.number_input("SymbolToken", key='key16', value=26000)
     calldata=st.sidebar.button("Get Call Data", key='key17')
     if calldata:
@@ -214,8 +214,7 @@ if call_criteria==True:
             st.write("Reason:", response1.reason)
             result1 = response1.read().decode("utf-8")
             st.write("API Response:")
-            st.write(result1)
-                    
+            st.write(result1)        
         except Exception as e:
             st.write("Error:", e)
         finally:
