@@ -254,7 +254,7 @@ if Intraday_criteria==True:
 conn = http.client.HTTPSConnection('api.mstock.trade')
 headers101 = {
     'X-Mirae-Version': '1',
-    'Authorization': f'token {api_Key}: {access_token}',
+    'Authorization': f'token {api_key}: {access_token}',
 }
 conn.request(
     'GET',
@@ -262,6 +262,8 @@ conn.request(
     headers=headers101
 )
 response101 = conn.getresponse()
+st.write("HTTP Status:", response101.status)
+
 
     
 
