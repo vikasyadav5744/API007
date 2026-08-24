@@ -188,7 +188,7 @@ if chaimaster_criteria==True:
 call_criteria =st.sidebar.checkbox("show call/ put criteia", key='key13')
 
 if call_criteria==True:
-  exchange1= st.sidebar.selectbox("Exchange", key='key15', options=['2'],index =1)
+  exchange1= st.sidebar.selectbox("Exchange", key='key15', options=['2'],index =0)
   expiry= st.sidebar.selectbox("Expiry", key='key14', options=['1483021800'],index =0)
   symboltoken1=st.sidebar.text_input("SymbolToken", key='key16')
   
