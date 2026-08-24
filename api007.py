@@ -211,6 +211,7 @@ if calldata:
       headers=headers5
       )
       response1 = conn.getresponse()
+      st.write(api_key)
       st.write("HTTP Status:", response1.status)
       st.write("Reason:", response1.reason)
       result1 = response1.read().decode("utf-8")
