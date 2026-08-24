@@ -196,8 +196,14 @@ if call_criteria==True:
     exchange1= st.sidebar.selectbox("Exchange", key='key15', options=[1,2],index =1)
     expiry= st.sidebar.selectbox("Expiry", key='key14', options=[1483021800],index =0)
     symboltoken1=st.sidebar.number_input("SymbolToken", key='key16', value=26000)
+  
     calldata=st.sidebar.button("Get Call Data", key='key17')
-    if calldata:
+    if not api_key:
+        st.error("Enter API Key.")
+    elif not access_token:
+        st.error("Enter access_token.")
+    else:
+      if calldata:
         try:
             conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
             headers5 = {
