@@ -252,8 +252,8 @@ if submit3:
     st.write(response6)
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
-    data3 = st.json(data2)
-    st.write(data3)
+    st.json(data2)
+    
 
     
 
