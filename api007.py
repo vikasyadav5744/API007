@@ -10,7 +10,7 @@ my_ip = requests.get("https://api.ipify.org", timeout=10).text
 st.write("Current public IP:", my_ip)
 
 # ============================================================
-# PAGE CONFIG
+                                      # PAGE CONFIG
 # ============================================================
 
 st.set_page_config(
@@ -20,20 +20,37 @@ st.set_page_config(
 
 st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 
+
+#=============================================================
+                      #Session State
+#============================================================
+if "api_key" not in st.session_state:
+    st.session_state.api_key=""
+
+if "access_token" not in st.session_state:
+    st.session_state.refreshToken=""
+    
 # ============================================================
-# API SETTINGS
+                                         # API SETTINGS
 # ============================================================
 
 api_key = st.sidebar.text_input(
         "m.Stock Type A API Key",
-        type="password")
+        type="password", key="api_key")
+# ============================================================
+                                         # ACCESS TOKEN
+# ============================================================
+access_token = st.sidebar.text_input("Access Token (optional)",type="password", key="access_token")
+
 #=======================================================================
+
 login_input =st.sidebar.checkbox("show login Inputs", key='key11')
+
 if login_input==True:  
     BASE_URL = "https://api.mstock.trade"
-    # ============================================================
-    # LOGIN
-    # ============================================================
+# ============================================================
+                                      # LOGIN
+# ============================================================
     st.sidebar.header("Login")
     
     username = st.sidebar.text_input("Username")
@@ -84,9 +101,10 @@ if login_input==True:
 
 
 # ============================================================
-# GENERATE ACCESS TOKEN
+                                # GENERATE ACCESS TOKEN
 # ============================================================
 session_token  =st.sidebar.checkbox("Generate Access Token ", key='key10')
+
 if session_token:
     otp = st.sidebar.text_input(
         "Enter OTP",
@@ -124,25 +142,20 @@ if session_token:
                 st.write("Session HTTP Status:", response.status_code)
                 result = response.json()
                 st.json(result)
+                st.session_state.api_key = api_key
+           
             except exceptions as e:
                 st.write("Error:", e)
             else:
                 st.write("nice job")
                 st.write("Access token generated successfully")
-
-# ============================================================
-# ACCESS TOKEN
-# ============================================================
-access_token = st.sidebar.text_input("Access Token (optional)",type="password")
 # ============================================================
 # COMMON HEADERS
 # ============================================================
-
 headers1 = {
     "X-Mirae-Version": "1",
     "Authorization": f"token {api_key}:{access_token}"
 }
-
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
@@ -167,6 +180,8 @@ if chaimaster_criteria==True:
             result = response.read().decode("utf-8")
             st.write("API Response:")
             st.write(result)
+            st.session_state.api_key = api_key
+            st.session_state.api_key = access_token
         
         except Exception as e:
             st.write("Error:", e)
@@ -202,6 +217,8 @@ if call_criteria==True:
             result1 = response1.read().decode("utf-8")
             st.write("API Response:")
             st.write(result1)
+            st.session_state.api_key = api_key
+            st.session_state.api_key = access_token
         
         except Exception as e:
             st.write("Error:", e)
