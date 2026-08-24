@@ -249,7 +249,6 @@ submit3 = st.sidebar.button("NIFTY / Stock Data", key="key109")
 
 if submit3:
     st.write("HTTP Status:", response6.status)
-    st.write(response6)
     response_text2 = response6.read().decode("utf-8")
     data2 = json.loads(response_text2)
     st.json(data2)
