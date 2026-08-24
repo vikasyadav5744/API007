@@ -173,9 +173,9 @@ if chaimaster_criteria==True:
             st.write("HTTP Status:", response.status)
             st.write("Reason:", response.reason)
             result = response.read().decode("utf-8")
-            st.write("API Response:")
-            st.write(result)
-             #st.session_state.api_key = access_token
+            result = json.loads(result)
+            st.json(result)
+            #st.session_state.api_key = access_token
         except Exception as e:
             st.write("Error:", e)
         finally:
