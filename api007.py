@@ -175,6 +175,7 @@ if chaimaster_criteria==True:
             result = response.read().decode("utf-8")
             st.write("API Response:")
             st.write(result)
+            result = result.json()
             expiry_details = result.get("dctExp",{})
             st.write(expiry_details)
             #st.session_state.api_key = access_token
