@@ -142,7 +142,7 @@ if session_token:
                 st.write("Session HTTP Status:", response.status_code)
                 result = response.json()
                 st.json(result)
-                st.session_state.api_key = api_key
+                #st.session_state.api_key = api_key
            
             except exceptions as e:
                 st.write("Error:", e)
@@ -180,7 +180,7 @@ if chaimaster_criteria==True:
             result = response.read().decode("utf-8")
             st.write("API Response:")
             st.write(result)
-            st.session_state.api_key = access_token
+            #st.session_state.api_key = access_token
         except Exception as e:
             st.write("Error:", e)
         finally:
@@ -215,8 +215,8 @@ if call_criteria==True:
             result1 = response1.read().decode("utf-8")
             st.write("API Response:")
             st.write(result1)
-            st.session_state.api_key = api_key
-            st.session_state.api_key = access_token
+            #st.session_state.api_key = api_key
+            #st.session_state.api_key = access_token
         except Exception as e:
             st.write("Error:", e)
         finally:
