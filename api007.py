@@ -267,7 +267,8 @@ response101 = conn.getresponse()
 st.write("HTTP reason:", response101.reason)
 st.write("HTTP status:", response101.status)
 result3 = response101.read().decode("utf-8")
-st.write(result3)
+data3= json.loads(result3)
+st.json(data3)
 
 
 
