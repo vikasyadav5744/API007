@@ -26,20 +26,14 @@ st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 
 api_key = st.sidebar.text_input(
         "m.Stock Type A API Key",
-        type="password"
-        )
+        type="password")
 #=======================================================================
 login_input =st.sidebar.checkbox("show login Inputs", key='key11')
-if login_input==True:
-        
+if login_input==True:  
     BASE_URL = "https://api.mstock.trade"
-    
-    #-------------------------------------------------
-    
     # ============================================================
     # LOGIN
     # ============================================================
-    
     st.sidebar.header("Login")
     
     username = st.sidebar.text_input("Username")
@@ -50,7 +44,7 @@ if login_input==True:
     
     if st.sidebar.button("Generate OTP"):
     
-        if not api_key or not username or not password:
+        if not username or not password:
             st.error("Enter API Key, Username and Password.")
         else:
     
@@ -92,47 +86,49 @@ if login_input==True:
 # ============================================================
 # GENERATE ACCESS TOKEN
 # ============================================================
-otp = st.sidebar.text_input(
-    "Enter OTP",
-    type="password"
-)
-
-if st.sidebar.button("Generate Access Token"):
-
-    if not api_key or not otp:
-        st.error("Enter API Key and OTP.")
-    else:
-
-        session_url = f"{BASE_URL}/openapi/typea/session/token"
-
-        headers = {
-            "X-Mirae-Version": "1",
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-
-        payload = {
-            "api_key": api_key,
-            "request_token": otp,
-            "checksum": "L"
-        }
-
-        try:
-
-            response = requests.post(
-                session_url,
-                headers=headers,
-                data=payload,
-                timeout=15
-            )
-
-            st.write("Session HTTP Status:", response.status_code)
-            result = response.json()
-            st.json(result)
-        except exceptions as e:
-            st.write("Error:", e)
+session_token  =st.sidebar.checkbox("Generate Access Token ", key='key10')
+if session_token:
+    otp = st.sidebar.text_input(
+        "Enter OTP",
+        type="password"
+    )
+    BASE_URL1 = "https://api.mstock.trade"
+    if st.sidebar.button("Generate Access Token"):
+    
+        if not api_key or not otp:
+            st.error("Enter API Key and OTP.")
         else:
-            st.write("nice job")
-            st.write("Access token generated successfully")
+    
+            session_url = f"{BASE_URL1}/openapi/typea/session/token"
+    
+            headers = {
+                "X-Mirae-Version": "1",
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+    
+            payload = {
+                "api_key": api_key,
+                "request_token": otp,
+                "checksum": "L"
+            }
+    
+            try:
+    
+                response = requests.post(
+                    session_url,
+                    headers=headers,
+                    data=payload,
+                    timeout=15
+                )
+    
+                st.write("Session HTTP Status:", response.status_code)
+                result = response.json()
+                st.json(result)
+            except exceptions as e:
+                st.write("Error:", e)
+            else:
+                st.write("nice job")
+                st.write("Access token generated successfully")
 
 # ============================================================
 # ACCESS TOKEN
