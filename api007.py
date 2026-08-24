@@ -260,7 +260,7 @@ headers101 = {
 }
 conn.request(
     'GET',
-    f'/openapi/typea/GetOptionChain/{exchange1}/{expiry}/{symboltoken1}',
+    f'/openapi/typea/GetOptionChain/2/1787616000/26000',
     headers=headers101
 )
 response101 = conn.getresponse()
