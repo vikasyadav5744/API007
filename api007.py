@@ -227,7 +227,7 @@ if call_criteria==True:
 
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
 
-exchange = st.sidebar.selectbox("Choose Exchange", key="key101", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
+exchange = st.sidebar.selectbox("Choose Exchange", key="key101", options=[1,'2',3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 token = st.sidebar.number_input("Symbol No.", key="key102", value=26000)
 interval = st.sidebar.selectbox("Choose Interval", key="key103", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
 
