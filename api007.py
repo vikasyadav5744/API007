@@ -218,10 +218,10 @@ if calldata:
       st.write(result1)
       #st.session_state.api_key = api_key
       #st.session_state.api_key = access_token
-      except Exception as e:
-        st.write("Error:", e)
-      finally:
-        conn.close()
+    except Exception as e:
+      st.write("Error:", e)
+    finally:
+      conn.close()
     
 
 
