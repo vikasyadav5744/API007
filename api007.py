@@ -205,14 +205,10 @@ if call_criteria==True:
       else:
           try:
               conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-              headers5 = {
-              "X-Mirae-Version": "1",
-              "Authorization": f"token {api_key}:{access_token}"
-              }
               conn.request(
               "GET",
               f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
-              headers=headers5
+              headers=headers1
               )
               response1 = conn.getresponse()
               st.write("HTTP Status:", response1.status)
