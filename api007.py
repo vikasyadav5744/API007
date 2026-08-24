@@ -249,7 +249,19 @@ if Intraday_criteria==True:
       response_text2 = response6.read().decode("utf-8")
       data2 = json.loads(response_text2)
       st.json(data2)
-      
+  #==========================================================
+
+conn = http.client.HTTPSConnection('api.mstock.trade')
+headers101 = {
+    'X-Mirae-Version': '1',
+    'Authorization': f'token {api_Key}: {access_token}',
+}
+conn.request(
+    'GET',
+    'openapi/typea/GetOptionChain/2/1429972200/22',
+    headers=headers101
+)
+response101 = conn.getresponse()
 
     
 
