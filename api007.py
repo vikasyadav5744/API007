@@ -23,16 +23,18 @@ st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 # ============================================================
 # API SETTINGS
 # ============================================================
+
+api_key = st.sidebar.text_input(
+        "m.Stock Type A API Key",
+        type="password"
+        )
+#=======================================================================
 login_input =st.sidebar.checkbox("show login Inputs", key='key11')
 if login_input==True:
         
     BASE_URL = "https://api.mstock.trade"
     
     #-------------------------------------------------
-    api_key = st.sidebar.text_input(
-        "m.Stock Type A API Key",
-        type="password"
-    )
     
     # ============================================================
     # LOGIN
