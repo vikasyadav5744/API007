@@ -194,12 +194,7 @@ if call_criteria==True:
   
   calldata=st.sidebar.button("Get Call Data", key='key17')
   if calldata:
-    if not api_key:
-      st.error("Enter API Key.")
-    elif not access_token:
-      st.error("Enter access_token.")
-    else:
-      try:
+    try:
         conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
         headers5 = {
         "X-Mirae-Version": "1",
