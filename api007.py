@@ -193,35 +193,35 @@ expiry= st.sidebar.selectbox("Expiry", key='key14', options=[1483021800],index =
 symboltoken1=st.sidebar.number_input("SymbolToken", key='key16', value=26000)
 
 calldata=st.sidebar.button("Get Call Data", key='key17')
-  if calldata:
-    if not api_key:
-      st.error("Enter API Key.")
-    elif not access_token:
-      st.error("Enter access_token.")
-    else:
-      try:
-        conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-        headers5 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}"
-        }
-        conn.request(
-        "GET",
-        f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
-        headers=headers5
-        )
-        response1 = conn.getresponse()
-        st.write("HTTP Status:", response1.status)
-        st.write("Reason:", response1.reason)
-        result1 = response1.read().decode("utf-8")
-        st.write("API Response:")
-        st.write(result1)
-        #st.session_state.api_key = api_key
-        #st.session_state.api_key = access_token
-        except Exception as e:
-          st.write("Error:", e)
-        finally:
-          conn.close()
+if calldata:
+  if not api_key:
+    st.error("Enter API Key.")
+  elif not access_token:
+    st.error("Enter access_token.")
+  else:
+    try:
+      conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
+      headers5 = {
+      "X-Mirae-Version": "1",
+      "Authorization": f"token {api_key}:{access_token}"
+      }
+      conn.request(
+      "GET",
+      f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
+      headers=headers5
+      )
+      response1 = conn.getresponse()
+      st.write("HTTP Status:", response1.status)
+      st.write("Reason:", response1.reason)
+      result1 = response1.read().decode("utf-8")
+      st.write("API Response:")
+      st.write(result1)
+      #st.session_state.api_key = api_key
+      #st.session_state.api_key = access_token
+      except Exception as e:
+        st.write("Error:", e)
+      finally:
+        conn.close()
     
 
 
