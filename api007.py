@@ -222,6 +222,21 @@ if call_criteria==True:
         st.write("Error:", e)
       finally:
         conn.close()
+#==========================================================
+
+conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
+headers6 = {"X-Mirae-Version": "1",
+  "Authorization": f"token {api_key}:{access_token}"
+  }
+conn.request(
+    "GET",
+    f"/openapi/typea/getoptionchainmaster/2/1490884200/26000",
+    headers=headers6
+    )
+response6 = conn.getresponse()
+if st.sidebar.button("fresh button"):
+  st.write("HTTP Status:", response6.status)
+  st.write("Reason:", response6.reason)
     
 
 
