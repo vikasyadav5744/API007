@@ -28,7 +28,7 @@ if "api_key" not in st.session_state:
     st.session_state.api_key=""
 
 if "access_token" not in st.session_state:
-    st.session_state.refreshToken=""
+    st.session_state.accesstoken=""
     
 # ============================================================
                                          # API SETTINGS
