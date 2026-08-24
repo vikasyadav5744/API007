@@ -214,7 +214,9 @@ if call_criteria==True:
             st.write("Reason:", response1.reason)
             result1 = response1.read().decode("utf-8")
             st.write("API Response:")
-            st.write(result1)        
+            st.write(result1)
+            st.session_state.api_key = api_key
+            st.session_state.api_key = access_token
         except Exception as e:
             st.write("Error:", e)
         finally:
