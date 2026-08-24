@@ -265,7 +265,7 @@ conn.request(
 )
 response101 = conn.getresponse()
 st.write("HTTP reason:", response101.reason)
-
+st.write("HTTP status:", response101.status)
 
 
 
