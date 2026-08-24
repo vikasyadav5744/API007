@@ -226,7 +226,7 @@ if call_criteria==True:
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
                       #Intraday Data
 #------------------------------------------------------------------------------
-Intraday_criteria =st.sidebar.checkbox("show call/ put criteia", key='key13')
+Intraday_criteria =st.sidebar.checkbox("show call/ put criteia", key='key20')
 
 if Intraday_criteria==True:
   exchange = st.sidebar.selectbox("Choose Exchange", key="key101", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
