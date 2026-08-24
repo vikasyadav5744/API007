@@ -224,19 +224,37 @@ if call_criteria==True:
         conn.close()
 #==========================================================
 
-conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-headers6 = {"X-Mirae-Version": "1",
-  "Authorization": f"token {api_key}:{access_token}"
-  }
-conn.request(
-    "GET",
-    f"/openapi/typea/getoptionchainmaster/2/1490884200/26000",
-    headers=headers6
-    )
-response6 = conn.getresponse()
-if st.sidebar.button("fresh button"):
-  st.write("HTTP Status:", response6.status)
-  st.write("Reason:", response6.reason)
+
+#  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
+
+exchange = st.sidebar.selectbox("Choose Exchange", key="key101", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
+token = st.sidebar.number_input("Symbol No.", key="key102", value=26000)
+interval = st.sidebar.selectbox("Choose Interval", key="key103", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
+
+headers3 = {
+        "X-Mirae-Version": "1",
+        "Authorization": f"token {api_key}:{access_token}",
+    }
+
+conn1 = http.client.HTTPSConnection('api.mstock.trade')
+
+conn1.request(
+    'GET',
+    f'/openapi/typea/instruments/intraday/{exchange}/{token}/{interval}',
+    headers=headers3
+)
+response6 = conn1.getresponse()
+
+submit3 = st.sidebar.button("NIFTY / Stock Data", key="key109")
+
+if submit3:
+    st.write("HTTP Status:", response6.status)
+    st.write(response6)
+    response_text2 = response6.read().decode("utf-8")
+    data2 = json.loads(response_text2)
+    data3 = st.json(data2)
+    st.write(data3)
+
     
 
 
