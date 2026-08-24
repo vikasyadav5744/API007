@@ -148,7 +148,7 @@ headers1 = {
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
-chaimaster_criteria =st.sidebar.checkbox("show call/ put criteia", key='key12')
+chaimaster_criteria =st.sidebar.checkbox("show Expiry criteia", key='key12')
 if chaimaster_criteria==True:
     chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='key1')
     if chainmaster:
