@@ -230,7 +230,7 @@ if call_criteria==True:
   exchange1= st.sidebar.text_input("Exchange", key='key15', value=2)
   expiry= st.sidebar.text_input("Expiry", key='key14', value='1483021800')
   symboltoken1=st.sidebar.text_input("SymbolToken", key='key16', value=26000)
-  st.write(type(exchange1)
+  st.write(type(exchange1))
   
   calldata=st.sidebar.button("Get Call Data", key='key17')
   if calldata:
