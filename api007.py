@@ -156,6 +156,7 @@ if session_token:
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
                       #Intraday Data
 #------------------------------------------------------------------------------
+conn = http.client.HTTPSConnection('api.mstock.trade')
 headers3 = {
           "X-Mirae-Version": "1",
           "Authorization": f"token {api_key}:{access_token}",
@@ -173,9 +174,9 @@ if Intraday_criteria==True:
      #     "Authorization": f"token {api_key}:{access_token}",
      # }
   
-  conn1 = http.client.HTTPSConnection('api.mstock.trade')
+  conn = http.client.HTTPSConnection('api.mstock.trade')
   
-  conn1.request(
+  conn.request(
       'GET',
       f'/openapi/typea/instruments/intraday/{exchange}/{token}/{interval}',
       headers=headers3
@@ -198,11 +199,6 @@ if chaimaster_criteria==True:
     chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='key1')
     if chainmaster:
         try:
-            conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-            headers4 = {
-            "X-Mirae-Version": "1",
-            "Authorization": f"token {api_key}:{access_token}"
-            }
             conn.request(
             "GET",
             "/openapi/typea/getoptionchainmaster/2",
@@ -254,11 +250,6 @@ if call_criteria==True:
 
   #==========================================================
 
-conn = http.client.HTTPSConnection('api.mstock.trade')
-headers101 = {
-    'X-Mirae-Version': '1',
-    'Authorization': f'token {api_key}: {access_token}',
-}
 conn.request(
     'GET',
     f'/openapi/typea/GetOptionChain/2/1795876200/26000',
