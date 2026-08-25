@@ -207,6 +207,11 @@ if chaimaster_criteria==True:
             st.json(result)
             df = pd.DataFrame(result)
             st.write(df)
+            st.write(df['data'])
+
+
+
+      
         except Exception as e:
             st.write("Error:", e)
         finally:
