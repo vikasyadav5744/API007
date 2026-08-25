@@ -207,7 +207,7 @@ if chaimaster_criteria==True:
             st.json(result)
             df = pd.DataFrame(result)
             st.write(df)
-            st.write(df['data'])
+            st.write(df['data']['OPTIDX'])
 
 
 
