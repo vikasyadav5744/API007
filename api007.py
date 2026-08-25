@@ -218,11 +218,12 @@ if chaimaster_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
+expiry= st.sidebar.numbr_input("Epoch", key='expiry', value=1795876200)
 callmaster=st.sidebar.button("Get CallMaster", key='callmaster')
 if callmaster:
   conn.request(
       'GET',
-      f'/openapi/typea/GetOptionChain/2/1795876200/26000',
+      f'/openapi/typea/GetOptionChain/2/{expiry}/26000',
       headers=headers3)
   response101 = conn.getresponse()
   st.write("HTTP reason:", response101.reason)
@@ -231,8 +232,7 @@ if callmaster:
   data3= json.loads(result3)
   st.json(data3)
 
-epoch = 1473345000
-st.write(datetime.utcfromtimestamp(epoch))
+
 
 
     
