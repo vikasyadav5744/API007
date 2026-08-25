@@ -218,7 +218,7 @@ if chaimaster_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
-expiry= st.sidebar.numbr_input("Epoch", key='expiry', value=1795876200)
+expiry= st.sidebar.number_input("Epoch", key='expiry', value=1795876200)
 callmaster=st.sidebar.button("Get CallMaster", key='callmaster')
 if callmaster:
   conn.request(
