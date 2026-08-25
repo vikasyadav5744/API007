@@ -228,15 +228,11 @@ call_criteria =st.sidebar.checkbox("show call/ put criteia", key='key13')
 
 if call_criteria==True:
   exchange1= st.sidebar.text_input("Exchange", key='key15', value=2)
-  expiry= st.sidebar.text_input("Expiry", key='key14', value='1483021800')
+  expiry= st.sidebar.text_input("Expiry", key='key14', value=1795876200)
   symboltoken1=st.sidebar.text_input("SymbolToken", key='key16', value=26000)
   calldata=st.sidebar.button("Get Call Data", key='key17')
   if calldata:
     conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-    headers5 = {
-        "X-Mirae-Version": "1",
-        "Authorization": f"token {api_key}:{access_token}"
-        }
     try:
         conn.request(
         "GET",
@@ -265,7 +261,7 @@ headers101 = {
 }
 conn.request(
     'GET',
-    f'/openapi/typea/GetOptionChain/2/NIFTY2690824250CE/26000',
+    f'/openapi/typea/GetOptionChain/2/1795876200/26000',
     headers=headers3
 )
 response101 = conn.getresponse()
