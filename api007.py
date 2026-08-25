@@ -233,7 +233,7 @@ if call_criteria==True:
   calldata=st.sidebar.button("Get Call Data", key='key17')
   if calldata:
     conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-    try:
+    try: 
         conn.request(
         "GET",
         f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
