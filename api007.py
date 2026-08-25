@@ -179,9 +179,7 @@ if Intraday_criteria==True:
       headers=headers3
   )
   response6 = conn1.getresponse()
-  
   submit3 = st.sidebar.button("NIFTY / Stock Data", key="key109")
-  
   if submit3:
       st.write("HTTP Status:", response6.status)
       response_text2 = response6.read().decode("utf-8")
@@ -204,11 +202,9 @@ if chaimaster_criteria==True:
             response = conn.getresponse()
             st.write("HTTP Status:", response.status)
             st.write("Reason:", response.reason)
-            if response.reason==OK:
-              result = response.read().decode("utf-8")
-              result = json.loads(result)
-              st.json(result)
-              #st.session_state.api_key = access_token
+            result = response.read().decode("utf-8")
+            result = json.loads(result)
+            st.json(result)
         except Exception as e:
             st.write("Error:", e)
         finally:
