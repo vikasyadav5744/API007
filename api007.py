@@ -152,9 +152,15 @@ if session_token:
 # ============================================================
 # COMMON HEADERS
 
+
 #  ---------------------------------------------------------- Getting NIFTY / Stock Chain details--------------------------------------------
                       #Intraday Data
 #------------------------------------------------------------------------------
+headers3 = {
+          "X-Mirae-Version": "1",
+          "Authorization": f"token {api_key}:{access_token}",
+      }
+
 Intraday_criteria =st.sidebar.checkbox("show Intraday criteia", key='key20')
 
 if Intraday_criteria==True:
@@ -162,10 +168,10 @@ if Intraday_criteria==True:
   token = st.sidebar.number_input("Symbol No.", key="key102", value=26000)
   interval = st.sidebar.selectbox("Choose Interval", key="key103", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
   
-  headers3 = {
-          "X-Mirae-Version": "1",
-          "Authorization": f"token {api_key}:{access_token}",
-      }
+  #headers3 = {
+    #      "X-Mirae-Version": "1",
+     #     "Authorization": f"token {api_key}:{access_token}",
+     # }
   
   conn1 = http.client.HTTPSConnection('api.mstock.trade')
   
