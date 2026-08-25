@@ -219,33 +219,6 @@ if chaimaster_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
-call_criteria =st.sidebar.checkbox("show call/ put criteia", key='key13')
-if call_criteria==True:
-  exchange1= st.sidebar.text_input("Exchange", key='key15', value=2)
-  expiry= st.sidebar.text_input("Expiry", key='key14', value=1795876200)
-  symboltoken1=st.sidebar.text_input("SymbolToken", key='key16', value=26000)
-
-calldata=st.sidebar.button("Get Call Data", key='key17')
-if calldata:
-  try:
-    conn.request(
-    "GET",
-    f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
-    headers=headers3
-    )
-    response1 = conn.getresponse()
-    st.write("HTTP Intraday Status:", response1.status)
-    st.write("Reason:", response1.reason)
-    result1 = response1.read().decode("utf-8")
-    st.write("API Response:")
-    st.write(result1)
-  except Exception as e:
-    st.write("Error:", e)
-  finally:
-    conn.close()
-
-  #==========================================================
-
 conn.request(
     'GET',
     f'/openapi/typea/GetOptionChain/2/1795876200/26000',
