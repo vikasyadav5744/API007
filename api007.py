@@ -207,10 +207,11 @@ if chaimaster_criteria==True:
             response = conn.getresponse()
             st.write("HTTP Status:", response.status)
             st.write("Reason:", response.reason)
-            result = response.read().decode("utf-8")
-            result = json.loads(result)
-            st.json(result)
-            #st.session_state.api_key = access_token
+            if response.reason==ok:
+              result = response.read().decode("utf-8")
+              result = json.loads(result)
+              st.json(result)
+              #st.session_state.api_key = access_token
         except Exception as e:
             st.write("Error:", e)
         finally:
@@ -222,8 +223,7 @@ if chaimaster_criteria==True:
 conn.request(
     'GET',
     f'/openapi/typea/GetOptionChain/2/1795876200/26000',
-    headers=headers3
-)
+    headers=headers3)
 response101 = conn.getresponse()
 st.write("HTTP reason:", response101.reason)
 st.write("HTTP status:", response101.status)
