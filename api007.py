@@ -178,7 +178,7 @@ if Intraday_criteria==True:
       f'/openapi/typea/instruments/intraday/{exchange}/{token}/{interval}',
       headers=headers3
   )
-  response6 = conn1.getresponse()
+  response6 = conn.getresponse()
   submit3 = st.sidebar.button("NIFTY / Stock Data", key="key109")
   if submit3:
       st.write("HTTP Status:", response6.status)
