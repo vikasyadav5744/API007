@@ -213,16 +213,18 @@ if chaimaster_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
-conn.request(
-    'GET',
-    f'/openapi/typea/GetOptionChain/2/1795876200/26000',
-    headers=headers3)
-response101 = conn.getresponse()
-st.write("HTTP reason:", response101.reason)
-st.write("HTTP status:", response101.status)
-result3 = response101.read().decode("utf-8")
-data3= json.loads(result3)
-st.json(data3)
+callmaster=st.sidebar.button("Get CallMaster", key='callmaster')
+if callmaster:
+  conn.request(
+      'GET',
+      f'/openapi/typea/GetOptionChain/2/1795876200/26000',
+      headers=headers3)
+  response101 = conn.getresponse()
+  st.write("HTTP reason:", response101.reason)
+  st.write("HTTP status:", response101.status)
+  result3 = response101.read().decode("utf-8")
+  data3= json.loads(result3)
+  st.json(data3)
 
 
 
