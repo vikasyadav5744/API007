@@ -228,21 +228,20 @@ if call_criteria==True:
   symboltoken1=st.sidebar.text_input("SymbolToken", key='key16', value=26000)
   calldata=st.sidebar.button("Get Call Data", key='key17')
   if calldata:
-    conn = http.client.HTTPSConnection("api.mstock.trade", timeout=10)
-    try: 
-        conn.request(
-        "GET",
-        f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
-        headers=headers3
-        )
-        response1 = conn.getresponse()
-        st.write("HTTP Intraday Status:", response1.status)
-        st.write("Reason:", response1.reason)
-        result1 = response1.read().decode("utf-8")
-        st.write("API Response:")
-        st.write(result1)
-        #st.session_state.api_key = api_key
-        #st.session_state.api_key = access_token
+    try:
+      conn.request(
+      "GET",
+      f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
+      headers=headers3
+      )
+      response1 = conn.getresponse()
+      st.write("HTTP Intraday Status:", response1.status)
+      st.write("Reason:", response1.reason)
+      result1 = response1.read().decode("utf-8")
+      st.write("API Response:")
+      st.write(result1)
+      #st.session_state.api_key = api_key
+      #st.session_state.api_key = access_token
     except Exception as e:
       st.write("Error:", e)
     finally:
