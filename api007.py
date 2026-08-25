@@ -206,7 +206,7 @@ if chaimaster_criteria==True:
             conn.request(
             "GET",
             "/openapi/typea/getoptionchainmaster/2",
-            headers=headers4
+            headers=headers3
             )
             response = conn.getresponse()
             st.write("HTTP Status:", response.status)
@@ -242,7 +242,7 @@ if call_criteria==True:
         conn.request(
         "GET",
         f"/openapi/typea/getoptionchainmaster/{exchange1}/{expiry}/{symboltoken1}",
-        headers=headers5
+        headers=headers3
         )
         response1 = conn.getresponse()
         st.write("HTTP Status:", response1.status)
@@ -267,7 +267,7 @@ headers101 = {
 conn.request(
     'GET',
     f'/openapi/typea/GetOptionChain/2/1787616000/26000',
-    headers=headers101
+    headers=headers3
 )
 response101 = conn.getresponse()
 st.write("HTTP reason:", response101.reason)
