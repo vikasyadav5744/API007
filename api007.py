@@ -205,9 +205,7 @@ if chaimaster_criteria==True:
             result = response.read().decode("utf-8")
             result = json.loads(result)
             st.json(result)
-            df = pd.DataFrame(result)
-            st.write(df)
-            st.write(df['data']['OPTIDX'][3])
+            st.write(result['data']['OPTIDX'][3])
 
 
 
