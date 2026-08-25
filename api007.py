@@ -205,6 +205,8 @@ if chaimaster_criteria==True:
             result = response.read().decode("utf-8")
             result = json.loads(result)
             st.json(result)
+            df = pd.DataFrame(result)
+            st.write(df)
         except Exception as e:
             st.write("Error:", e)
         finally:
