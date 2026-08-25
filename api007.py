@@ -173,9 +173,6 @@ if Intraday_criteria==True:
     #      "X-Mirae-Version": "1",
      #     "Authorization": f"token {api_key}:{access_token}",
      # }
-  
-  conn = http.client.HTTPSConnection('api.mstock.trade')
-  
   conn.request(
       'GET',
       f'/openapi/typea/instruments/intraday/{exchange}/{token}/{interval}',
@@ -207,7 +204,7 @@ if chaimaster_criteria==True:
             response = conn.getresponse()
             st.write("HTTP Status:", response.status)
             st.write("Reason:", response.reason)
-            if response.reason==ok:
+            if response.reason==OK:
               result = response.read().decode("utf-8")
               result = json.loads(result)
               st.json(result)
