@@ -183,7 +183,7 @@ if Intraday_criteria==True:
 epoch_list =[1795876200,1475159400,1477578600,1479911400,1483021800,1490884200,1498746600,1472740200,1473345000,1473949800,1474554600,1514471400,1530196200,1561645800,1577284200,1593095400,1609425000,1624545000]
 chaimaster_criteria =st.sidebar.checkbox("show Expiry Data", key='key12')
 if chaimaster_criteria==True:
-    chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='key1', on_click= generate_api_key)
+    chainmaster =st.sidebar.button("ChainMaster Expiry Data", on_click= generate_api_key)
     if chainmaster:
         try:
             conn.request(
