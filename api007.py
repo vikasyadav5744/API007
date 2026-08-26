@@ -227,7 +227,7 @@ if call_criteria:
 #====================================================== 
 conn.request(
     'GET',
-    f'/openapi/typea/instruments/historical/NSE/74533/1minute?from=2026-08-25&to=2026-08-26',
+    f'/openapi/typea/instruments/historical/NSE/74533/minute?from=2026-08-25&to=2026-08-26',
     headers=headers3
 )
 response_hist = conn.getresponse()
