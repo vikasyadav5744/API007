@@ -220,19 +220,20 @@ if chaimaster_criteria==True:
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
 call_criteria=st.sidebar.checkbox("Call Criteria", key='call_criteria')
-expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
-callmaster=st.sidebar.button("Get CallMaster", key='callmaster')
-if callmaster:
-  conn.request(
-      'GET',
-      f'/openapi/typea/GetOptionChain/2/{expiry}/26000',
-      headers=headers3)
-  response101 = conn.getresponse()
-  st.write("HTTP reason:", response101.reason)
-  st.write("HTTP status:", response101.status)
-  result3 = response101.read().decode("utf-8")
-  data3= json.loads(result3)
-  st.json(data3)
+if call_criteria:
+  expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
+  callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
+  if callmaster:
+    conn.request(
+    'GET',
+    f'/openapi/typea/GetOptionChain/2/{expiry}/26000',
+    headers=headers3)
+    response101 = conn.getresponse()
+    st.write("HTTP reason:", response101.reason)
+    st.write("HTTP status:", response101.status)
+    result3 = response101.read().decode("utf-8")
+    data3= json.loads(result3)
+    st.json(data3)
 
 
 
