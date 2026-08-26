@@ -24,12 +24,6 @@ st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 #=============================================================
                       #Session State
 #============================================================
-#if "api_key" not in st.session_state:
- #   st.session_state.api_key=""
-
-#if "access_token" not in st.session_state:
- #   st.session_state.accesstoken=""
-
 def generate__access_token():
     token = "YOUR_GENERATED_ACCESS_TOKEN"
     st.session_state.access_token = token
