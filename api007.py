@@ -189,6 +189,7 @@ if Intraday_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
+epoch_list =[1795876200,1475159400,1477578600,1479911400,1483021800,1490884200,1498746600,1472740200,1473345000,1473949800,1474554600,1514471400,1530196200,1561645800,1577284200,1593095400,1609425000,1624545000]
 chaimaster_criteria =st.sidebar.checkbox("show Expiry criteia", key='key12')
 if chaimaster_criteria==True:
     chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='key1')
@@ -219,7 +220,7 @@ if chaimaster_criteria==True:
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
 call_criteria=st.sidebar.checkbox("Call Criteria", key='call_criteria')
-expiry= st.sidebar.number_input("Epoch", key='expiry', value=1795876200)
+expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
 callmaster=st.sidebar.button("Get CallMaster", key='callmaster')
 if callmaster:
   conn.request(
