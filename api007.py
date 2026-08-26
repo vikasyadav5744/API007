@@ -93,16 +93,12 @@ if login_input==True:
                     st.json(response.json())
                 except:
                     st.write(response.text)
-    
-               if response.ok:
+                if response.ok:
                     st.success("OTP sent to your registered mobile.")
-    
             except Exception as e:
                 st.error(f"Login error: {e}")
-
-
 # ============================================================
-                                # GENERATE ACCESS TOKEN
+                     # GENERATE ACCESS TOKEN
 # ============================================================
 session_token  =st.sidebar.checkbox("Generate Access Token ", key='key10')
 
