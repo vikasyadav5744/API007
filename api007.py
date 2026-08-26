@@ -60,10 +60,10 @@ if login_input==True:
         type="password"
     )
     
-    if st.sidebar.button("Generate OTP", on_click= generate_api_key):
+    if st.sidebar.button("Generate OTP"):
     
-        if not api_key or not username or not password:
-            st.error("Enter API Key, Username and Password.")
+        if not username or not password:
+            st.error("Enter Username and Password.")
         else:
     
             login_url = f"{BASE_URL}/openapi/typea/connect/login"
@@ -94,7 +94,7 @@ if login_input==True:
                 except:
                     st.write(response.text)
     
-                if response.ok:
+               if response.ok:
                     st.success("OTP sent to your registered mobile.")
     
             except Exception as e:
@@ -169,11 +169,6 @@ if Intraday_criteria==True:
   exchange = st.sidebar.selectbox("Choose Exchange", key="key101", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
   token = st.sidebar.number_input("Symbol No.", key="key102", value=26000)
   interval = st.sidebar.selectbox("Choose Interval", key="key103", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
-  
-  #headers3 = {
-    #      "X-Mirae-Version": "1",
-     #     "Authorization": f"token {api_key}:{access_token}",
-     # }
   conn.request(
       'GET',
       f'/openapi/typea/instruments/intraday/{exchange}/{token}/{interval}',
@@ -186,15 +181,13 @@ if Intraday_criteria==True:
       response_text2 = response6.read().decode("utf-8")
       data2 = json.loads(response_text2)
       st.json(data2)
-      #st.session_state.access_token = access_token
-    
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
 epoch_list =[1795876200,1475159400,1477578600,1479911400,1483021800,1490884200,1498746600,1472740200,1473345000,1473949800,1474554600,1514471400,1530196200,1561645800,1577284200,1593095400,1609425000,1624545000]
 chaimaster_criteria =st.sidebar.checkbox("show Expiry Data", key='key12')
 if chaimaster_criteria==True:
-    chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='key1')
+    chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='key1', on_click= generate_api_key)
     if chainmaster:
         try:
             conn.request(
@@ -233,11 +226,17 @@ if call_criteria:
     data3= json.loads(result3)
     st.json(data3)
 
-
-
-
+#======================================================
+                    #Historical data 
+#======================================================
     
-
-
-    
+conn.request(
+    'GET',
+    f'/openapi/typea/instruments/historical/NSE/74533/1minute?from=2026-08-25+09%3A15%3A00&to=2026-08-26+09%3A20%3A00',
+    headers=headers
+)
+response_hist = conn.getresponse()
+st.write("HTTP hist reason:", response_hist.reason)
+st.write("HTTP hist status:", response_hist.status)
+  
 
