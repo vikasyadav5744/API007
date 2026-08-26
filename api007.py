@@ -142,7 +142,7 @@ if session_token:
                 st.write("Session HTTP Status:", response.status_code)
                 result = response.json()
                 st.json(result)
-                #st.session_state.api_key = api_key
+                st.session_state.api_key = api_key
            
             except exceptions as e:
                 st.write("Error:", e)
@@ -162,7 +162,7 @@ headers3 = {
           "Authorization": f"token {api_key}:{access_token}",
       }
 
-Intraday_criteria =st.sidebar.checkbox("show Intraday criteia", key='key20')
+Intraday_criteria =st.sidebar.checkbox("show Intraday Data", key='key20')
 
 if Intraday_criteria==True:
   exchange = st.sidebar.selectbox("Choose Exchange", key="key101", options=[1,2,3,4], help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
@@ -185,12 +185,13 @@ if Intraday_criteria==True:
       response_text2 = response6.read().decode("utf-8")
       data2 = json.loads(response_text2)
       st.json(data2)
+      st.session_state.access_token = access_token
     
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
 epoch_list =[1795876200,1475159400,1477578600,1479911400,1483021800,1490884200,1498746600,1472740200,1473345000,1473949800,1474554600,1514471400,1530196200,1561645800,1577284200,1593095400,1609425000,1624545000]
-chaimaster_criteria =st.sidebar.checkbox("show Expiry criteia", key='key12')
+chaimaster_criteria =st.sidebar.checkbox("show Expiry Data", key='key12')
 if chaimaster_criteria==True:
     chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='key1')
     if chainmaster:
@@ -206,11 +207,7 @@ if chaimaster_criteria==True:
             result = response.read().decode("utf-8")
             result = json.loads(result)
             st.json(result)
-            st.write(result['data']['OPTIDX'][3])
-
-
-
-      
+            st.write(result['data']['OPTIDX'][3])    
         except Exception as e:
             st.write("Error:", e)
         finally:
@@ -219,7 +216,7 @@ if chaimaster_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
-call_criteria=st.sidebar.checkbox("Call Criteria", key='call_criteria')
+call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
 if call_criteria:
   expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
   callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
