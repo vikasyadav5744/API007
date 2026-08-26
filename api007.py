@@ -24,12 +24,19 @@ st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 #=============================================================
                       #Session State
 #============================================================
-if "api_key" not in st.session_state:
-    st.session_state.api_key=""
+#if "api_key" not in st.session_state:
+ #   st.session_state.api_key=""
 
-if "access_token" not in st.session_state:
-    st.session_state.accesstoken=""
-    
+#if "access_token" not in st.session_state:
+ #   st.session_state.accesstoken=""
+
+def generate__access_token():
+    token = "YOUR_GENERATED_ACCESS_TOKEN"
+    st.session_state.access_token = token
+
+def generate__api_key():
+    api = "YOUR_GENERATED_API_KEY"
+    st.session_state.access_token = api
 # ============================================================
                                          # API SETTINGS
 # ============================================================
@@ -111,7 +118,7 @@ if session_token:
         type="password"
     )
     BASE_URL1 = "https://api.mstock.trade"
-    if st.sidebar.button("Generate Access Token"):
+    if st.sidebar.button("Generate Access Token", on_click=generate_access_token):
     
         if not api_key or not otp:
             st.error("Enter API Key and OTP.")
@@ -142,7 +149,7 @@ if session_token:
                 st.write("Session HTTP Status:", response.status_code)
                 result = response.json()
                 st.json(result)
-                st.session_state.api_key = api_key
+                #st.session_state.api_key = api_key
            
             except exceptions as e:
                 st.write("Error:", e)
@@ -185,7 +192,7 @@ if Intraday_criteria==True:
       response_text2 = response6.read().decode("utf-8")
       data2 = json.loads(response_text2)
       st.json(data2)
-      st.session_state.access_token = access_token
+      #st.session_state.access_token = access_token
     
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
