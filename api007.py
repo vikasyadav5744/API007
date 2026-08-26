@@ -229,7 +229,7 @@ if call_criteria:
 hist_criteria=st.sidebar.checkbox("Historical Data", key='hist_criteria')
 if hist_criteria:
   exchange_str= st.sidebar.selectbox("Exchane", key='exchange', options=['NSE','NFO','BSE','BFO'], index=0)
-  inst_token=st.sidebar.number_input("Instrument Token", key='instrument')
+  inst_token=int(st.sidebar.number_input("Instrument Token", key='instrument'))
   interval_hist= st.sidebar.selectbox("Choose Interval", key="interval_hist", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
   if st.sidebar.button("Historical Data", key="historical_data"):
     conn.request(
