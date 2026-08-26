@@ -206,6 +206,7 @@ if chaimaster_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
+
 call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
 if call_criteria:
   expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
@@ -225,15 +226,20 @@ if call_criteria:
 #======================================================
                     #Historical data 
 #====================================================== 
-conn.request(
+hist_criteria=st.sidebar.checkbox("Historical Data", key='hist_criteria')
+if hist_criteria:
+  exchange_str= st.sidebar.selectbox("Exchane", key='exchange', options=['NSE','NFO','BSE','BFO'], index=0)
+  inst_token=st.sidebar.number_input("Instrument Token", key='instrument')
+  interval_hist= st.sidebar.selectbox("Choose Interval", key="interval_hist", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
+  if callmaster:
+    conn.request(
     'GET',
-    f'/openapi/typea/instruments/historical/NFO/74533/minute?from=2026-08-25&to=2026-08-26',
-    headers=headers3
-)
-response_hist = conn.getresponse()
-st.write("HTTP hist status:", response_hist.status)
-st.write("HTTP hist reason:", response_hist.reason)
-result4 = response_hist.read().decode("utf-8")
-data4= json.loads(result4)
-st.json(data4)
+    f'/openapi/typea/instruments/historical/{exchange_str}/{inst_token}/{interval_hist}?from=2026-08-25&to=2026-08-26',
+    headers=headers3)
+    response_hist = conn.getresponse()
+    st.write("HTTP hist status:", response_hist.status)
+    st.write("HTTP hist reason:", response_hist.reason)
+    result4 = response_hist.read().decode("utf-8")
+    data4= json.loads(result4)
+    st.json(data4)
 
