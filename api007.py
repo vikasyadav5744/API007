@@ -231,7 +231,9 @@ conn.request(
     headers=headers3
 )
 response_hist = conn.getresponse()
-st.write("HTTP hist reason:", response_hist.reason)
 st.write("HTTP hist status:", response_hist.status)
-  
+st.write("HTTP hist reason:", response_hist.reason)
+result4 = response_hist.read().decode("utf-8")
+data4= json.loads(result4)
+st.json(data4)
 
