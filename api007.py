@@ -229,7 +229,7 @@ if call_criteria:
 conn.request(
     'GET',
     f'/openapi/typea/instruments/historical/NSE/74533/1minute?from=2026-08-25+09%3A15%3A00&to=2026-08-26+09%3A20%3A00',
-    headers=headers
+    headers=headers3
 )
 response_hist = conn.getresponse()
 st.write("HTTP hist reason:", response_hist.reason)
