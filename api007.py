@@ -66,9 +66,9 @@ if login_input==True:
         type="password"
     )
     
-    if st.sidebar.button("Generate OTP"):
+    if st.sidebar.button("Generate OTP", on_click= generate_api_key):
     
-        if not username or not password:
+        if not api_key not username or not password:
             st.error("Enter API Key, Username and Password.")
         else:
     
