@@ -301,11 +301,11 @@ if call_criteria:
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    calldf = pd.DataFrame(call_rows, columns=['CE.token','strike','CE.OI','CE.ChngOI'])
-    putdf = pd.DataFrame(put_rows, columns=['PE.token','strike','PE.OI','PE.ChngOI'])
+    calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI'])
+    putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI'])
     st.dataframe(calldf)
     st.dataframe(putdf)
-    option_chain =pd.concat([calldf,putdf])
+    option_chain =pd.concat([calldf,putdf], axis=1)
     st.dataframe(option_chain)
 
 
