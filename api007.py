@@ -280,7 +280,6 @@ if ohlc_criteria:
     response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
     st.write("HTTP hist status:", response_ohlc.status_code)
     st.write("HTTP hist reason:", response_ohlc.reason)
-    #result6 = response_ohlc.read().decode("utf-8")
     st.json(response_ohlc)
   
 
