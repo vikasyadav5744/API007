@@ -277,6 +277,5 @@ params = {
     ],
 }
 response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
-response_ohlc = conn.getresponse()
 st.write("HTTP hist status:", response_ohlc.status)
 st.write("HTTP hist reason:", response_ohlc.reason)
