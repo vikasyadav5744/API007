@@ -244,4 +244,19 @@ if hist_criteria:
     result4 = response_hist.read().decode("utf-8")
     data4= json.loads(result4)
     st.json(data4)
-
+#======================================================
+                    #scrip Master
+#====================================================== 
+script_criteria=st.sidebar.checkbox("Script Master Data", key='script_criteria')
+if script_criteria:
+  if st.sidebar.button("Script Mastert Data", key="scriptmaster_data"):
+    conn.request(
+    'GET',
+    f'/openapi/typea/instruments/scriptmaster',
+    headers=headers3)
+    response_script = conn.getresponse()
+    st.write("HTTP hist status:", response_script.status)
+    st.write("HTTP hist reason:", response_script.reason)
+    result5 = response_script.read().decode("utf-8")
+    data5= json.loads(result5)
+    st.json(data5)
