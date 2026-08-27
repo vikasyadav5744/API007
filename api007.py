@@ -182,18 +182,19 @@ if Intraday_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
+conn1 = http.client.HTTPSConnection('api.mstock.trade')
 epoch_list =[1795876200,1475159400,1477578600,1479911400,1483021800,1490884200,1498746600,1472740200,1473345000,1473949800,1474554600,1514471400,1530196200,1561645800,1577284200,1593095400,1609425000,1624545000]
 chaimaster_criteria =st.sidebar.checkbox("show Expiry Data", key='key12')
 if chaimaster_criteria==True:
     chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='chainmaster')
     if chainmaster:
         try:
-            conn.request(
+            conn1.request(
             "GET",
             "/openapi/typea/getoptionchainmaster/2",
             headers=headers3
             )
-            response = conn.getresponse()
+            response = conn1.getresponse()
             st.write("HTTP Status:", response.status)
             st.write("Reason:", response.reason)
             result = response.read().decode("utf-8")
@@ -208,17 +209,17 @@ if chaimaster_criteria==True:
 # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
-
+conn2 = http.client.HTTPSConnection('api.mstock.trade')
 call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
 if call_criteria:
   expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
   callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
   if callmaster:
-    conn.request(
+    conn2.request(
     'GET',
     f'/openapi/typea/GetOptionChain/2/{expiry}/26000',
     headers=headers3)
-    response101 = conn.getresponse()
+    response101 = conn2.getresponse()
     st.write("HTTP reason:", response101.reason)
     st.write("HTTP status:", response101.status)
     result3 = response101.read().decode("utf-8")
@@ -228,6 +229,7 @@ if call_criteria:
 #======================================================
                     #Historical data 
 #====================================================== 
+conn3 = http.client.HTTPSConnection('api.mstock.trade')
 hist_criteria=st.sidebar.checkbox("Historical Data", key='hist_criteria')
 if hist_criteria:
   exchange_str= st.sidebar.selectbox("Exchane", key='exchange', options=['NSE','NFO','BSE','BFO'], index=0)
@@ -236,11 +238,11 @@ if hist_criteria:
   fromdate = st.sidebar.date_input("Choose From Date", format="YYYY-MM-DD", key='fromdate')
   todate = st.sidebar.date_input("Choose To Date", format="YYYY-MM-DD", key='todate')
   if st.sidebar.button("Historical Data", key="historical_data"):
-    conn.request(
+    conn3.request(
     'GET',
     f'/openapi/typea/instruments/historical/{exchange_str}/{inst_token}/{interval_hist}?from={fromdate}&to={todate}',
     headers=headers3)
-    response_hist = conn.getresponse()
+    response_hist = conn3.getresponse()
     st.write("HTTP hist status:", response_hist.status)
     st.write("HTTP hist reason:", response_hist.reason)
     result4 = response_hist.read().decode("utf-8")
@@ -249,14 +251,15 @@ if hist_criteria:
 #======================================================
                     #scrip Master
 #====================================================== 
+conn4 = http.client.HTTPSConnection('api.mstock.trade')
 script_criteria=st.sidebar.checkbox("Script Master Data", key='script_criteria')
 if script_criteria:
   if st.sidebar.button("Script Mastert Data", key="scriptmaster_data"):
-    conn.request(
+    conn4.request(
     'GET',
     f'/openapi/typea/instruments/scriptmaster',
     headers=headers3)
-    response_script = conn.getresponse()
+    response_script = conn4.getresponse()
     st.write("HTTP hist status:", response_script.status)
     st.write("HTTP hist reason:", response_script.reason)
     result5 = response_script.read().decode("utf-8")
