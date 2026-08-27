@@ -280,7 +280,7 @@ if call_criteria:
     data3= json.loads(result3)
     st.json(data3)
     expiry = data3["data"]["contractModel"]['exp']
-    call_data= data3["data"]["call"][""]
+    call_data= data3["data"]["call"][" "]
     st.write(df)
     st.write("Call data", call_data)
     
