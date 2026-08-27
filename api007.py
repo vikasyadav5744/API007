@@ -305,7 +305,7 @@ if call_criteria:
     putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).replace('None',0)
     st.dataframe(calldf)
     st.dataframe(putdf)
-    option_chain =pd.concat([calldf,putdf])
+    option_chain =pd.concat([calldf,putdf], ignore_index=True)
     st.dataframe(option_chain)
 
 
