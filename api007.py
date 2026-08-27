@@ -302,10 +302,10 @@ if call_criteria:
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
     calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI'])
-    putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI'])
+    putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).replace('None',0)
     st.dataframe(calldf)
     st.dataframe(putdf)
-    option_chain =pd.concat([calldf,putdf]).replace('None',0)
+    option_chain =pd.concat([calldf,putdf])
     st.dataframe(option_chain)
 
 
