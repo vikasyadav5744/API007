@@ -279,8 +279,10 @@ if call_criteria:
     result3 = response101.read().decode("utf-8")
     data3= json.loads(result3)
     st.json(data3)
-    df = data3["data"]["contractModel"]
+    expiry = data3["data"]["contractModel"]['exp']
+    call_data= data3["data"]["call"][""]
     st.write(df)
+    st.write("Call data", call_data
     
   
 
