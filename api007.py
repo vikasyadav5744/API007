@@ -225,7 +225,7 @@ if call_criteria:
     result3 = response101.read().decode("utf-8")
     data3= json.loads(result3)
     st.json(data3)
-    df = response101(["contractModel"])
+    df = response101["contractModel"]
     st.write(df)
     
 #======================================================
