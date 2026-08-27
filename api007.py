@@ -205,29 +205,6 @@ if chaimaster_criteria==True:
             st.write("Error:", e)
         finally:
             conn.close()
-
-# ============================================================
-# OPTION CHAIN MASTER  CALL / PUT Data
-# ============================================================
-conn2 = http.client.HTTPSConnection('api.mstock.trade')
-call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
-if call_criteria:
-  expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
-  callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
-  if callmaster:
-    conn2.request(
-    'GET',
-    f'/openapi/typea/GetOptionChain/2/{expiry}/26000',
-    headers=headers3)
-    response101 = conn2.getresponse()
-    st.write("HTTP reason:", response101.reason)
-    st.write("HTTP status:", response101.status)
-    result3 = response101.read().decode("utf-8")
-    data3= json.loads(result3)
-    st.json(data3)
-    df = response101["data"]["contractModel"]
-    st.write(df)
-    
 #======================================================
                     #Historical data 
 #====================================================== 
@@ -283,5 +260,27 @@ if ohlc_criteria:
     st.write("HTTP hist status:", response_ohlc.status_code)
     st.write("HTTP hist reason:", response_ohlc.reason)
     st.json(response_ohlc)
+  # ============================================================
+# OPTION CHAIN MASTER  CALL / PUT Data
+# ============================================================
+conn2 = http.client.HTTPSConnection('api.mstock.trade')
+call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
+if call_criteria:
+  expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
+  callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
+  if callmaster:
+    conn2.request(
+    'GET',
+    f'/openapi/typea/GetOptionChain/2/{expiry}/26000',
+    headers=headers3)
+    response101 = conn2.getresponse()
+    st.write("HTTP reason:", response101.reason)
+    st.write("HTTP status:", response101.status)
+    result3 = response101.read().decode("utf-8")
+    data3= json.loads(result3)
+    st.json(data3)
+    df = result3["data"]["contractModel"]
+    st.write(df)
+    
   
 
