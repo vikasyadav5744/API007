@@ -271,15 +271,17 @@ headers4 = {
       }
 exchange_str1 = st.sidebar.selectbox("Exchane", key='exchange1', options=['NSE','NFO','BSE','BFO'], index=0)
 symboleq = st.sidebar.text_input("Trading Symbol for Equity", key='sybmol', value='ACC-EQ', help='if using NFO:- NIFTY2681224350CE')
-params = {
-    'i': [
-        f'{exchange_str1}:{symboleq}']
-}
-response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
-st.write("HTTP hist status:", response_ohlc.status_code)
-st.write("HTTP hist reason:", response_ohlc.reason)
-result6 = response_ohlc.read().decode("utf-8")
-data6= json.loads(result6)
-st.json(data6)
+
+if st.sidebar.button("OHLC Data", key="ohlc_data"):
+  params = {
+      'i': [
+          f'{exchange_str1}:{symboleq}']
+  }
+  response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
+  st.write("HTTP hist status:", response_ohlc.status_code)
+  st.write("HTTP hist reason:", response_ohlc.reason)
+  result6 = response_ohlc.read().decode("utf-8")
+  data6= json.loads(result6)
+  st.json(data6)
 
 
