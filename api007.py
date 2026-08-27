@@ -277,7 +277,7 @@ def parse_option_data(option_data):
       parts = item.split(",")
       if len(parts) == 4:
         rows.append(parts)
-return rows
+  return rows
 
 
 conn2 = http.client.HTTPSConnection('api.mstock.trade')
