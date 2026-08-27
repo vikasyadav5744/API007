@@ -282,7 +282,7 @@ if call_criteria:
     expiry = data3["data"]["contractModel"]['exp']
     call_data= data3["data"]["call"][""]
     st.write(df)
-    st.write("Call data", call_data
+    st.write("Call data", call_data)
     
   
 
