@@ -27,10 +27,12 @@ st.title("Mirae Asset m.Stock - NIFTY Option Chain")
 def generate__access_token():
     token = "YOUR_GENERATED_ACCESS_TOKEN"
     st.session_state.access_token = token
-
-def generate__api_key():
     api = "YOUR_GENERATED_API_KEY"
     st.session_state.access_token = api
+
+#def generate__api_key():
+    #api = "YOUR_GENERATED_API_KEY"
+   # st.session_state.access_token = api
 # ============================================================
                                          # API SETTINGS
 # ============================================================
