@@ -281,7 +281,6 @@ if st.sidebar.button("OHLC Data", key="ohlc_data"):
   st.write("HTTP hist status:", response_ohlc.status_code)
   st.write("HTTP hist reason:", response_ohlc.reason)
   #result6 = response_ohlc.read().decode("utf-8")
-  data6= json.loads(result6)
-  st.json(data6)
+  st.json(response_ohlc)
 
 
