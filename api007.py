@@ -260,5 +260,23 @@ if script_criteria:
     st.write("HTTP hist status:", response_script.status)
     st.write("HTTP hist reason:", response_script.reason)
     result5 = response_script.read().decode("utf-8")
-    st.write (result5)
-    
+    #st.write (result5)
+
+#======================================================
+                    # OHLC
+#====================================================== 
+exchange_str1 = st.sidebar.selectbox("Exchane", key='exchange1', options=['NSE','NFO','BSE','BFO'], index=0)
+symboleq = st.sidebar.text_input("Trading Symbol for Equity", key='sybmol')
+
+symbolnfo = st.sidebar.text_input("Trading Symbol for NFO / BFO", key='sybmol1')
+params = {
+    'i': [
+        'NSE:ACC-EQ',
+        #'NFO:NIFTY2672124150CE',
+        #'BFO:SENSEX2671677000CE'
+    ],
+}
+response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
+response_ohlc = conn.getresponse()
+st.write("HTTP hist status:", response_ohlc.status)
+st.write("HTTP hist reason:", response_ohlc.reason)
