@@ -284,12 +284,26 @@ if call_criteria:
     put_data= data3["data"]["put"]
     st.write("Call data", call_data)
     st.write("Put data", put_data)
-    parts = call_data.split(',')
-    part[0] = 'token'
-    part[1] = 'strike'
-    part[2] = 'CE.OI'
-    part[3] = 'CE.ChngOI'
-    df = pd.Dataframe(call_data, columns=[part[0],part[1], part[2], part[3]])
-    st.write(df)
-  
+    
+    def parse_option_data(option_data):
+    rows = []
+
+    for item in option_data:
+        # item may itself be a list
+        if isinstance(item, list):
+            for x in item:
+                if isinstance(x, str):
+                    parts = x.split(",")
+                    if len(parts) == 4:
+                        rows.append(parts)
+        elif isinstance(item, str):
+            parts = item.split(",")
+            if len(parts) == 4:
+                rows.append(parts)
+      return rows
+
+      call_rows = parse_option_data(call_data)
+      put_rows = parse_option_data(put_data)
+      st.write(call_rows)
+
 
