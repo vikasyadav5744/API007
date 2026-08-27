@@ -257,4 +257,6 @@ if script_criteria:
     response_script = conn.getresponse()
     st.write("HTTP hist status:", response_script.status)
     st.write("HTTP hist reason:", response_script.reason)
+    result5 = response_script.read().decode("utf-8")
+    st.write (result5)
     
