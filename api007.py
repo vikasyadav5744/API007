@@ -299,7 +299,7 @@ if call_criteria:
     expiry = data3["data"]["contractModel"]['exp']
     call_data= data3["data"]["call"]
     put_data= data3["data"]["put"]
-    st.write("Call data", call_data)
+    st.dataframe(call_data, columns=['token','strike','CE.OI', 'CE.ChngOI'])
     st.write("Put data", put_data)
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
