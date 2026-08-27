@@ -282,7 +282,7 @@ if call_criteria:
     expiry = data3["data"]["contractModel"]['exp']
     call_data= data3["data"]["call"]
     put_data= data3["data"]["put"]
-    st.write("Call data", call_data)
+    st.write("Call data", type(call_data))
     st.write("Put data", put_data)
     
   
