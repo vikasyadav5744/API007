@@ -270,9 +270,9 @@ def parse_option_data(option_data):
     if isinstance(item, list):
       for x in item:
         if isinstance(x, str):
-        parts = x.split(",")
-        if len(parts) == 4:
-          rows.append(parts)
+          parts = x.split(",")
+          if len(parts) == 4:
+            rows.append(parts)
     elif isinstance(item, str):
       parts = item.split(",")
       if len(parts) == 4:
