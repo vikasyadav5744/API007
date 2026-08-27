@@ -303,6 +303,6 @@ if call_criteria:
     st.write("Put data", put_data)
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    st.write(call_rows)
+    st.dataframe(call_rows)
 
 
