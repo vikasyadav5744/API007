@@ -289,7 +289,7 @@ if call_criteria:
     part[1] = 'strike'
     part[2] = 'CE.OI'
     part[3] = 'CE.ChngOI'
-    df = pd.Dataframe(call_data, columns=[part[0],part[1], part[2], part[3])
+    df = pd.Dataframe(call_data, columns=[part[0],part[1], part[2], part[3]])
     st.write(df)
   
 
