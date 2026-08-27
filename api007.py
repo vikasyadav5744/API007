@@ -258,5 +258,5 @@ if script_criteria:
     st.write("HTTP hist status:", response_script.status)
     st.write("HTTP hist reason:", response_script.reason)
     result5 = response_script.read().decode("utf-8")
-    data5= json.loads(result5)
-    st.json(data5)
+    data5= pd.read_csv(result5)
+    st.write(data5.to_string)
