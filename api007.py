@@ -108,7 +108,7 @@ if session_token:
         type="password"
     )
     BASE_URL1 = "https://api.mstock.trade"
-    if st.sidebar.button("Generate Access Token", on_click=generate_access_token):
+    if st.sidebar.button("Generate Access Token"): # on_click=generate_access_token):
     
         if not api_key or not otp:
             st.error("Enter API Key and OTP.")
