@@ -265,22 +265,19 @@ if script_criteria:
 #======================================================
                     # OHLC
 #====================================================== 
-headers4 = {
-          "X-Mirae-Version": "1",
-          "Authorization": f"token {access_token}",
-      }
-exchange_str1 = st.sidebar.selectbox("Exchane", key='exchange1', options=['NSE','NFO','BSE','BFO'], index=0)
-symboleq = st.sidebar.text_input("Trading Symbol for Equity", key='sybmol', value='ACC-EQ', help='if using NFO:- NIFTY2681224350CE')
-
-if st.sidebar.button("OHLC Data", key="ohlc_data"):
-  params = {
-      'i': [
-          f'{exchange_str1}:{symboleq}']
-  }
-  response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
-  st.write("HTTP hist status:", response_ohlc.status_code)
-  st.write("HTTP hist reason:", response_ohlc.reason)
-  #result6 = response_ohlc.read().decode("utf-8")
-  st.json(response_ohlc)
-
+ohlc_criteria=st.sidebar.checkbox("OHLC Data", key='ohlc_criteria')
+if ohlc_criteria:
+  exchange_str1 = st.sidebar.selectbox("Exchange", key='exchange1', options=['NSE','NFO','BSE','BFO'], index=0)
+  symboleq = st.sidebar.text_input("Trading Symbol for Equity", key='sybmol', value='ACC-EQ', help='if using NFO:- NIFTY2681224350CE')
+  if st.sidebar.button("OHLC Data", key="ohlc_data"):
+    params = {
+        'i': [
+            f'{exchange_str1}:{symboleq}']
+    }
+    response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
+    st.write("HTTP hist status:", response_ohlc.status_code)
+    st.write("HTTP hist reason:", response_ohlc.reason)
+    #result6 = response_ohlc.read().decode("utf-8")
+    st.json(response_ohlc)
+  
 
