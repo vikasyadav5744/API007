@@ -276,5 +276,5 @@ params = {
         f'{exchange_str1}:{symboleq}']
 }
 response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers4)
-st.write("HTTP hist status:", response_ohlc.status)
+#st.write("HTTP hist status:", response_ohlc.status)
 st.write("HTTP hist reason:", response_ohlc.reason)
