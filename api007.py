@@ -302,6 +302,6 @@ if call_criteria:
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
     calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI'])
-    st.dataframe(dalldf)
+    st.dataframe(calldf)
 
 
