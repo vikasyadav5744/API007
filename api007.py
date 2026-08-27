@@ -301,6 +301,6 @@ if call_criteria:
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    st.dataframe(call_rows, columns=['token','strike','CE.OI','CE.ChngOI'])
+    st.dataframe(call_rows,  column_order=['token','strike','CE.OI','CE.ChngOI'])
 
 
