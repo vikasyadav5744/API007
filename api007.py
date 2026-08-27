@@ -225,6 +225,7 @@ if call_criteria:
     result3 = response101.read().decode("utf-8")
     data3= json.loads(result3)
     st.json(data3)
+    st.write(data3["contractModel"])
 
 #======================================================
                     #Historical data 
