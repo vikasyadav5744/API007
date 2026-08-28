@@ -298,6 +298,7 @@ if call_criteria:
     with st.expander("See json response"):
       st.json(data3)
     expiry = data3["data"]["contractModel"]['exp']
+    st.write(expiry)
     call_data= data3["data"]["call"]
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
