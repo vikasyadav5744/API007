@@ -330,6 +330,9 @@ def master_button():
   list_epoch = list(expiry_ids.values())
   #---------------------above code is successful getting list of epoch expiry--------------------------
   
+  response1 = requets.get(f"{url}/openapi/typea/GetOptionChain/2/{expiry}/{token}',
+    headers=headers3)
+  
   #-----------------------------returns output 
   return st.write(list_epoch)
 
