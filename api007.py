@@ -295,7 +295,8 @@ if call_criteria:
     st.write("HTTP status:", response101.status)
     result3 = response101.read().decode("utf-8")
     data3= json.loads(result3)
-    st.json(data3)
+    with st.expander("See json response"):
+      st.json(data3)
     expiry = data3["data"]["contractModel"]['exp']
     call_data= data3["data"]["call"]
     put_data= data3["data"]["put"]
