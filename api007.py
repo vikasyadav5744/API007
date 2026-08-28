@@ -316,6 +316,10 @@ if call_criteria:
     st.dataframe(option_chain, column_order=['CE.token','CE.OI','CE.ChngOI','CE.strike','PE.ChngOI','PE.OI','PE.token', 'CE.expiry'])
     st.write(calldf_refined)
 
+#==================================================================================================
+                                          # master button
+#===================================================================================================
+
 def master_button():
   url = 'https://api.mstock.trade'
   response = requests.get(f"{url}/openapi/typea/getoptionchainmaster/2",
@@ -324,16 +328,12 @@ def master_button():
   expiry = response.json()
   expiry_ids = expiry['data']['dctExp']
   list_epoch = list(expiry_ids.values())
-  ex01 = list_epoch[0]
+  #---------------------above code is successful getting list of epoch expiry--------------------------
   
-
-
-
-  
+  #-----------------------------returns output 
   return st.write(list_epoch)
 
-
-
+#visual button on streamlit page
 if st.button("Get Master details", key='master'):
   master_button()
 
