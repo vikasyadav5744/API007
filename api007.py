@@ -333,11 +333,11 @@ expiry_detail = []
 num=0
 while num <= epoch_len: 
   response1 = requests.get(f"{url}/f'/openapi/typea/GetOptionChain/2/{list_epoch[num]}/26000", headers=headers3)
-   expiry = response1["data"]["contractModel"]['exp']
-   expiry_detail = expiry_detail.append(expiry)
-   if num==epoch_len:
-     break
-     num +=1
+  expiry = response1["data"]["contractModel"]['exp']
+  expiry_detail = expiry_detail.append(expiry)
+  if num==epoch_len:
+    break
+    num +=1
 st.write(expiry_detail)
 
   
