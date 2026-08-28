@@ -299,7 +299,8 @@ if call_criteria:
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI']).fillna(0)
+    calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI']).fillna(0, inplace=true)
+  
     putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).fillna(0)
     st.dataframe(calldf)
     st.dataframe(putdf)
