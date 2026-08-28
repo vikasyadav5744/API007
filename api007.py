@@ -336,7 +336,7 @@ st.write("status", response1.status_code)
 result101 = response1.json()
 expiry101 = result101["data"]["contractModel"]["exp"]
 st.write(expiry101)
-expiry_detail = expiry_detail.append(expiry101)
+expiry_detail = expiry_detail.append(10)
 st.write(expiry_detail)
 
 
