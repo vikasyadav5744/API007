@@ -300,7 +300,7 @@ if call_criteria:
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
     calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
-  
+    calldf['strike'] = calldf['strike'] / 100
     putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
     st.dataframe(calldf)
     st.dataframe(putdf)
