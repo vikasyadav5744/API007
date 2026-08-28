@@ -332,13 +332,31 @@ with st.expander (" serial no.7 is 1st-Sep-2026 expiry"):
 #---------------------above code is successful getting list of epoch expiry--------------------------
 
 #------------------------below calculation is only for getting Nifty symbol token to get Intraday data of individual strikes---------------------
-expiry_detail = []
+
 response1 = requests.get(f"{url}/openapi/typea/GetOptionChain/2/{list_epoch[7]}/26000", headers=headers3)
 st.write("status", response1.status_code)
 result101 = response1.json()
 expiry101 = result101["data"]["contractModel"]["exp"]
 st.write(expiry101)
-expiry_detail = expiry_detail.append(10)
+#---------------------------dataframe call /put data 
+strike1_d=st.number_input("select first strike", 21000, 28000, 23500, 50, key='strike1_d')
+strike2_d=st.number_input("select second strike", 21000, 28000, 24500, 50, key='strike2_d')
+call_data_d= result101["data"]["call"]
+put_data_d= result101["data"]["put"]
+call_rows_d = parse_option_data(call_data_d)
+put_rows_d = parse_option_data(put_data_d)
+calldf_d = pd.DataFrame(call_rows_d, columns=['CE.token','CE.strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
+calldf_d = calldf_d.astype('int64')
+calldf_d['CE.strike'] =calldf_d['CE.strike']/100
+calldf_refined_d = calldf_d[calldf_d['CE.strike'].between(strike1_d, strike2_d)]
+calldf_refined_d['CE.expiry'] = expiry
+putdf_d = pd.DataFrame(put_rows_d, columns=['PE.token','PE.strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
+putdf_d = putdf_d.astype('int64')
+putdf_d['PE.strike'] = putdf_d['PE.strike']/100
+putdf_refined_d = putdf_d[putdf_d['PE.strike'].between(strike1_d, strike2_d)]
+putdf_refined_d['PE.expiry'] = expiry
+option_chain_d =pd.concat([calldf_refined_d,putdf_refined_d], axis=1, ignore_index=False)
+st.dataframe(option_chain_d, column_order=['CE.token','CE.OI','CE.ChngOI','CE.strike','PE.ChngOI','PE.OI','PE.token', 'CE.expiry'])
 
 
 
