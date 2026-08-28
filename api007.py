@@ -325,15 +325,11 @@ expiry = response.json()
 expiry_ids = expiry['data']['dctExp']                       # dictionary of key:value
 list_epoch = list(expiry_ids.values())                       #list of epoch
 epoch_len =len(list_epoch)
-st.write(epoch_len)
-st.write(list_epoch[0])
 with st.expander (" serial no.7 is 1st-Sep-2026 expiry"):
   st.write(list_epoch)
-#---------------------above code is successful getting list of epoch expiry--------------------------
-
 #------------------------below calculation is only for getting Nifty symbol token to get Intraday data of individual strikes---------------------
-
-response1 = requests.get(f"{url}/openapi/typea/GetOptionChain/2/{list_epoch[7]}/26000", headers=headers3)
+expiry_epoch = st.selectbox("Select Expiry", options = list_epoch, index=7, key='outexp')
+response1 = requests.get(f"{url}/openapi/typea/GetOptionChain/2/{expiry_epoch}/26000", headers=headers3)
 st.write("status", response1.status_code)
 result101 = response1.json()
 expiry101 = result101["data"]["contractModel"]["exp"]
