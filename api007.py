@@ -321,7 +321,7 @@ def master_button():
   response = requests.get(f"{url}/openapi/typea/getoptionchainmaster/2",
             headers=headers3
             )
-  return response.status_code
+  return st.write(response.status_code)
 
 if st.button("Get Master details", key='master'):
   master_button()
