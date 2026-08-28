@@ -328,13 +328,20 @@ def master_button():
   expiry = response.json()
   expiry_ids = expiry['data']['dctExp']
   list_epoch = list(expiry_ids.values())
+  epoch_len =len(list_epoch)
   #---------------------above code is successful getting list of epoch expiry--------------------------
-  
-  response1 = requets.get(f"{url}/openapi/typea/GetOptionChain/2/{expiry}/{token}',
+  def detail_expiry_chain():
+    detailed_chain=[]
+    epoch =0
+    while epoch <epoch_len:
+    response1 = requets.get(f"{url}/openapi/typea/GetOptionChain/2/{list_epoch[epoch]}/26000',
     headers=headers3)
+    data = response1.json()
+    expiry_single = data3["data"]["contractModel"]['exp']
+    return st.writ(expiry_single)
   
   #-----------------------------returns output 
-  return st.write(list_epoch)
+  return st.write(detail_expiry_chain)
 
 #visual button on streamlit page
 if st.button("Get Master details", key='master'):
