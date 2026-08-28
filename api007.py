@@ -278,8 +278,6 @@ def parse_option_data(option_data):
       if len(parts) == 4:
         rows.append(parts)
   return rows
-
-
 conn2 = http.client.HTTPSConnection('api.mstock.trade')
 call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
 if call_criteria:
@@ -301,8 +299,8 @@ if call_criteria:
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI'])
-    putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).replace('None',0)
+    calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI']).fillna(0)
+    putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).fillna(0)
     st.dataframe(calldf)
     st.dataframe(putdf)
     option_chain =pd.concat([calldf,putdf], ignore_index=True)
