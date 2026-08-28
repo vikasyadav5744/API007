@@ -299,13 +299,13 @@ if call_criteria:
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    calldf = pd.DataFrame(call_rows, columns=['CE.token','strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
+    calldf = pd.DataFrame(call_rows, columns=['CE.token','CE.strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
     calldf = calldf.astype('int64')
     calldf['strike'] =calldf['strike']/100
     calldf_refined = calldf[calldf.strike.between(22000, 25000)]
     st.write("calldf_refined:", calldf_refined)
     st.write("Dtypes:", calldf.dtypes)
-    putdf = pd.DataFrame(put_rows, columns=['PE.token','strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
+    putdf = pd.DataFrame(put_rows, columns=['PE.token','PE.strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
     putdf = putdf.astype('int64')
     putdf['strike'] = putdf['strike']/100
     putdf_refined = putdf[putdf.strike.between(22000, 25000)]
