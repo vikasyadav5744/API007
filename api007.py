@@ -319,32 +319,16 @@ if call_criteria:
 #==================================================================================================
                                           # master button
 #===================================================================================================
+url = 'https://api.mstock.trade'
+response = requests.get(f"{url}/openapi/typea/getoptionchainmaster/2", headers=headers3)
+expiry = response.json()
+expiry_ids = expiry['data']['dctExp']                       # dictionary of key:value
+list_epoch = list(expiry_ids.values())                       #list of epoch
+epoch_len =len(list_epoch)
+st.write(epoch_len)
+#---------------------above code is successful getting list of epoch expiry--------------------------
 
-def master_button():
-  url = 'https://api.mstock.trade'
-  response = requests.get(f"{url}/openapi/typea/getoptionchainmaster/2",
-            headers=headers3
-            )
-  expiry = response.json()
-  expiry_ids = expiry['data']['dctExp']
-  list_epoch = list(expiry_ids.values())
-  epoch_len =len(list_epoch)
-  #---------------------above code is successful getting list of epoch expiry--------------------------
-  def detail_expiry_chain():
-    detailed_chain=[]
-    epoch =0
-    while epoch <epoch_len:
-      response1 = requets.get(f"{url}/openapi/typea/GetOptionChain/2/{list_epoch[epoch]}/26000",
-      headers=headers3)
-      data = response1.json()
-      expiry_single = data3["data"]["contractModel"]['exp']
-      return st.writ(expiry_single)
-  #-----------------------------returns output 
-  return st.write(detail_expiry_chain)
 
-#visual button on streamlit page
-if st.button("Get Master details", key='master'):
-  master_button()
 
 
 
