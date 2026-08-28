@@ -302,7 +302,7 @@ if call_criteria:
     calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
     calldf = calldf.astype('int64')
     calldf['strike'] =calldf['strike']/100
-    calldf_refined = calldf.strike.between(22000, 25000)
+    calldf_refined = calldf[calldf.strike.between(22000, 25000)]
     st.write("calldf_refined:", calldf_refined)
     st.write("Dtypes:", calldf.dtypes)
     putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
