@@ -316,7 +316,16 @@ if call_criteria:
     st.dataframe(option_chain, column_order=['CE.token','CE.OI','CE.ChngOI','CE.strike','PE.ChngOI','PE.OI','PE.token', 'CE.expiry'])
     st.write(calldf_refined)
 
-st.write(putdf_refined)
+def master_button():
+  url = 'https://api.mstock.trade'
+  response = requests.get(f"{url}/openapi/typea/getoptionchainmaster/2",
+            headers=headers3
+            )
+  return response.status_code
+
+if st.button("Get Master details", key='master'):
+  master_button()
+
 
 
 
