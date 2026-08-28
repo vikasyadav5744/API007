@@ -334,12 +334,11 @@ def master_button():
     detailed_chain=[]
     epoch =0
     while epoch <epoch_len:
-    response1 = requets.get(f"{url}/openapi/typea/GetOptionChain/2/{list_epoch[epoch]}/26000',
-    headers=headers3)
-    data = response1.json()
-    expiry_single = data3["data"]["contractModel"]['exp']
-    return st.writ(expiry_single)
-  
+      response1 = requets.get(f"{url}/openapi/typea/GetOptionChain/2/{list_epoch[epoch]}/26000',
+      headers=headers3)
+      data = response1.json()
+      expiry_single = data3["data"]["contractModel"]['exp']
+      return st.writ(expiry_single)
   #-----------------------------returns output 
   return st.write(detail_expiry_chain)
 
