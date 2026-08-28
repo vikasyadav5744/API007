@@ -306,12 +306,12 @@ if call_criteria:
     calldf = calldf.astype('int64')
     calldf['CE.strike'] =calldf['CE.strike']/100
     calldf_refined = calldf[calldf['CE.strike'].between(strike1, strike2)]
-    calldf_refined['expiry'] = expiry
+    calldf_refined['CE.expiry'] = expiry
     putdf = pd.DataFrame(put_rows, columns=['PE.token','PE.strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
     putdf = putdf.astype('int64')
     putdf['PE.strike'] = putdf['PE.strike']/100
     putdf_refined = putdf[putdf['PE.strike'].between(strike1, strike2)]
-    putdf_refined['expiry'] = expiry
+    putdf_refined['PE.expiry'] = expiry
     option_chain =pd.concat([calldf_refined,putdf_refined], axis=1, ignore_index=False)
     st.dataframe(option_chain)
 
