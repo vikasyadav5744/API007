@@ -309,7 +309,7 @@ if call_criteria:
     putdf = putdf.astype('int64')
     putdf['strike'] = putdf['strike']/100
     putdf_refined = putdf[putdf.strike.between(22000, 25000)]
-    option_chain =pd.concat([calldf_refined,putdf_refined], axis=1, ignore_index=True)
+    option_chain =pd.concat([calldf_refined,putdf_refined], axis=1, ignore_index=False)
     st.dataframe(option_chain)
 
 
