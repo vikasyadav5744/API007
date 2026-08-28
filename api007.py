@@ -322,7 +322,8 @@ def master_button():
             headers=headers3
             )
   expiry = response.json()
-  return st.write(expiry)
+  expiry_ids = expiry['data']['dctExp']
+  return st.write(expiry_ids)
 
 
 
