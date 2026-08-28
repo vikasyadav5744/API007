@@ -325,7 +325,12 @@ def master_button():
   expiry_ids = expiry['data']['dctExp']
   list_epoch = list(expiry_ids.values())
   ex01 = list_epoch[0]
-  return st.write(ex01)
+  
+
+
+
+  
+  return st.write(list_epoch)
 
 
 
