@@ -334,7 +334,7 @@ st.write("status", response1.status_code)
 result101 = response1.json()
 expiry101 = result101["data"]["contractModel"]["exp"]
 st.write(expiry101)
-#---------------------------dataframe call /put data 
+#---------------------------dataframe call /put data---------------------------------------------------------------------------- 
 strike1_d=st.number_input("select first strike", 21000, 28000, 23500, 50, key='strike1_d')
 strike2_d=st.number_input("select second strike", 21000, 28000, 24500, 50, key='strike2_d')
 call_data_d= result101["data"]["call"]
@@ -353,8 +353,15 @@ putdf_refined_d = putdf_d[putdf_d['PE.strike'].between(strike1_d, strike2_d)]
 putdf_refined_d['PE.expiry'] = expiry101
 option_chain_d =pd.concat([calldf_refined_d,putdf_refined_d], axis=1, ignore_index=False)
 st.dataframe(option_chain_d, column_order=['CE.token','CE.OI','CE.ChngOI','CE.strike','PE.ChngOI','PE.OI','PE.token', 'CE.expiry'])
-st.write(option_chain_d['PE.token'])
 
+ce_token = option_chain_d['CE.token']
+pe_token = option_chain_d['PE.token']
+
+#------------------------------------------------getting intraday data------------------------------------------
+exchange_b =st.sidebar.selectbox("Choose Exchange", key="exch-01", options=[1,2,3,4], index=2, help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
+
+response2 = requests.get((f'{url}/openapi/typea/instruments/intraday/exchange_b/74083/minute', headers=headers3)
+st.write("Intra", response2.status_code)
 
 
 
