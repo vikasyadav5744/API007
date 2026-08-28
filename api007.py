@@ -281,10 +281,10 @@ def parse_option_data(option_data):
 conn2 = http.client.HTTPSConnection('api.mstock.trade')
 call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
 if call_criteria:
+  strike1=st.sidebar.number_input("select first strike", 21000, 28000, 23500, 50, key='strike1')
+  strike2=st.sidebar.number_input("select second strike", 21000, 28000, 24500, 50, key='strike2')
   expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
   callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
-  strike1=st.number_input("select first strike", 21000, 28000, 23500, 50, key='strike1')
-  strike2=st.number_input("select second strike", 21000, 28000, 24500, 50, key='strike2')
   if callmaster:
     conn2.request(
     'GET',
