@@ -330,16 +330,11 @@ st.write(epoch_len)
 
 #------------------------below calculation is only for getting Nifty symbol token to get Intraday data of individual strikes---------------------
 expiry_detail = []
-num=0
-while num <= epoch_len: 
-  response1 = requests.get(f"{url}/f'/openapi/typea/GetOptionChain/2/{list_epoch[num]}/26000", headers=headers3)
-  st.write("status", response1.status_code)
-  response1 = response1.json()
-  expiry = response1["data"]["contractModel"]["exp"]
-  expiry_detail = expiry_detail.append(expiry)
-  if num==epoch_len:
-    break
-    num +=1
+response1 = requests.get(f"{url}/f'/openapi/typea/GetOptionChain/2/{list_epoch[0]}/26000", headers=headers3)
+st.write("status", response1.status_code)
+response1 = response1.json()
+expiry = response1["data"]["contractModel"]["exp"]
+expiry_detail = expiry_detail.append(expiry)
 st.write(expiry_detail)
 
   
