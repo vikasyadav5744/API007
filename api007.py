@@ -301,9 +301,11 @@ if call_criteria:
     put_rows = parse_option_data(put_data)
     calldf = pd.DataFrame(call_rows, columns=['token','strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
     calldf = calldf.astype('int64')
+    calldf['strike'] =calldf['strike']/100
     st.write("Dtypes:", calldf.dtypes)
     putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
-    st.dataframe(calldf)
+    putdf = putdf.astype('int64')
+    putdf['strike'] = putdf['strike']/100
     st.dataframe(putdf)
     option_chain =pd.concat([calldf,putdf], ignore_index=True)
     st.dataframe(option_chain)
