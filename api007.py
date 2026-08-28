@@ -298,7 +298,6 @@ if call_criteria:
     with st.expander("See json response"):
       st.json(data3)
     expiry = data3["data"]["contractModel"]['exp']
-    st.write(expiry)
     call_data= data3["data"]["call"]
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
@@ -307,6 +306,7 @@ if call_criteria:
     calldf = calldf.astype('int64')
     calldf['CE.strike'] =calldf['CE.strike']/100
     calldf_refined = calldf[calldf['CE.strike'].between(strike1, strike2)]
+    calldf_refined['expiry'] = expiry
     putdf = pd.DataFrame(put_rows, columns=['PE.token','PE.strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
     putdf = putdf.astype('int64')
     putdf['PE.strike'] = putdf['PE.strike']/100
