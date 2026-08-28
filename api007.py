@@ -299,15 +299,16 @@ if call_criteria:
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    strike1=st.number_input("select first strike", 21000, 28000, 23500, 50)
+    strike1=st.number_input("select first strike", 21000, 28000, 23500, 50 key='strike1')
+    strike2=st.number_input("select second strike", 21000, 28000, 24500, 50 key='strike2')
     calldf = pd.DataFrame(call_rows, columns=['CE.token','CE.strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
     calldf = calldf.astype('int64')
     calldf['CE.strike'] =calldf['CE.strike']/100
-    calldf_refined = calldf[calldf['CE.strike'].between(23500, 25000)]
+    calldf_refined = calldf[calldf['CE.strike'].between(strike1, strike2)]
     putdf = pd.DataFrame(put_rows, columns=['PE.token','PE.strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
     putdf = putdf.astype('int64')
     putdf['PE.strike'] = putdf['PE.strike']/100
-    putdf_refined = putdf[putdf['PE.strike'].between(23500, 25000)]
+    putdf_refined = putdf[putdf['PE.strike'].between(strike1, strike2)]
     option_chain =pd.concat([calldf_refined,putdf_refined], axis=1, ignore_index=False)
     st.dataframe(option_chain)
 
