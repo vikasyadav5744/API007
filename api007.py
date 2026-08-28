@@ -353,6 +353,7 @@ putdf_refined_d = putdf_d[putdf_d['PE.strike'].between(strike1_d, strike2_d)]
 putdf_refined_d['PE.expiry'] = expiry101
 option_chain_d =pd.concat([calldf_refined_d,putdf_refined_d], axis=1, ignore_index=False)
 st.dataframe(option_chain_d, column_order=['CE.token','CE.OI','CE.ChngOI','CE.strike','PE.ChngOI','PE.OI','PE.token', 'CE.expiry'])
+st.write(option_chain_d['PE.token')
 
 
 
