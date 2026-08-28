@@ -299,8 +299,8 @@ if call_criteria:
     put_data= data3["data"]["put"]
     call_rows = parse_option_data(call_data)
     put_rows = parse_option_data(put_data)
-    strike1=st.number_input("select first strike", 21000, 28000, 23500, 50 key='strike1')
-    strike2=st.number_input("select second strike", 21000, 28000, 24500, 50 key='strike2')
+    strike1=st.number_input("select first strike", 21000, 28000, 23500, 50, key='strike1')
+    strike2=st.number_input("select second strike", 21000, 28000, 24500, 50, key='strike2')
     calldf = pd.DataFrame(call_rows, columns=['CE.token','CE.strike','CE.OI','CE.ChngOI']).fillna(0, inplace=True)
     calldf = calldf.astype('int64')
     calldf['CE.strike'] =calldf['CE.strike']/100
