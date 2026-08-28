@@ -334,9 +334,10 @@ expiry_detail = []
 response1 = requests.get(f"{url}/openapi/typea/GetOptionChain/2/{list_epoch[1]}/26000", headers=headers3)
 st.write("status", response1.status_code)
 result101 = response1.json()
-expiry = result101["data"]["contractModel"]["exp"]
+expiry101 = result101["data"]["contractModel"]["exp"]
+st.write(expiry101)
 expiry_detail = expiry_detail.append(expiry)
-st.write(expiry_datail)
+
 
 
   
