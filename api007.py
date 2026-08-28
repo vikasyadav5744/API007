@@ -316,4 +316,8 @@ if call_criteria:
     st.dataframe(option_chain, column_order=['CE.token','CE.OI','CE.ChngOI','CE.strike','PE.ChngOI','PE.OI','PE.token', 'CE.expiry'])
     st.write(calldf_refined)
 
+st.write(putdf_refined)
+
+
+
 
