@@ -308,6 +308,7 @@ if call_criteria:
     putdf = pd.DataFrame(put_rows, columns=['token','strike','PE.OI','PE.ChngOI']).fillna(0, inplace=True)
     putdf = putdf.astype('int64')
     putdf['strike'] = putdf['strike']/100
+    putdf_refined = putdf[putdf.strike.between(22000, 25000)]
     st.dataframe(putdf)
     option_chain =pd.concat([calldf,putdf], ignore_index=True)
     st.dataframe(option_chain)
