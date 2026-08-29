@@ -26,8 +26,22 @@ def parse_option_data(option_data):
       if len(parts) == 4:
         rows.append(parts)
   return rows
-
-
+#====================================================
+def parse_option_data1(option_data):
+  rows = []
+  for item in option_data:
+    # item may itself be a list
+    if isinstance(item, list):
+      for x in item:
+        if isinstance(x, str):
+          parts = x.split(",")
+          if len(parts) == 6:
+            rows.append(parts)
+    elif isinstance(item, str):
+      parts = item.split(",")
+      if len(parts) == 6:
+        rows.append(parts)
+  return rows
 # ============================================================
                                       # PAGE CONFIG
 # ============================================================
@@ -200,7 +214,7 @@ if Intraday_criteria==True:
       result202= data2["data"]["candles"]
       st.json(data2)
       st.write(type (result202))
-      rel1 = parse_option_data(result202)
+      rel1 = parse_option_data1(result202)
       st.write("rel 1:-", rel1)
       #result_df = pd.DataFrame(result202, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
       #st.write(result_df)
