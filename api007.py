@@ -309,11 +309,12 @@ if call_criteria:
   strike1=st.sidebar.number_input("select first strike", 21000, 28000, 23500, 50, key='strike1')
   strike2=st.sidebar.number_input("select second strike", 21000, 28000, 24500, 50, key='strike2')
   expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
+  token1=st.sidebar.number_input("select token", value=26000, key='token1')
   callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
   if callmaster:
     conn2.request(
     'GET',
-    f'/openapi/typea/GetOptionChain/2/{expiry}/26000',
+    f'/openapi/typea/GetOptionChain/2/{expiry}/{token1}',
     headers=headers3)
     response101 = conn2.getresponse()
     st.write("HTTP reason:", response101.reason)
