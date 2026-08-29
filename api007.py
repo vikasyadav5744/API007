@@ -201,7 +201,7 @@ if Intraday_criteria==True:
       st.json(data2)
       st.write(type (result202))
       rel1 = parse_option_data(result202)
-      st.write(rel1)
+      st.write(result202)
       #result_df = pd.DataFrame(result202, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
       #st.write(result_df)
 # ============================================================
