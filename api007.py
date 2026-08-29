@@ -376,8 +376,8 @@ calldf_refined_d['CE.expiry'] = expiry101
 putdf_d = pd.DataFrame(put_rows_d, columns=['PE.token','PE.strike','PE.OI','PE.volume']).fillna(0, inplace=True)
 putdf_d = putdf_d.astype('int64')
 putdf_d['PE.strike'] = putdf_d['PE.strike']/100
-calldf_d['PE.OI'] =calldf_d['PE.OI']/65
-calldf_d['PE.volume'] =calldf_d['PE.volume']/65
+putdf_d['PE.OI'] =putdf_d['PE.OI']/65
+putdf_d['PE.volume'] =putdf_d['PE.volume']/65
 putdf_refined_d = putdf_d[putdf_d['PE.strike'].between(strike1_d, strike2_d)]
 putdf_refined_d['PE.expiry'] = expiry101
 option_chain_d =pd.concat([calldf_refined_d,putdf_refined_d], axis=1, ignore_index=False)
