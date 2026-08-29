@@ -180,7 +180,7 @@ if Intraday_criteria==True:
       data2 = json.loads(response_text2)
       result202= data2["data"]["candles"]
       st.json(data2)
-      st.write(result202.dtype)
+      st.write(type (result202))
       #result_df = pd.DataFrame(result202, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
       #st.write(result_df)
 # ============================================================
