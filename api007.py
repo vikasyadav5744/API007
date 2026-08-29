@@ -178,7 +178,11 @@ if Intraday_criteria==True:
       st.write("HTTP Status:", response6.status)
       response_text2 = response6.read().decode("utf-8")
       data2 = json.loads(response_text2)
+      result202= data2["data"]["candles"]
       st.json(data2)
+      st.write(result202.dtype)
+      #result_df = pd.DataFrame(result202, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
+      #st.write(result_df)
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
@@ -200,8 +204,6 @@ if chaimaster_criteria==True:
             result = response.read().decode("utf-8")
             result = json.loads(result)
             st.json(result)
-            result_df = pd.DataFrame(result, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
-            st.write(result_df)
             #st.write(result['data']['OPTIDX'][3])    
         except Exception as e:
             st.write("Error:", e)
