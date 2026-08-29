@@ -369,15 +369,19 @@ put_rows_d = parse_option_data(put_data_d)
 calldf_d = pd.DataFrame(call_rows_d, columns=['CE.token','CE.strike','CE.OI','CE.volume']).fillna(0, inplace=True)
 calldf_d = calldf_d.astype('int64')
 calldf_d['CE.strike'] =calldf_d['CE.strike']/100
+calldf_d['CE.OI'] =calldf_d['CE.OI']/65
+calldf_d['CE.volume'] =calldf_d['CE.volume']/65
 calldf_refined_d = calldf_d[calldf_d['CE.strike'].between(strike1_d, strike2_d)]
 calldf_refined_d['CE.expiry'] = expiry101
 putdf_d = pd.DataFrame(put_rows_d, columns=['PE.token','PE.strike','PE.OI','PE.volume']).fillna(0, inplace=True)
 putdf_d = putdf_d.astype('int64')
 putdf_d['PE.strike'] = putdf_d['PE.strike']/100
+calldf_d['PE.OI'] =calldf_d['PE.OI']/65
+calldf_d['PE.volume'] =calldf_d['PE.volume']/65
 putdf_refined_d = putdf_d[putdf_d['PE.strike'].between(strike1_d, strike2_d)]
 putdf_refined_d['PE.expiry'] = expiry101
 option_chain_d =pd.concat([calldf_refined_d,putdf_refined_d], axis=1, ignore_index=False)
-st.dataframe(option_chain_d, column_order=['CE.token','CE.OI','CE.volume','CE.strike','PE.volume','PE.OI','PE.token', 'CE.expiry'])
+st.dataframe(option_chain_d, column_order=['CE.token','CE.OI','CE.volume','CE.strike','PE.OI', 'PE.volume','PE.token', 'CE.expiry'])
 
 ce_token = option_chain_d['CE.token']
 pe_token = option_chain_d['PE.token']
