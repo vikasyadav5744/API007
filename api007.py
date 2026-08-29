@@ -9,6 +9,25 @@ from datetime import datetime, timezone, date
 my_ip = requests.get("https://api.ipify.org", timeout=10).text
 st.write("Current public IP:", my_ip)
 
+#_--------++++----------------------
+
+def parse_option_data(option_data):
+  rows = []
+  for item in option_data:
+    # item may itself be a list
+    if isinstance(item, list):
+      for x in item:
+        if isinstance(x, str):
+          parts = x.split(",")
+          if len(parts) == 4:
+            rows.append(parts)
+    elif isinstance(item, str):
+      parts = item.split(",")
+      if len(parts) == 4:
+        rows.append(parts)
+  return rows
+
+
 # ============================================================
                                       # PAGE CONFIG
 # ============================================================
@@ -181,6 +200,8 @@ if Intraday_criteria==True:
       result202= data2["data"]["candles"]
       st.json(data2)
       st.write(type (result202))
+      rel1 = parse_option_data(result202)
+      st.write(rel1)
       #result_df = pd.DataFrame(result202, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
       #st.write(result_df)
 # ============================================================
@@ -267,21 +288,7 @@ if ohlc_criteria:
   # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
-def parse_option_data(option_data):
-  rows = []
-  for item in option_data:
-    # item may itself be a list
-    if isinstance(item, list):
-      for x in item:
-        if isinstance(x, str):
-          parts = x.split(",")
-          if len(parts) == 4:
-            rows.append(parts)
-    elif isinstance(item, str):
-      parts = item.split(",")
-      if len(parts) == 4:
-        rows.append(parts)
-  return rows
+
 conn2 = http.client.HTTPSConnection('api.mstock.trade')
 call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
 if call_criteria:
