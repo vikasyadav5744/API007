@@ -390,7 +390,7 @@ pe_token = option_chain_d['PE.token']
 #------------------------------------------------getting intraday data------------------------------------------
 exchange_b =st.selectbox("Choose Exchange", key="exch-01", options=[1,2,3,4], index=1, help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
 
-response2 = requests.get(f'{url}/openapi/typea/instruments/intraday/exchange_b/74083/minute', headers=headers3)
+response2 = requests.get(f'{url}/openapi/typea/instruments/intraday/{exchange_b}/74083/minute', headers=headers3)
 st.write("Intra", response2.status_code)
 
 
