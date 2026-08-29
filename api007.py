@@ -211,7 +211,7 @@ if Intraday_criteria==True:
       st.write("HTTP Status:", response6.status)
       response_text2 = response6.read().decode("utf-8")
       data2 = json.loads(response_text2)
-      result202= data2["data"]["candles"][""]
+      result202= data2["data"]["candles"][" "]
       st.json(data2)
       st.write(type (result202))
       rel1 = parse_option_data1(result202)
