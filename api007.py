@@ -354,7 +354,7 @@ if call_criteria:
         exp1=response103["data"]["contractModel"]["exp"]
         exp_list.append(str(exp1))
       else:
-        res = json(response103.text)
+        res = json.loads(response103.text)
         exp1=res["data"]["contractModel"]["exp"]
         exp_list.append(str(exp1))
       st.write(exp_list)
