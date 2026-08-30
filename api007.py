@@ -253,8 +253,9 @@ if hist_criteria:
   exchange_str= st.sidebar.selectbox("Exchane", key='exchange', options=['NSE','NFO','BSE','BFO'], index=0)
   inst_token=int(st.sidebar.number_input("Instrument Token", key='instrument', value=74068))
   interval_hist= st.sidebar.selectbox("Choose Interval", key="interval_hist", options=['minute','5minute','10minute', '15minute', '30minute', '60minute', 'day'])
-  fromdate = str(st.sidebar.datetime_input("Choose From Date", format="YYYY-MM-DD", key='fromdate')).str.strip()
-  todate = str(st.sidebar.datetime_input("Choose To Date", format="YYYY-MM-DD", key='todate')).str.strip()
+  fromdate = st.sidebar.date_input("Choose From Date", format="YYYY-MM-DD", key='fromdate')
+  todate = st.sidebar.date_input("Choose To Date", format="YYYY-MM-DD", key='todate')
+  
   if st.sidebar.button("Historical Data", key="historical_data"):
     conn3.request(
     'GET',
