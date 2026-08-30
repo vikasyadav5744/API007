@@ -345,7 +345,19 @@ if call_criteria:
     option_chain =pd.concat([calldf_refined,putdf_refined], axis=1, ignore_index=False)
     st.dataframe(option_chain, column_order=['CE.token','CE.OI','CE.ChngOI','CE.strike','PE.ChngOI','PE.OI','PE.token', 'CE.expiry'])
     st.write(calldf_refined)
-
+    exp_list= []
+    for item in epoch_list:
+      response103=requests.get('https://api.mstock.trade'
+      f'/openapi/typea/GetOptionChain/2/{item}/26000',
+      headers=headers3)
+      if response103== response103.json():
+        exp1=response103["data"]["contractModel"]["exp"]
+        exp_list.append(str(exp1))
+      else:
+        res = json(response103.text)
+        exp1=res["data"]["contractModel"]["exp"]
+        exp_list.append(str(exp1))
+      st.write(exp_list)
 #==================================================================================================
                                           # master button
 #===================================================================================================
