@@ -302,7 +302,7 @@ if ohlc_criteria:
     if response_ohlc == response_ohlc.json():
       st.json(response_ohlc)
     else:
-      st.write(response_ohlc.text)
+      st.json(response_ohlc.text)
   # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
