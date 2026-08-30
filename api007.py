@@ -222,7 +222,7 @@ if Intraday_criteria==True:
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
 conn1 = http.client.HTTPSConnection('api.mstock.trade')
-epoch_list =[1795876200,1475159400,1477578600,1479911400,1483021800,1490884200,1498746600,1472740200,1473345000,1473949800,1474554600,1514471400,1530196200,1561645800,1577284200,1593095400,1609425000,1624545000]
+epoch_list =[1475159400,1477578600,1479911400,1483021800,1490884200,1498746600,1472740200,1473345000,1473949800,1474554600,1514471400,1530196200,1561645800,1577284200,1593095400,1609425000,1624545000]
 chaimaster_criteria =st.sidebar.checkbox("show Expiry Data", key='key12')
 if chaimaster_criteria==True:
     chainmaster =st.sidebar.button("ChainMaster Expiry Data", key='chainmaster')
@@ -312,7 +312,7 @@ call_criteria=st.sidebar.checkbox("Contract Master Data", key='call_criteria')
 if call_criteria:
   strike1=st.sidebar.number_input("select first strike", 21000, 28000, 23500, 50, key='strike1')
   strike2=st.sidebar.number_input("select second strike", 21000, 28000, 24500, 50, key='strike2')
-  expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=1)
+  expiry= st.sidebar.selectbox("Epoch", key='expiry', options=epoch_list, index=0)
   token1=st.sidebar.number_input("select token", value=26000, key='token1')
   callmaster=st.sidebar.button("Get Contract Master CE/PE", key='callmaster')
   if callmaster:
