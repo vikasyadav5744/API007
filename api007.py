@@ -399,11 +399,8 @@ st.json(response2)
 #_------------------------     OHLC.   ---------------------------
 
 params = {
-    'i': [
-        'NFO:NIFTY2682824200CE'
-    ],
+    'i': 'NFO:NIFTY2682824200CE'
 }
-  
 response11 = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
 st.write(response11.status_code)
 st.json(response11)
