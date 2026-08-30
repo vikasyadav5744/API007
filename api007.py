@@ -406,7 +406,7 @@ params = {
   
 response11 = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
 st.write(response11.status_code)
-st.jaon(response11)
+st.json(response11)
 
 
 
