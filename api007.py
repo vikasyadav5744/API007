@@ -392,7 +392,7 @@ exchange_b =st.selectbox("Choose Exchange", key="exch-01", options=[1,2,3,4], in
 
 response2 = requests.get(f'{url}/openapi/typea/instruments/intraday/{exchange_b}/74083/minute', headers=headers3)
 st.write("Intra", response2.status_code)
-
+st.json(response2)
 
 
   
