@@ -299,7 +299,10 @@ if ohlc_criteria:
     response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
     st.write("HTTP hist status:", response_ohlc.status_code)
     st.write("HTTP hist reason:", response_ohlc.reason)
-    st.json(response_ohlc)
+    if response_ohlc == response_ohlc.json():
+      st.json(response_ohlc)
+    else:
+      st.write(response_ohlc.text)
   # ============================================================
 # OPTION CHAIN MASTER  CALL / PUT Data
 # ============================================================
