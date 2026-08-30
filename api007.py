@@ -395,10 +395,18 @@ st.write("Intra", response2.status_code)
 st.json(response2)
 
 
-  
-  
 
+#_---------------------------------------------------
 
+  params = {
+    'i': [
+        'NSE:NIFTY',
+    ],
+}
+  
+response11 = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
+st.write(response11.status_code)
+st.jaon(response11)
 
 
 
