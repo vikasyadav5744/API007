@@ -352,11 +352,10 @@ if call_criteria:
       response103=requests.get('https://api.mstock.trade'
       f'/openapi/typea/GetOptionChain/2/{item}/26000',
       headers=headers3)
-      st.write("json response 103:", response103)
       if response103== response103.json():
         exp1=response103["data"]["contractModel"]["exp"]
         exp_list.append(str(exp1))
-      st.write(exp_list)
+        st.write(exp_list)
 #==================================================================================================
                                           # master button
 #===================================================================================================
