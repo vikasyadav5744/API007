@@ -355,7 +355,7 @@ if call_criteria:
       if response103== response103.json():
         exp1=response103["data"]["contractModel"]["exp"]
         exp_list.append(str(exp1))
-        st.write(exp_list)
+        st.write("need to be printed", exp_list)
 #==================================================================================================
                                           # master button
 #===================================================================================================
