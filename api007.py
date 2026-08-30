@@ -400,7 +400,7 @@ st.json(response2)
 
 params = {
     'i': [
-        'NSE:NIFTY',
+        'NFO:NIFTY2682824200CE'
     ],
 }
   
