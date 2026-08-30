@@ -292,8 +292,8 @@ if ohlc_criteria:
   symboleq = st.sidebar.text_input("Trading Symbol for Equity", key='sybmol', value='ACC-EQ', help='if using NFO:- NIFTY2681224350CE')
   if st.sidebar.button("OHLC Data", key="ohlc_data"):
     params = {
-        'i': [
-            f'{exchange_str1}:{symboleq}']
+        'i':
+            f'{exchange_str1}:{symboleq}'
     }
     st.write(params)
     response_ohlc = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
