@@ -417,7 +417,7 @@ def get_option_ind(token):
   for item in token:
     response = requests.get(f'{url}/openapi/typea/instruments/intraday/2/{token[i]}/minute', headers=headers3)
     data = response.text
-    data12 = json.loads(data12)
+    data12 = json.loads(data)
     result01=data12["data"]["candles"]
     result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
     option_data = pd.concat([option_data, result_df01], axis = 0, ignore_index=False)
