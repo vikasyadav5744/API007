@@ -213,11 +213,8 @@ if Intraday_criteria==True:
       data2 = json.loads(response_text2)
       result202= data2["data"]["candles"]
       st.json(data2)
-      st.write(type (result202))
-      rel1 = parse_option_data1(result202)
-      st.write("rel 1:-", rel1)
-      #result_df = pd.DataFrame(result202, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
-      #st.write(result_df)
+      result_df = pd.DataFrame(result202, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
+      st.write(result_df)
 # ============================================================
 # OPTION CHAIN MASTER Expiry data
 # ============================================================
