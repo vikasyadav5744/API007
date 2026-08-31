@@ -404,7 +404,7 @@ token=74083
 response9 = requests.get(f'{url}/openapi/typea/instruments/intraday/2/{token}/minute', headers=headers3)
 st.write("Intra", response9.status_code)
 st.json(response9)
-response_text2 = response6.read().decode("utf-8")
+#response_text2 = response6.read().decode("utf-8")
 result01=response9["data"]["candles"]
 result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
 st.write('intraday:', result_df01)
