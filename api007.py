@@ -410,3 +410,19 @@ result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low
 st.write('intraday:', result_df01)
 
 st.write(ce_token)
+
+def get_option_ind(token):
+  option_data = [[]]
+  i = 0
+  for item in token:
+    response = requests.get(f'{url}/openapi/typea/instruments/intraday/2/{token[i]}/minute', headers=headers3)
+    data = response.text
+    data12 = json.loads(data12)
+    result01=data12["data"]["candles"]
+    result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
+    option_data = pd.concat([option_data, result_df01], axis = 0, ignore_index=False)
+    i +=1
+  return option_data
+
+st.write("CE tokens details:", get_option_ind(ce_token))
+    
