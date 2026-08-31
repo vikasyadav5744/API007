@@ -400,22 +400,15 @@ ce_token = option_chain_d['CE.token']
 pe_token = option_chain_d['PE.token']
 
 #------------------------------------------------getting intraday data------------------------------------------
-exchange_b =st.selectbox("Choose Exchange", key="exch-01", options=[1,2,3,4], index=1, help="1-NSE, 2-NFO, 3-CDS, 4-BSE, 5-BFO")
-
-response2 = requests.get(f'{url}/openapi/typea/instruments/intraday/{exchange_b}/74083/minute', headers=headers3)
-st.write("Intra", response2.status_code)
-st.json(response2)
-
-
-
-#_------------------------     OHLC.   ---------------------------
-
-params = {
-    'i': 'NFO:NIFTY2690125400CE'
-}
-response11 = requests.get('https://api.mstock.trade/openapi/typea/instruments/quote/ohlc', params=params, headers=headers3)
-st.write(response11.status_code)
-st.json(response11.text)
-
+token=74083 
+response9 = requests.get(f'{url}/openapi/typea/instruments/intraday/2/{token}/minute', headers=headers3)
+st.write("Intra", response9.status_code)
+st.json(response9)
+#response_text2 = response6.read().decode("utf-8")
+data8 = json.loads(response9)
+result01= data8["data"]["candles"]
+st.json(data2)
+result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
+st.write(result_df01)
 
 
