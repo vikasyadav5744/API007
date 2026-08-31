@@ -412,19 +412,74 @@ st.write('intraday:', result_df01)
 st.write(ce_token)
 
 def get_option_ind(token):
-  option_data = [[]]
-  i = 0
-  for item in token:
-    response = requests.get(f'{url}/openapi/typea/instruments/intraday/2/{token[i]}/minute', headers=headers3)
-    data = response.text
-    data12 = json.loads(data)
-    result01=data12["data"]["candles"]
-    result01 = pd.to_numeric(result01)
-    result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
-    option_data = pd.concat([option_data, result_df01], axis = 0, ignore_index=False)
-    i +=1
-  return option_data
 
+    option_data = []
+
+    for tkn in token:
+
+        response = requests.get(
+            f'{url}/openapi/typea/instruments/intraday/2/{tkn}/minute',
+            headers=headers3
+        )
+
+        data12 = response.json()
+
+        # Check API response
+        if data12.get("status") != "success":
+            st.error(f"API Error for token {tkn}: {data12}")
+            continue
+
+        result01 = data12["data"]["candles"]
+
+        if not result01:
+            continue
+
+        result_df01 = pd.DataFrame(
+            result01,
+            columns=[
+                'Timestamp',
+                'Open',
+                'High',
+                'Low',
+                'Close',
+                'Volume'
+            ]
+        )
+
+        # Convert only numeric columns
+        numeric_cols = [
+            'Open',
+            'High',
+            'Low',
+            'Close',
+            'Volume'
+        ]
+
+        result_df01[numeric_cols] = result_df01[numeric_cols].apply(
+            pd.to_numeric,
+            errors='coerce'
+        )
+
+        option_data.append(result_df01)
+
+    # Combine all option tokens
+    if option_data:
+        return pd.concat(
+            option_data,
+            axis=0,
+            ignore_index=True
+        )
+
+    return pd.DataFrame(
+        columns=[
+            'Timestamp',
+            'Open',
+            'High',
+            'Low',
+            'Close',
+            'Volume'
+        ]
+    )
 red = get_option_ind(ce_token)
-st.write(red)
-    
+
+st.dataframe(red)
