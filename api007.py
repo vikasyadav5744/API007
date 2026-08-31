@@ -405,9 +405,7 @@ response9 = requests.get(f'{url}/openapi/typea/instruments/intraday/2/{token}/mi
 st.write("Intra", response9.status_code)
 st.json(response9)
 #response_text2 = response6.read().decode("utf-8")
-data8 = json.loads(response9)
-result01= data8["data"]["candles"]
-st.json(data2)
+result01=response9["data"]["candles"]
 result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
 st.write(result_df01)
 
