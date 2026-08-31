@@ -396,8 +396,8 @@ putdf_refined_d['PE.expiry'] = expiry101
 option_chain_d =pd.concat([calldf_refined_d,putdf_refined_d], axis=1, ignore_index=False)
 st.dataframe(option_chain_d, column_order=['CE.token','CE.OI','CE.volume','CE.strike','PE.OI', 'PE.volume','PE.token', 'CE.expiry'])
 
-ce_token = option_chain_d['CE.token']
-pe_token = option_chain_d['PE.token']
+ce_token = calldf_d['CE.token']
+pe_token = putdf_d['PE.token']
 
 #------------------------------------------------getting intraday data------------------------------------------
 token=st.number_input("F&O token No.", value=74068, key='f&o') 
