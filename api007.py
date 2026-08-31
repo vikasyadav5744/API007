@@ -409,4 +409,4 @@ result01=data12["data"]["candles"]
 result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
 st.write('intraday:', result_df01)
 
-
+st.write(ce_token)
