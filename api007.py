@@ -425,5 +425,6 @@ def get_option_ind(token):
     i +=1
   return option_data
 
-st.write("CE tokens details:", get_option_ind(ce_token))
+red = get_option_ind(ce_token)
+st.write(red)
     
