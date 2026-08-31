@@ -446,7 +446,7 @@ def get_option_ind(token, para):
             ]
         )
       
-        result_df01 ['token'] = token
+        result_df01 ['token'] = tkn
         result_df01 ['type'] = para
       
         # Convert only numeric columns
@@ -485,6 +485,6 @@ def get_option_ind(token, para):
             'type'
         ]
     )
-red = get_option_ind(ce_token, CE)
+red = get_option_ind(ce_token, "CE")
 
 st.dataframe(red)
