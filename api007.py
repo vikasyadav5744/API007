@@ -485,6 +485,6 @@ def get_option_ind(token, para):
             'type'
         ]
     )
-red = get_option_ind(ce_token)
+red = get_option_ind(ce_token, CE)
 
 st.dataframe(red)
