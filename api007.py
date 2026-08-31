@@ -411,7 +411,7 @@ st.write('intraday:', result_df01)
 
 st.write(ce_token)
 
-def get_option_ind(token):
+def get_option_ind(token, para):
 
     option_data = []
 
@@ -445,7 +445,10 @@ def get_option_ind(token):
                 'Volume'
             ]
         )
-
+      
+        result_df01 ['token'] = token
+        result_df01 ['type'] = para
+      
         # Convert only numeric columns
         numeric_cols = [
             'Open',
@@ -477,7 +480,9 @@ def get_option_ind(token):
             'High',
             'Low',
             'Close',
-            'Volume'
+            'Volume',
+            'token',
+            'type'
         ]
     )
 red = get_option_ind(ce_token)
