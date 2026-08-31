@@ -419,6 +419,7 @@ def get_option_ind(token):
     data = response.text
     data12 = json.loads(data)
     result01=data12["data"]["candles"]
+    result01 = pd.to_numeric(result01)
     result_df01 = pd.DataFrame(result01, columns =['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume'])
     option_data = pd.concat([option_data, result_df01], axis = 0, ignore_index=False)
     i +=1
