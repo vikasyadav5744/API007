@@ -12,7 +12,7 @@ st.write("Current public IP:", my_ip)
 
 data = st.file_uploader("csv file upload", key='upload1', type=None, accept_multiple_files=True)
 if data is not None:
-  data = pd.read_excel(data)
-  st.write(data)
+  data1 = pd.read_excel(data)
+  st.write(data1)
 else:
   st.write("Upload File Please....")
