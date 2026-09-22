@@ -8,8 +8,9 @@ from datetime import datetime, timezone, date
 
 my_ip = requests.get("https://api.ipify.org", timeout=10).text
 st.write("Current public IP:", my_ip)
-data = st.file_uploader("csv file upload", key='upload1',type=None, accept_multiple_files=True)
-if data !=None:
+
+data = st.file_uploader("csv file upload", key='upload1', type=None, accept_multiple_files=True)
+if data is not None:
   data = pd.read_excel(data)
   st.write(data)
 else:
