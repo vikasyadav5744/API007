@@ -11,4 +11,9 @@ my_ip = requests.get("https://api.ipify.org", timeout=10).text
 st.write("Current public IP:", my_ip)
 
 data = st.file_uploader("upload file upload", key='upload1', accept_multiple_files=True)
+if data==None:
+  st.write("please upload file")
+else:
+  data1 = pd.read_excel(data)
+  st.write(data1)
 
