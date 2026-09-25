@@ -14,15 +14,15 @@ except requests.RequestException as e:
 # File uploader
 data = st.file_uploader(
     "Upload Excel file",
-    type=["xlsx", "xls"],
+    type=["csv"],
     key="upload1"
 )
 
 if data is None:
-    st.write("Please upload an Excel file.")
+    st.write("Please upload an csv file.")
 else:
     try:
-        data1 = pd.read_excel(data)
+        data1 = pd.read_csv(data)
         st.write("Uploaded data:")
         st.dataframe(data1, use_container_width=True)
     except Exception as e:
